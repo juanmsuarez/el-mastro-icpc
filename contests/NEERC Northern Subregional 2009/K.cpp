@@ -85,7 +85,7 @@ bool dfsvalid(int c){
     if(!compvalid[c])return false;
     viscomp[c]=true;
     for(int vc:kosa.ady[c]){
-        if(dfsvalid(vc)){
+        if(!dfsvalid(vc)){
             return compvalid[c] =false;
         }
     }
