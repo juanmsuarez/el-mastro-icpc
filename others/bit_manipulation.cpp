@@ -23,6 +23,21 @@ bool test_bit(ll x){
 bool pow_of_two(ll x){
 	return x & (x-1) == 0;
 }
+bool pow_of_two_min_one(ll x){
+    return x & (x+1) == 0;
+}
+ll rightmost_set_bit(ll x){
+    return x & -x;
+}
+ll leftmost_set_bit(ll x){
+    x |= x >> 1;
+    x |= x >> 2;
+    x |= x >> 4;
+    x |= x >> 8;
+    x |= x >> 16;
+    x |= x >> 32;
+    return (x+1) >> 1;
+}
 
 int main() {
 	cout << "Enter a integer number: ";
@@ -116,7 +131,7 @@ Set subtraction:  A & ~B
 Set negation:     ALL_BITS ^ A (or ~A)
 Set bit:          A |= 1 << bit
 Clear bit:        A &= ~(1 << bit)
-Test bit:         (A & 1 << bit) != 0 
+Test bit:         (A & (1 << bit)) != 0 
 
 -----------------------------------------------------------------------------------------------------------------------------
 
