@@ -31,6 +31,8 @@ s.substr(pos = 0,len = npos); // Returns the substring starting at character pos
 s.insert(pos,str); // Inserts str right before the character indicated by pos
 s.erase(pos = 0, len = npos); erase(first,last); erase(iterator p); // Erases part of the string
 s.find(str,pos = 0); // Searches the string for the first occurrence of the sequence specified by its arguments after position pos
+toupper(char x); // Converts lowercase letter to uppercase. If no such conversion is possible, the value returned is x unchanged.
+tolower(char x); // Converts uppercase letter to lowercase. If no such conversion is possible, the value returned is x unchanged.
 
 Constants:
 INT_MAX, INT_MIN, LLONG_MIN, LLONG_MAX, ULLONG_MAX
