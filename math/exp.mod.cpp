@@ -1,5 +1,5 @@
-int pot(int b, int e){ // O(log e). Puede hacer falta ll
+ll pot(ll b, ll e){ // O(log e)
 	if(!e) return 1;
-	int q = pot(b, e/2); q = mul(q, q);
-	return (e % 2 ? mul(b, q) : q);
+	ll q = pot(b, e/2); q = mul(q, q);
+	return (e & 1 ? mul(b, q) : q);
 }
