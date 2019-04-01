@@ -46,6 +46,7 @@ minmax({1,2,3,4,5}); // Returns a pair with the smallest of all the elements in 
 next_permutation(a,a+n); // Rearranges the elements in the range [first,last) into the next lexicographically greater permutation.
 reverse(first,last); // Reverses the order of the elements in the range [first,last)
 rotate(first,middle,last) // Rotates the order of the elements in the range [first,last), in such a way that the element pointed by middle becomes the new first element
+remove_if(first,last,func) // Returns an iterator to the element that follows the last element not removed. The range between first and this iterator includes all the elements in the sequence for which func does not return true. 
 // See http://www.cplusplus.com/reference/algorithm/ for more useful algorithms!
 
 Binary search:
