@@ -72,7 +72,7 @@ ll rho(ll n){
 }
 
 map<ll,ll> prim; 
-void factRho (ll n){ //O (lg n)^3. un solo numero
+void factRho (ll n){ //O(n^(1/4))
 	if (n == 1) return;
 	if (rabin(n)){
 		prim[n]++;
