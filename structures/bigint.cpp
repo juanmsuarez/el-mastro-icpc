@@ -1,4 +1,4 @@
-#define BASE 107
+#define BASE 10
 #define LMAX 1000
 int pad(int x){
     x--; int c = 0;
