@@ -28,7 +28,7 @@ struct bint {
             r *= 10;
         }
     }
-    void out(){
+    void out() const {
         cout << n[l-1] << setfill('0');
         dforn(i,l-1) cout << setw(PAD) << n[i];
     }
@@ -67,6 +67,7 @@ bint operator -(const bint &a, const bint &b){ return lresta(a, b).fst; }
 bool operator <(const bint &a, const bint &b){ return !lresta(a, b).snd; }
 bool operator <=(const bint &a, const bint &b){ return lresta(b, a).snd; }
 bool operator ==(const bint &a, const bint &b){ return a <= b && b <= a; }
+bool operator !=(const bint &a, const bint &b){ return a < b || b < a; }
 bint operator *(const bint &a, ll b){
     bint c;
     ll q = 0;
@@ -137,3 +138,10 @@ pair<bint,bint> ldiv(const bint &a, const bint &b){
 }
 bint operator /(const bint &a, const bint &b){ return ldiv(a, b).fst; }
 bint operator %(const bint &a, const bint &b){ return ldiv(a, b).snd; }
+bint gcd(bint a, bint b){ 
+    while(b != bint(0)){
+        bint r = a % b;
+        a = b, b = r;
+    }
+    return a;
+}
