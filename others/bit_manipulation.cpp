@@ -31,7 +31,8 @@ int main() {
 
 /*
 
-At the heart of bit manipulation are the bit-wise operators & (and), | (or), ~ (not) and ^ (xor). The truth tables:
+There are different bitwise operations used in the bit manipulation. These bit operations operate on the individual bits of the bit patterns.
+Bit operations are fast and can be used in optimizing time complexity. The most common ones are  & (and), | (or), ~ (not) and ^ (xor). Their truth tables:
 
 A 	B 	~A 	A & B  A | B  A ^ B
 0 	0 	 1 	  0 	 0 	    0
@@ -39,8 +40,7 @@ A 	B 	~A 	A & B  A | B  A ^ B
 1 	0 	 0 	  0      1 	    1
 1 	1 	 0 	  1  	 1 	    0 
 
-They operate on each bit of the arguments. Thus, if A is 1010 and B is 1100, then
-A & B = 1000;   A | B = 1110;   A ^ B = 0110;   ~A = 11110101 (the number of 1′s depends on the type of A).
+e.g.: if A is 1010 and B is 1100, then A & B = 1000;   A | B = 1110;   A ^ B = 0110;   ~A = 11110101 (the number of 1′s depends on the type of A).
 
 The other two operators we will need are the shift operators a << b and a >> b. The former shifts all the bits in 
 a to the left by b positions; the latter does the same but shifts right. For non-negative values (which are the 
@@ -59,5 +59,16 @@ Set negation:     ~A  (or ALL_BITS ^ A)
 Set bit:          A |= 1 << bit
 Clear bit:        A &= ~(1 << bit)
 Test bit:         (A & (1 << bit)) != 0 
+
+Count number of 1's in the binary representation of x:
+int pop_count(ll x){
+    int c = 0;
+    while(x) x &= x-1, c++;
+    return c;
+}
+x&(x-1) will have all the bits equal to x except for the rightmost 1 in x, this is due to the fact that
+x-1 has the rightmost bits (from the rightmost 1) flipped with regard to x. 
+
+x&(-x) and x^(x&(x-1)) return the rightmost set bit in x.
 
 */
