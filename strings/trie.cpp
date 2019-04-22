@@ -1,49 +1,41 @@
-// TODO: actualizar para las macros nuevas
 struct trie {
-	typedef map<char,trie*> hijos;
-	hijos child;
-	bool final;
-	
-	trie() {
-		final = false;
-	}
-	
-	void insert(const string &s) {
-		trie *now = this;
-		int n = si(s);
-		forn(i,n) {
-			// actualizar data del nodo
-			
-			if (!(now->child.count(s[i]))) 
-				now->child[s[i]] = new trie();
-				
-			now = now->child[s[i]];			
-		}
-		now->final = true; // o arco a '$'		
-	}
-	
-	void clear() {
-		//for (hijos::iterator it = child.begin(); it != child.end(); it++) {
-		forall(it,child) {
-			it->second->clear();					
-		}
-		child.clear();
-	}
-	
+    int p = 0, w = 0;
+    map<char,trie*> c;
+    trie(){}
+    void add(const string &s){
+        trie *x = this;
+        forn(i,si(s)){
+            if(!x->c.count(s[i])) x->c[s[i]] = new trie();
+            x = x->c[s[i]];
+            x->p++;
+        }
+        x->w++;
+    }
+    int find(const string &s){
+        trie *x = this;
+        forn(i,si(s)){
+            if(x->c.count(s[i])) x = x->c[s[i]];
+            else return 0;
+        }
+        return x->w;
+    }
+    void erase(const string &s){
+        trie *x = this, *y;
+        forn(i,si(s)){
+            if(x->c.count(s[i])) y = x->c[s[i]], y->p--;
+            else return;
+            if(!y->p){
+                x->c.erase(s[i]);
+                return;
+            }
+            x = y;
+        }
+        x->w--;
+    }
 	void print(string tab = "") {
-		forall(it,child) {
-			cerr << tab << it->first << endl;
-			it->second->print(tab + "--");			
+		for(auto &i : c) {
+			cerr << tab << i.fst << endl;
+			i.snd->print(tab + "--");			
 		}
-	}
-	
-	bool find(const string& s) {
-		trie *now = this;
-		int n = si(s);
-		forn(i,n) {
-			if (!(now->child.count(s[i]))) return false;
-			now = now->child[s[i]];			
-		}
-		return now->final;
 	}
 };
