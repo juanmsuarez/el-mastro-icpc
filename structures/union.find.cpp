@@ -1,11 +1,15 @@
-// TODO: hacer mas eficiente
-struct UnionFind{
-	vector<int> f; // Arreglo que contiene los padres de cada nodo
-	void init(int n){ f.clear(); f.insert(f.begin(), n, -1); }
-	int comp(int x){ return f[x] == -1 ? x : f[x] = comp(f[x]); } // O(1)
-	bool join(int i, int j){
-		bool con = comp(i) == comp(j);
-		if(!con) f[comp(i)] = comp(j);
-		return con;
-	}
+struct DSU { // Operations take O(log*(n))
+    vi p,s;
+    DSU(int n){ p.resize(n), iota(all(p),0), s.assign(n,1); }
+    int root(int i){
+	    while(p[i] != i) p[i] = p[p[i]], i = p[i];
+	    return i;
+    }
+    bool find(int x, int y){ return root(x) == root(y); }
+    void join(int x, int y){
+    	x = root(x), y = root(y);
+    	if(s[x] < s[y]) p[x] = y, s[y] += s[x];
+    	else p[y] = x, s[x] += s[y];
+    }
 };
+
