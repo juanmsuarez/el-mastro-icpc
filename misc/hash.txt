@@ -1,2 +1,2 @@
 cat template.cpp | tr -d '\0'-' ' | md5sum 
-output: 78c487ee2f8ff7c8e549189ac9fd1a5e
+output: 4a1c2d274a716d2cce43340df6b18112

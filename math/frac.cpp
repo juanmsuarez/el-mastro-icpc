@@ -1,24 +1,25 @@
-tipo mcd(tipo a, tipo b){return a?mcd(b%a, a):b;}
+template<class T> T gcd(T a,T b){return b==0?a:gcd(b,a%b);}
+
 struct frac{
-	tipo p,q;
-	frac(tipo p=0, tipo q=1):p(p),q(q) {norm();}
+	int p,q;
+	frac(int p=0, int q=1):p(p),q(q) {norm();}
 	void norm(){
-		tipo a = mcd(p,q);
-		if(a) p/=a, q/=a;
-		else q=1;
-		if (q<0) q=-q, p=-p;}
+		int a = gcd(p,q);
+		p/=a, q/=a;
+		if(q < 0) q=-q, p=-p;}
 	frac operator+(const frac& o){
-		tipo a = mcd(q,o.q);
-		return frac(p*(o.q/a)+o.p*(q/a), q*(o.q/a));}
+		int a = gcd(q,o.q);
+		return frac(add(mul(p,o.q/a), mul(o.p,q/a)), mul(q,o.q/a));}
 	frac operator-(const frac& o){
-		tipo a = mcd(q,o.q);
-		return frac(p*(o.q/a)-o.p*(q/a), q*(o.q/a));}
+		int a = gcd(q,o.q);
+		return frac(sub(mul(p,o.q/a), mul(o.p,q/a)), mul(q,o.q/a));}
 	frac operator*(frac o){
-		tipo a = mcd(q,o.p), b = mcd(o.q,p);
-		return frac((p/b)*(o.p/a), (q/a)*(o.q/b));}
+		int a = gcd(q,o.p), b = gcd(o.q,p);
+		return frac(mul(p/b,o.p/a), mul(q/a,o.q/b));}
 	frac operator/(frac o){
-		tipo a = mcd(q,o.q), b = mcd(o.p,p);
-		return frac((p/b)*(o.q/a),(q/a)*(o.p/b));}
-	bool operator<(const frac &o) const{return p*o.q < o.p*q;}
-	bool operator==(frac o){return p==o.p&&q==o.q;}
+		int a = gcd(q,o.q), b = gcd(o.p,p);
+		return frac(mul(p/b,o.q/a), mul(q/a,o.p/b));}
+	bool operator<(const frac &o) const{return ll(p)*o.q < ll(o.p)*q;}
+	bool operator==(frac o){return p==o.p && q==o.q;}
+	bool operator!=(frac o){return p!=o.p || q!=o.q;}
 };
