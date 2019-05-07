@@ -53,7 +53,8 @@ pii stringMatching(string P){ //O(si(P)lgn)
 		if(res>0) hi=mid;
 		else lo=mid+1;
 	}
-	if(s.compare(sa[hi], si(P), P)!=0) hi--;
+	if(s.compare(sa[hi], si(P), P)!=0) hi--; 
+    // para verdadero upperbound sumar 1 
 	ans.second=hi;
 	return ans;
 }
