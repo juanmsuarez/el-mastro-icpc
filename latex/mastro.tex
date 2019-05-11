@@ -36,7 +36,7 @@
 \subsection{Hash}
 \cppfile[22-66]{strings/hash_nico.cpp}
 \subsection{Modnum}
-\cppfile{structures/mnum.cpp}
+\cppfile{structures/mod.cpp}
 \subsection{Treap para set}
 \cppfile[1-74]{structures/treap.cpp}
 \subsection{Treap para arreglo}
@@ -426,15 +426,15 @@ Dadas $k$ ecuaciones de la forma $a_i*x \equiv a_i \pmod {n_i}$, encuentra $x$ t
 
 \textbf{Base teórica} \\
 Dado el espacio lineal con producto interno (definido como una integral loca) 
-$E$, de funciones continuas definidas por partes $f \colon [−\pi, \pi] \rightarrow \mathbb{C}$, 
-un \textbf{sistema ortonormal cerrado infinito} es $\{1/√2, \sin(x), \cos(x), \sin(2x), 
+$E$, de funciones continuas definidas por partes $f \colon [-\pi, \pi] \rightarrow \mathbb{C}$, 
+un \textbf{sistema ortonormal cerrado infinito} es $\{1/\sqrt(2), \sin(x), \cos(x), \sin(2x), 
 \cos(2x), ...\}$.  Por lo tanto, cualquier funcion $f \in E$ puede ser representada por 
 $\sum_{n=1}^{\infty} \langle f,\ e_n \rangle e_n$. Esta combinación lineal (utilizando
 la sumatoria y el sistema ya definidos), es la \textbf{serie de Fourier}. \\ 
 También se puede definir la \textbf{serie compleja de Fourier} mediante el
 sistema $\{1, e^{ix}, e^{-ix}, e^{i2x}, e^{-i2x}, ...\}$. \\
 Una \textbf{transformada de Fourier} permite trabajar con funciones que no están
-restringidas al intervalo $[−\pi, \pi]$. La principal diferencia es que el sistema
+restringidas al intervalo $[-\pi, \pi]$. La principal diferencia es que el sistema
 ortonormal pasa de ser discreto a continuo. \\
 Sin embargo, existe una versión discreta de la transformada, la \textbf{transformada 
 discreta de Fourier} (DFT). \\

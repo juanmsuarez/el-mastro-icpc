@@ -11,5 +11,5 @@ int inv(int x){//O(log x)
 	return pot(x, M-2);//si M es primo
 }
 
-// Inversos con euclides en O(log(x)) sin precómputo:
+// Inversos con euclides en O(log(x)) sin precomputo:
 // extendedEuclid(a, -m).fst (si coprimos a y m)
