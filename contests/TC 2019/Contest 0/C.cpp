@@ -23,25 +23,35 @@ using pii = pair<int,int>;
 using vi = vector<int>;
 using ll = long long;
 
-const int S = 2;
-int temp[S][S];
-void mul(int a[S][S], int b[S][S]){
-    forn(i, S) forn(j, S) temp[i][j] = 0;
-    forn(i, S) forn(j, S) forn(k, S) temp[i][j]+=a[i][k]*b[k][j];
-    forn(i, S) forn(j, S) a[i][j]=temp[i][j];
+const int N = 200+5, INF = 1e6;
+int n, a[N], memo[N][N][N]; 
+
+int dp(int pos, int inc, int dec) {
+    if (pos == n) return 0;
+
+    int &res = memo[pos][inc][dec];
+    if (res != -1) return res;
+
+
+    res = dp(pos+1, inc, dec) + 1;
+    if (a[inc] < a[pos]) res = min(res, dp(pos+1, pos, dec));
+    if (a[dec] > a[pos]) res = min(res, dp(pos+1, inc, pos));
+
+    return res;
 }
-void powmat(int a[S][S], ll n, int res[S][S]){
-    forn(i, S) forn(j, S) res[i][j]=(i==j);
-    while(n){
-        if(n&1) mul(res, a), n--;
-        else mul(a, a), n/=2;
-    } 
-}
+
 
 int main() {
 	fastio;
 	
-
+    while (cin >> n && n != -1) {
+        a[0] = 0; a[1] = INF+1;
+        forn(i, n) cin >> a[2+i];
+        n += 2; 
+    
+        fill(memo[0][0], memo[N][0], -1);
+        cout << dp(2, 0, 1) << endl; 
+    }
 	
 	return 0;
 }
