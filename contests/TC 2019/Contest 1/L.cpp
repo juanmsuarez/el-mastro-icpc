@@ -26,19 +26,19 @@ vi prefix_function(string &s){
 int main(){
     string s;
     cin >> s;
-    vi prefs = prefix_function(s);
-    //forn(i,si(prefs))cerr << prefs[i] << " ";
+    vi borde = prefix_function(s);
+    //forn(i,si(borde))cerr << borde[i] << " ";
     //cerr << endl;
 
-    vi cant(si(prefs),1);
-    int b = si(prefs)-1;
+    vi cant(si(borde),1);
+    int b = si(borde)-1;
     vector<pii> res;
     dforn(i,si(s)){
         if(i==b){
             res.emplace_back(b+1,cant[b]);
-            b=prefs[b]-1;
+            b=borde[b]-1;
         }
-        if(prefs[i])cant[prefs[i]-1]+=cant[i];
+        if(borde[i])cant[borde[i]-1]+=cant[i];
     }
 
     cout << si(res) << endl;

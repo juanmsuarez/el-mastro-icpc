@@ -412,13 +412,9 @@ Sea $n=\prod{p_i^{k_i}}$, fact(n) genera un map donde a cada $p_i$ le asocia su 
 \subsection{Phollard's Rho (rolando)}
 \cppfile[16-84]{math/phollards.rho.cpp}
 \subsection{GCD}
-\begin{code}
-tipo gcd(tipo a, tipo b){return a?gcd(b %a, a):b;}
-\end{code}
+\cppfile[1-2]{math/GCD-LCM.cpp}
 \subsection{LCM}
-\begin{code}
-tipo lcm(tipo a, tipo b){return a / gcd(a,b) * b;}
-\end{code}
+\cppfile[3]{math/GCD-LCM.cpp}
 \subsection{Euclides extendido}
 Dados $a$ y $b$, encuentra $x$ e $y$ tales que $a*x + b*y = gcd(a, b)$.
 \cppfile{math/extended.euclid.cpp}
