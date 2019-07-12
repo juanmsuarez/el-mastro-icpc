@@ -71,7 +71,3 @@ struct Kosaraju {
   }
 };
 
-int main(){
-  
-  return 0;
-}

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-using namespaceace std;
+using namespace std;
 
 #ifdef LOCAL
 	#define D(a) cerr << #a << " = " << a << endl

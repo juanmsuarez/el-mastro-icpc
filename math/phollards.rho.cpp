@@ -13,22 +13,23 @@ using namespace std;
 #define forn(i,n) forr(i,0,n)
 typedef long long ll;
 
-ll gcd(ll a, ll b){return a?gcd(b %a, a):b;}
+ll gcd(ll a, ll b){return b?__gcd(a,b):a;}
 
-ll mulmod (ll a, ll b, ll c) { //returns (a*b)%c, and minimize overfloor
-	ll x = 0, y = a%c;
-	while (b > 0){
-		if (b % 2 == 1) x = (x+y) % c;
-		y = (y*2) % c;
-		b /= 2;
-	}
-	return x % c;
+typedef unsigned long long ull;
+ull mulmod(ull a, ull b, ull m){ // 0 <= a, b < m
+   long double x; ull c; ll r;
+   x = a; c = x * b / m;
+   r = (ll)(a * b - c * m) % (ll)m;
+   return r < 0 ? r + m : r;
 }
 
-ll expmod (ll b, ll e, ll m){//O(log b)
-	if(!e) return 1;
-	ll q= expmod(b,e/2,m); q=mulmod(q,q,m);
-	return e%2? mulmod(b,q,m) : q;
+ll expmod(ll b, ll e, ll m){ // O(log(b))
+	ll ans = 1;
+	while(e){
+        if(e&1)ans = mulmod(ans, b, m);
+        b = mulmod(b, b, m); e >>= 1;
+	}
+	return ans;
 }
 
 bool es_primo_prob (ll n, int a)
@@ -48,7 +49,7 @@ bool es_primo_prob (ll n, int a)
 	return false;
 }
 		
-bool rabin (ll n){ //devuelve true si n es primo
+bool rabin (ll n){ //devuelve true si n es primo O(n^0.25)
 	if (n == 1)	return false;
 	const int ar[] = {2,3,5,7,11,13,17,19,23};
 	forn (j,9)
@@ -57,30 +58,23 @@ bool rabin (ll n){ //devuelve true si n es primo
 	return true;
 }
 
-ll rho(ll n){
-    if( (n & 1) == 0 ) return 2;
-    ll x = 2 , y = 2 , d = 1;
-    ll c = rand() % n + 1;
-    while( d == 1 ){
-        x = (mulmod( x , x , n ) + c)%n;
-        y = (mulmod( y , y , n ) + c)%n;
-        y = (mulmod( y , y , n ) + c)%n;
-        if( x - y >= 0 ) d = gcd( x - y , n );
-        else d = gcd( y - x , n );
+ll rho(ll n){   
+    if(!(n&1))return 2;
+    ll x = 2, y = 2, d = 1;
+    ll c = rand()%n + 1;
+    while(d == 1){
+        x = (mulmod(x,x, n)+c)%n;
+        y = (mulmod(y,y, n)+c)%n;
+        y = (mulmod(y,y, n)+c)%n;
+        if(x >= y)d = gcd(x-y, n);
+        else d = gcd(y-x, n);
     }
-    return d==n? rho(n):d;
+    return d == n ? rho(n) : d;
 }
-
-map<ll,ll> prim; 
-void factRho (ll n){ //O(n^(1/4))
-	if (n == 1) return;
-	if (rabin(n)){
-		prim[n]++;
-		return;
-	}
-	ll factor = rho(n);
-	factRho(factor);
-	factRho(n/factor);
+void fact(ll n, map<ll,int>& f){ //O (lg n)^3
+	if(n == 1)return;
+	if(rabin(n)){ f[n]++; return; }
+	ll q = rho(n); fact(q, f); fact(n/q, f);
 }
 
 

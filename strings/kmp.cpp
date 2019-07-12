@@ -10,18 +10,18 @@ vi prefix_function(string &s) {
     return pi;
 }
 
-vi find_occurrences(string &s, string &t) { 
-	vi pre = prefix_function(t), res; 
+vi find_occurrences(string &s, string &t) { //apariciones de t en s
+    vi pre = prefix_function(t), res; 
     int n = si(s), m = si(t), j = 0; 
-	forn(i, n) {
-		while (j > 0 && s[i] != t[j]) j = pre[j-1]; 
+    forn(i, n) {
+        while (j > 0 && s[i] != t[j]) j = pre[j-1]; 
         if (s[i] == t[j]) j++;
         if (j == m) { 
-			res.pb(i-j+1); 
-			j = pre[j-1]; 
-		} 
-	} 
-	return res; 
+            res.pb(i-j+1); 
+            j = pre[j-1]; 
+        } 
+    } 
+    return res; 
 }
 
 // aut[i][c] = (next o failure function) al intentar matchear s[i] con c
