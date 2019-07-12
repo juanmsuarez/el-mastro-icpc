@@ -285,8 +285,17 @@ Siendo $p$ primo.
 \(\displaystyle a^{\varphi(n)} \equiv 1 \;(\bmod\; n) \)
 }
 }
-\subsection{Numeros combinatorios copados y como calcularlos}
+\subsection{Combinatoria}
 {
+\subsubsection{Burnside's lemma}
+{
+Sea $G$ un grupo que actúa en un conjunto $X$. Para cada $g$ en $G$, sea $X^{g}$ el conjunto de elementos
+en $X$ que son invariantes respecto a $g$, entonces el número de órbitas $|X/G|$ es:
+\[ |X/G|={\frac {1}{|G|}}\sum _{{g\in G}}|X^{g}|.\]
+Por ejemplo, si el grupo $G$ consiste de las operaciones de rotación, el conjunto $X$ son los posibles coloreos de un tablero, 
+entonces el número de órbitas $|X/G|$ es el número de posibles coloreos de un tablero salvo rotaciones.
+}
+
 \subsubsection{Combinatorios}
 {
 \(\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!} \)
