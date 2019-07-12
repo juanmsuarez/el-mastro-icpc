@@ -18,17 +18,12 @@ using namespace std;
 #define mp make_pair
 #define snd second
 #define fst first
-#define endl '\n'
 using pii = pair<int,int>;
 using vi = vector<int>;
 using ll = long long;
 
-int main() {
-	fastio;
-
-    int k;
-    cin >>k;
-
+void calc(int k){ 
+    freopen("a.out","w",stdout);
     if(k>1 &&k%2){
         cout << "YES" << endl;
         cout << 2*k+4 << " " << k*k+2*k <<endl;
@@ -55,6 +50,45 @@ int main() {
         if(k==1)cout << "YES\n2 1\n1 2" <<endl;
         else cout << "NO" << endl;
     }
+    fclose(stdout);
+}
+
+int main() {
+	fastio;
+    
+    
+    forn(i,50){
+        int k=i*2+1;
+        D(k);
+        calc(k);
+        freopen("a.out","r",stdin);
+        string s;
+        cin >> s;
+        if(s != "YES"){
+            cerr << k << " is wrong" <<endl;
+            break;
+        }
+        else{
+            int n,m;
+            cin >> n >> m;
+            vi deg(n+1);
+            forn(j,m){
+                int u,v;
+                cin >> u >> v;
+                deg[u]++;
+                deg[v]++;
+            }
+            forn(j,n){
+                if(deg[j+1]!=k){
+                    cerr << k << " is wrong" << endl;
+                    cerr << "nodo" << j+1 << endl;
+                    break;
+                }
+            }
+        }
+        fclose(stdin);
+    }
+    cerr << "DONE" << endl;
 	
 	
 	return 0;

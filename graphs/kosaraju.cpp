@@ -24,36 +24,36 @@ struct Kosaraju {
   static const int default_sz = 1e5+10;
   int n;
   vector<vi> G, revG, C, ady; // ady is the condensed graph
-  vector<int> used, where;
+  vi used, where;
   Kosaraju(int sz = default_sz){
     n = sz;
-    G.assign(sz, vector<int>());
-    revG.assign(sz, vector<int>());
+    G.assign(sz, vi());
+    revG.assign(sz, vi());
     used.assign(sz, 0);
     where.assign(sz, -1);
   }
   void addEdge(int a, int b){ G[a].pb(b); revG[b].pb(a); }
-  void dfsNormal(vector<int> &F, int v){
-    used[v] = true;
-    for (int u : G[v]) if(!used[u])
-      dfsNormal(F, u);
-    F.pb(v);
+  void dfsNormal(vi &F, int u){
+    used[u] = true;
+    for (int v : G[u]) if(!used[v])
+      dfsNormal(F, v);
+    F.pb(u);
   }
-  void dfsRev(vector<int> &F, int v){
-    used[v] = true;
-    for (int u : revG[v]) if(!used[u])
-      dfsRev(F, u);
-    F.pb(v);
+  void dfsRev(vi &F, int u){
+    used[u] = true;
+    for (int v : revG[u]) if(!used[v])
+      dfsRev(F, v);
+    F.pb(u);
   }
   void build(){
-    vector<int> T;
+    vi T;
     fill(all(used), 0);
     forn(i, n) if(!used[i]) dfsNormal(T, i);
     reverse(all(T));
     fill(all(used), 0);
     for (int u : T) 
         if(!used[u]){
-          vector<int> F;
+          vi F;
           dfsRev(F, u);
           for (int v : F) where[v] = si(C);
           C.pb(F);
@@ -64,9 +64,9 @@ struct Kosaraju {
         ady[where[u]].pb(where[v]);
       }
     }
-    forn(v, si(C)){
-      sort(all(ady[v]));
-      ady[v].erase(unique(all(ady[v])), ady[v].end());
+    forn(u, si(C)){
+      sort(all(ady[u]));
+      ady[u].erase(unique(all(ady[u])), ady[u].end());
     }
   }
 };
