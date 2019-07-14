@@ -199,6 +199,22 @@ se divide en dos casos:
 \subsection{Interseccion de Circulos en n3log(n)}
 \cppfile{geometry/int.circs.cpp}
 
+\subsection{Cayley-Menger}
+{
+Permite calcular el volumen de un simplex (triángulo en k dimensiones) mediante el cálculo de una determinante.
+\cppfile[65-82]{geometry/cayley.cpp}
+}
+
+\subsection{Heron's formula}
+{
+It states that the area of a triangle whose sides have lengths a, b, and c is
+
+\( {\displaystyle A={\sqrt {s(s-a)(s-b)(s-c)}}} \),
+where s is the semiperimeter of the triangle; that is,
+
+\( {\displaystyle s={\frac {a+b+c}{2}}} \).
+}
+
 \section{DP Opt}
 Observaciones:
 
@@ -357,16 +373,6 @@ for \(n > 0\).
 \( {\displaystyle C_{0}=1\quad {\mbox{y}}\quad C_{n+1}=\sum _{i=0}^{n}C_{i}\,C_{n-i}\quad {\mbox{con }}n\geq 0.} \)
 }
 
-}
-
-\subsection{Heron's formula}
-{
-It states that the area of a triangle whose sides have lengths a, b, and c is
-
-\( {\displaystyle A={\sqrt {s(s-a)(s-b)(s-c)}}} \),
-where s is the semiperimeter of the triangle; that is,
-
-\( {\displaystyle s={\frac {a+b+c}{2}}} \).
 }
 
 \subsection{Sumatorias conocidas}

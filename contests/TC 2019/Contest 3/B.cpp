@@ -2,10 +2,10 @@
 using namespace std;
 
 #ifdef LOCAL
-#define D(a) cerr << #a << " = " << a << endl
+	#define D(a) cerr << #a << " = " << a << endl
 #else
-#define D(a)
-#define cerr false && cerr
+	#define D(a)
+	#define cerr false && cerr
 #endif
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0)
 #define dforsn(i,s,n) for(int i=int(n-1);i>=int(s);i--)
@@ -174,4 +174,3 @@ int main() {
 
     return 0;
 }
-

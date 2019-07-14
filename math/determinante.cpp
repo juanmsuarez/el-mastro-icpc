@@ -20,16 +20,16 @@ struct Mat {
         Mat m(*this);
         forn(i, n){//para cada columna
             int k = i;
-            forr(j, i+1, n)//busco la fila con mayor val abs
+            forsn(j, i+1, n)//busco la fila con mayor val abs
                 if(abs(m[j][i])>abs(m[k][i])) k = j;
-            if(abs(m[k][i])<1e-9) return 0;
+            if(abs(m[k][i])<EPS) return 0;
             m[i].swap(m[k]);//la swapeo
             if(i!=k) det = -det;
             det *= m[i][i];
-            forr(j, i+1, n) m[i][j] /= m[i][i];
+            forsn(j, i+1, n) m[i][j] /= m[i][i];
             //hago 0 todas las otras filas
-            forn(j, n) if (j!= i && abs(m[j][i])>1e-9)
-                forr(k, i+1, n) m[j][k]-=m[i][k]*m[j][i];
+            forn(j, n) if (j!= i && abs(m[j][i])>EPS)
+                forsn(k, i+1, n) m[j][k]-=m[i][k]*m[j][i];
         }
         return det;
     }
