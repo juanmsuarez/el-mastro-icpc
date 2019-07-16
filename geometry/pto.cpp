@@ -25,7 +25,8 @@ typedef pto vec;
 
 double angle(pto a, pto o, pto b){
 	pto oa=a-o, ob=b-o;
-	return atan2(oa^ob, oa*ob);}
+	return atan2(oa^ob, oa*ob);
+}
 
 //rotate p by theta rads CCW w.r.t. origin (0,0)
 pto rotate(pto p, double theta){
