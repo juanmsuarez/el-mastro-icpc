@@ -445,7 +445,15 @@ Dadas $k$ ecuaciones de la forma $a_i*x \equiv a_i \pmod {n_i}$, encuentra $x$ t
 \cppfile{math/simpson.cpp}
 \subsection{Fraction}
 \cppfile{math/frac.cpp}
-\subsection{Polinomio}
+\subsection{Polinomio, Ruffini e interpolación de Lagrange}
+\textbf{Interpolación de Lagrange}: dados $n+1$ pares $(x_i, y_i)$  permite encontrar el polinomio de grado $n$ tal que $f(x_i) = y_i$. 
+
+\textbf{Explicación}: computa $P(x) = y_1*f_1(x) + y_2*f_2(x) + \ldots + y_{n+1}*f_{n+1}(x)$ donde $f_i(x) = \frac{g_i(x)}{g_i(x_i)}$, $g_i(x) = \frac{h(x)}{x - x_i}$ y $h(x) = (x-x_1)*(x-x_2)*\ldots*(x-x_{n+1})$.
+Usa Ruffini para la división de polinomios.
+
+\textbf{Ejemplo de problema}: tenés que calcular una respuesta que depende de un n y parece ser polinomial, conseguís un par de puntos e 
+intentás armar el polinomio (usando el algoritmo online u offline).
+
 \cppfile{math/polinomio.cpp}
 \subsection{Ec. Lineales}
 \cppfile[29-62]{math/eclineales.cpp}
