@@ -1,7 +1,6 @@
-const int M = 998244353;
 struct num {
     int a;
-    num(int _a = 0) : a(_a) {}
+    num(int _a = 0) : a(_a) {} // o tambien num(ll _a=0) : a((_a%M+M)%M) {}
     operator int(){ return a; }
     num operator +(num b){ return a+b.a >= M ? a+b.a-M : a+b.a; }
     num operator -(num b){ return a-b.a < 0 ? a-b.a+M : a-b.a; }
