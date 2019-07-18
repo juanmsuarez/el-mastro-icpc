@@ -23,11 +23,11 @@ using pii = pair<int,int>;
 using vi = vector<int>;
 using ll = long long;
 
-struct bridge {
 	struct edge {
 		int u,v,comp;
 		bool bridge;
 	};
+struct bridge {
 
 	int n,t,nbc;//nbc= number of biconnected components
 	vi d,b,comp;
@@ -84,29 +84,58 @@ struct bridge {
 	}
 }compb;
 
-struct block-cut{
+struct blockcut{
 
-    vector<vi> ady;
-    vector<bool> artpoints;
+    vector<vi> adjList;
+    vi component;
+    vector<bool>artpoint;
     void build(bridge comps){
-        ady= vi(comps.nbc);
-        artpoints= vector<bool>(si(ady));
-        forn(u,si(comps.ady)){
+        adjList= vector<vi>(comps.nbc);
+        artpoints= vector<bool>(comps.nbc,false);
+        component= vi(comps.nbc);
+        forn(u,si(comps.adj)){
             if(comps.comp[u]>1){
-                vi adycomps();
-                for(i:comps.ady[u]){
-                    bridge.edge e = comps.e[i];
-                    adycomps.pb(e.comp);
-                    if(!si(ady[e.comp])||ady[e.comp.back()!=si(ady))ady[e.comp].pb(si(ady));
+                vi artcomps;
+                for(int i:comps.adj[u]){
+                    edge e = comps.e[i];
+                    artcomps.pb(e.comp);
+                    if(!si(adjList[e.comp])||adjList[e.comp].back()!=si(adjList))
+                        adjList[e.comp].pb(si(adjList));
                 }
-                sort(all(adycomps));
-                erase(unique(all(adycomps)),adycomps.end());
-                ady.pb(adycomps);
-                arpoints.pb(true);
+                sort(all(artcomps));
+                artcomps.erase(unique(all(artcomps)),artcomps.end());
+                artpoints.pb(si(adjList));
+                component[u]=si(adjList);
+                adjList.pb(artcomps);
             }
         }
     }
-}
+};
+
+const int MAXN=100001;
+const int LOGN=20;
+//f[v][k] holds the 2^k father of v
+//L[v] holds the level of v
+int N, f[MAXN][LOGN], L[MAXN]; //INICIALIZAR N!!!!!!!!!!!!!!1
+//call before build:
+void dfs(int v, int fa=-1, int lvl=0){//generate required data
+	f[v][0]=fa, L[v]=lvl;
+	for(auto u: G[v])if(u!=fa) dfs(u, v, lvl+1); }
+void build(){//f[i][0] must be filled previously, O(nlgn)
+	forn(k, LOGN-1) forn(i, N) if (f[i][k]!=-1) f[i][k+1]=f[f[i][k]][k];}
+#define lg(x) (31-__builtin_clz(x))//=floor(log2(x))
+int climb(int a, int d){//O(lgn)
+	if(!d) return a;
+	dforsn(i,0, lg(L[a])+1) if(1<<i<=d) a=f[a][i], d-=1<<i;
+    return a;}
+int lca(int a, int b){//O(lgn)
+	if(L[a]<L[b]) swap(a, b);
+	a=climb(a, L[a]-L[b]);
+	if(a==b) return a;
+	dforsn(i,0, lg(L[a])+1) if(f[a][i]!=f[b][i]) a=f[a][i], b=f[b][i];
+	return f[a][0]; }
+int dist(int a, int b) {//returns distance between nodes
+	return L[a]+L[b]-2*L[lca(a, b)];}
 
 int main() {
 	fastio;
@@ -117,9 +146,11 @@ int main() {
     forn(i,e){
         int u,v;
         cin >> u >> v;
-        comp.addEdge(u,v);
+        compb.addEdge(u,v);
     }
+    
 
+    
 
 
 	
