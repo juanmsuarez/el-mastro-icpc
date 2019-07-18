@@ -286,6 +286,16 @@ determinados por este arreglo.
 \section{Matemática}%%%%%%%%%%%%%%%%%%MATH%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Teoría de números}
 {
+\subsubsection{Funciones multiplicativas, función de Möbius}
+{
+Una funcion $f(n)$ es \textbf{multiplicativa} si para cada par de enteros coprimos $p$ y $q$ se cumple que \(f(pq) = f(p)f(q)\).
+
+Si la función $f(n)$ es multiplicativa, puede evaluarse en un valor arbitrario conociendo los valores de la función en
+sus factores primos: \(f(n) = f(p_1^{r_1})f(p_2^{r_2})\ldots f(p_k^{r_k})\).\\
+
+La \textbf{función de Möbius} se define como:
+\[\mu(n) = \begin{cases} 0 & d^2\ |\ n, \\ 1 & n=1,\\ (-1)^k & n = p_1p_2\cdots{p_k} .\end{cases}\]
+
 \subsubsection{Teorema de Wilson}
 {
 \(\displaystyle (p-1)! \equiv -1 \;(\bmod\; p) \)
