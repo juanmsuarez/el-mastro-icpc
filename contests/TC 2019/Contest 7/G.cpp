@@ -53,14 +53,20 @@ bool inBoard(pto p){
     return 0 <= p.x && p.x <= 7 && 0 <= p.y && p.y <= 7;
 }
 
+set<pto> aux;
+
 vi cabx ={-2,-1,+1,+2,+2,+1,-1,-2},
     caby ={+1,+2,+2,+1,-1,-2,-2,-1};
 void caballo(state &act,int turns){
     forn(k,si(cabx)){
-        pto pos = (pto){act.p1.x+cabx[k],act.p2.y+caby[k]};
+        pto pos = (pto){act.p1.x+cabx[k],act.p1.y+caby[k]};
         if(inBoard(pos) &&!(pos==act.p2)&&!(pos==act.p3)){
             state nxt = (state){pos,act.p2,act.p3,(act.turn+1)%3};
             if(!visited.count(nxt)){
+                //if(!aux.count(pos)){
+                //    cerr << pos.x << " " << pos.y << " " << turns+1 << endl;
+                //    aux.insert(pos);
+                //}
                 q.emplace(nxt,turns+1);
                 visited.insert(nxt);
             }
