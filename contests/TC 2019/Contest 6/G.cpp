@@ -27,16 +27,13 @@ using ll = long long;
 
 bitset<N> A[N],B[N],C[N];
 
+map<char,string> val{{'0',"0000"},{'1',"0001"},{'2',"0010"},{'3',"0011"},{'4',"0100"},{'5',"0101"},{'6',"0110"},{'7',"0111"},{'8',"1000"},{'9',"1001"},{'A',"1010"},{'B',"1011"},{'C',"1100"},{'D',"1101"},{'E',"1110"},{'F',"1111"}};
 string hextobin(string s,int n){
-    stringstream res,aux;
-    int b;
+    string res;
     for(char c:s){
-        aux << hex <<c;
-        aux >> b;
-        D(b);
-        res << bitset<4>(b).to_string();
+        res+=val[c];
     }
-    return res.str().substr(0,n-3+(n+3)%4);
+    return res.substr(0,n);
 }
 
 void readInput(bitset<N> matrix[N],int n){
@@ -47,21 +44,46 @@ void readInput(bitset<N> matrix[N],int n){
     } 
 }
 
+bitset<N> matvecmul(bitset<N> matrix[N],bitset<N> vector,int n){
+    bitset<N> res;
+    forn(i,n){
+        //cerr << scalar.to_string().substr(N-n) << " " << scalar.count() <<endl;
+        res[n-1-i]=(matrix[i]&vector).count()&1;
+    }
+    return res;
+}
+
+#define LIMIT 0.6
 int main() {
+    //clock_t tStart = clock();
+    freopen("matrix.in","r",stdin);
+    freopen("matrix.out","w",stdout);
 	fastio;
+
 	
     int n;
     cin >> n;
 
-    string s;
-    cin >> s;
-    cout << hextobin(s,n) << endl;
 
-    //readInput(A,n);
-    //readInput(B,n);
-    //readInput(C,n);
+    readInput(A,n);
+    readInput(B,n);
+    readInput(C,n);
+    bitset<N> vec;
+    bool eq=true;
+    int tries = 10;
+
+    mt19937 rng(time(0));
+    do{
+        vec = bitset<N>(0);
+        forn(i,n)vec[i]=rng()%2; 
+        eq &= matvecmul(A,matvecmul(B,vec,n),n)==matvecmul(C,vec,n);
+        //cerr <<"vec="<< vec.to_string().substr(N-n) << endl << "res=" <<matvecmul(A,vec,n).to_string().substr(N-n)<< endl;
+        //cerr << vec.to_string().substr(N-n) << " "<<matvecmul(A,matvecmul(B,vec,n),n).to_string().substr(N-n) << " " << matvecmul(C,vec,n).to_string().substr(N-n) << endl << endl;
+
+    }while(eq &&tries--);
+
+    cout << (eq ? "YES" : "NO") << endl;
 
 	
 	return 0;
 }
-

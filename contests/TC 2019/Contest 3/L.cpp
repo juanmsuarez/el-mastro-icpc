@@ -105,9 +105,12 @@ struct blockcut{
                 sort(all(artcomps));
                 artcomps.erase(unique(all(artcomps)),artcomps.end());
                 artpoints.pb(si(adjList));
-                component[u]=si(adjList);
                 adjList.pb(artcomps);
             }
+        }
+        for(edge e:comps.e){
+            if(artpoints[e.u]==-1)component[e.u]=e.comp;
+            if(artpoints[e.v]==-1)component[e.v]=e.comp;
         }
     }
 };
@@ -143,12 +146,14 @@ int main() {
     int n,e;
     cin >> n >> e;
 
+    compb = bridge(n);
     forn(i,e){
         int u,v;
         cin >> u >> v;
         compb.addEdge(u,v);
     }
-    
+    compb.dfs();
+    blockcut bct;
 
     
 
