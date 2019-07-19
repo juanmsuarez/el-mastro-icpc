@@ -6,6 +6,7 @@ using namespace std;
 #else
 	#define D(a)
 	#define cerr false && cerr
+    #define endl '\n'
 #endif
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0)
 #define dforsn(i,s,n) for(int i=int(n-1);i>=int(s);i--)
@@ -18,7 +19,6 @@ using namespace std;
 #define mp make_pair
 #define snd second
 #define fst first
-#define endl '\n'
 using pii = pair<int,int>;
 using vi = vector<int>;
 using ll = long long;
@@ -27,6 +27,9 @@ using ll = long long;
 		int u,v,comp;
 		bool bridge;
 	};
+
+set<pii>bridges;
+
 struct bridge {
 
 	int n,t,nbc;//nbc= number of biconnected components
@@ -65,7 +68,10 @@ struct bridge {
 			if(d[v] == -1) {
 				st.push(ne);
 				dfs(v,ne);
-				if(b[v] > d[u]) e[ne].bridge = true; // bridge
+				if(b[v] > d[u]){
+                    e[ne].bridge = true;
+                    bridges.emplace(min(e[ne].u,e[ne].v),max(e[ne].u,e[ne].v));
+                } // bridge
 				if(b[v] >= d[u]) { // art
 					int last;
 					do {
@@ -82,40 +88,63 @@ struct bridge {
 			}
 		}
 	}
-}compb;
+}biconexas;
 
+vector<vi> G;
 struct blockcut{
 
-    vector<vi> adjList;
     vi component;
     vector<bool>artpoint;
     void build(bridge comps){
-        adjList= vector<vi>(comps.nbc);
-        artpoints= vector<bool>(comps.nbc,false);
-        component= vi(comps.nbc);
+        G= vector<vi>(comps.nbc);
+        artpoint= vector<bool>(comps.n,false);
+        component= vi(comps.n);//component[u]=nodo del block cut tree que representa a u
         forn(u,si(comps.adj)){
             if(comps.comp[u]>1){
+                artpoint[u]=true;
                 vi artcomps;
                 for(int i:comps.adj[u]){
                     edge e = comps.e[i];
                     artcomps.pb(e.comp);
-                    if(!si(adjList[e.comp])||adjList[e.comp].back()!=si(adjList))
-                        adjList[e.comp].pb(si(adjList));
+                    if(!si(G[e.comp])||G[e.comp].back()!=si(G))
+                        G[e.comp].pb(si(G));
                 }
                 sort(all(artcomps));
                 artcomps.erase(unique(all(artcomps)),artcomps.end());
-                artpoints.pb(si(adjList));
-                adjList.pb(artcomps);
+                component[u]=si(G);
+                G.pb(artcomps);
             }
         }
+        cerr << "marcando comp de cada nodo" << endl;
         for(edge e:comps.e){
-            if(artpoints[e.u]==-1)component[e.u]=e.comp;
-            if(artpoints[e.v]==-1)component[e.v]=e.comp;
+            if(e.bridge &&!artpoint[e.u]&&!artpoint[e.v]){
+                G = (vector<vi>){{1},{0}};
+                component = (vi){0,1};
+                return;
+            }
+            else{
+                if(!artpoint[e.u])component[e.u]=e.comp;
+                if(!artpoint[e.v])component[e.v]=e.comp;
+            }
+        }
+        cerr << "marcado listo" << endl;
+    }
+    void print(bridge c){
+        cerr << "u pertenece a componente:" << endl;
+        forn(i,si(component)){
+            cerr << i+1 << ": " << component[i] << endl;
+            cerr << c.comp[i] << endl;
+        }
+        cerr << "arcos:" << endl;
+        forn(u,si(G)){
+            for(int v:G[u]){ 
+                cerr << u << " " << v << endl;
+            }
         }
     }
-};
+}bct;
 
-const int MAXN=100001;
+const int MAXN=200001;
 const int LOGN=20;
 //f[v][k] holds the 2^k father of v
 //L[v] holds the level of v
@@ -140,21 +169,69 @@ int lca(int a, int b){//O(lgn)
 int dist(int a, int b) {//returns distance between nodes
 	return L[a]+L[b]-2*L[lca(a, b)];}
 
+bool checkInbetween(int a,int b,int c){
+    int compa = bct.component[a],compb=bct.component[b],compc=bct.component[c];
+
+    //cerr << " " << compa << " " << compb << " " << compc <<endl;
+    //D(dist(compa,compb));D(dist(compa,compc));D(dist(compc,compb));
+    return dist(compa,compb)==dist(compa,compc)+dist(compc,compb);
+}
+
+bool checkInbetween(int a,int b,int c,int d){
+    int compa = bct.component[a],compb=bct.component[b],compc=bct.component[c],compd= bct.component[d];
+
+    //cerr << " " << compa << " " << compb << " " << compc <<endl;
+    //D(dist(compa,compb));D(dist(compa,compc));D(dist(compc,compb));
+    return (dist(compa,compb) == (dist(compa,compc)+dist(compd,compb)+1)) ||
+        (dist(compa,compb)==(dist(compa,compd)+dist(compc,compb)+1));
+}
 int main() {
 	fastio;
+#ifdef LOCAL
+    freopen("a.out","w",stdout);
+#endif
 	
-    int n,e;
-    cin >> n >> e;
+    int n,m;
+    cin >> n >> m;
 
-    compb = bridge(n);
-    forn(i,e){
+    biconexas = bridge(n);
+    forn(i,m){
         int u,v;
         cin >> u >> v;
-        compb.addEdge(u,v);
+        u--; v--;
+        biconexas.addEdge(u,v);
     }
-    compb.dfs();
-    blockcut bct;
+    biconexas.dfs();
+    bct.build(biconexas);
+    N=si(G);
+    dfs(0);
+    build();
 
+    //bct.print(biconexas);
+
+    int q;
+    cin >> q;
+    forn(i,q){
+        int type, A,B,N1,N2;
+        cin >> type >> A >> B >> N1;
+        A--; B--; N1--;
+        if(type==1){
+            cin >> N2;
+            N2--;
+            if(bridges.count(mp(min(N1,N2),max(N1,N2)))==0)cout << "da" <<endl;
+            else{
+                if(checkInbetween(A,B,N1,N2))cout << "ne" << endl;
+                else cout << "da" << endl;
+            }
+        }
+        else{
+            if(!bct.artpoint[N1])cout << "da" << endl;
+            else{
+                if(checkInbetween(A,B,N1))cout << "ne"<<endl;
+                else cout << "da" <<endl;
+            }
+        }
+    }
     
 
 
