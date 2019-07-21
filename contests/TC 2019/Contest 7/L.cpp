@@ -31,11 +31,7 @@ ll dp(int sz, int ones, bool equal) {
     ll &res = memo[sz][ones][equal];
     if (res != -1) return res;
 
-<<<<<<< HEAD
     bool isOne = tope & (1LL<<(sz-1));
-=======
-    bool isOne = tope & (1<<(sz-1));
->>>>>>> 35c0916aca8e5590863de09f8c9b75b83680ddd3
 
     if (equal) {
         res = dp(sz-1, ones-isOne, equal); // dejo igual
@@ -48,7 +44,6 @@ ll dp(int sz, int ones, bool equal) {
     return res;
 }
 
-<<<<<<< HEAD
 vector<vi> nxt;
 int k;
 ll calc(ll x) {
@@ -68,19 +63,12 @@ int main(){
 
     nxt.resize(P);
 
-=======
-int main(){
-    fastio;
-
-    vector<vi> next(P);
->>>>>>> 35c0916aca8e5590863de09f8c9b75b83680ddd3
     forsn(n, 1, L) {
         int temp = n, pasos = 0;
         while (temp > 1) {
             temp = __builtin_popcount(temp);
             pasos++;
         } 
-<<<<<<< HEAD
         nxt[pasos].pb(n);
     }
 
@@ -88,38 +76,9 @@ int main(){
     while (cin >> lo >> hi >> k && lo != 0) {
         if (k == 0) cout << (1 >= lo && 1 <= hi) << endl;
         else cout << calc(hi) - calc(lo-1) << endl;
-=======
-        next[pasos].pb(n);
     }
 
-    ll lo, hi; int k;
-    while (cin >> lo >> hi >> k && lo != 0) {
-        if (k == 0) {
-            cout << (1 >= lo && 1 <= hi) << endl;
-        }
-        else {
-            auto calc = [&next, &k](ll x) { // vars TODO
-                if (x == 0) return 0ll;
-                //cerr << "in " << x << endl;
-                tope = x;
-                fill(memo[0][0], memo[L][0], -1);
-
-                ll res = 0;
-                for (int n : next[k-1]) {
-                    int sz = 64 - __builtin_clzll(x);
-                    //cerr << "pruebo con " << n << endl;
-                    //cerr << "da " << dp(sz, n, true) << endl;
-                    res += dp(sz, n, true);
-                }
-
-                //cerr << x << ' ' << res << endl;
-                return res;
-            };         
-
-            cout << calc(hi) - calc(lo-1) << endl;
-        }
->>>>>>> 35c0916aca8e5590863de09f8c9b75b83680ddd3
-    }
+int mastroesmimaestro;
 
     return 0; 
 }

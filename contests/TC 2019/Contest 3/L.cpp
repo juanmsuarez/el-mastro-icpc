@@ -103,7 +103,7 @@ struct blockcut{
             if(comps.comp[u]>1){
                 artpoint[u]=true;
                 vi artcomps;
-                for(int i:comps.adj[u]){
+                for (int i:comps.adj[u]){
                     edge e = comps.e[i];
                     artcomps.pb(e.comp);
                     if(!si(G[e.comp])||G[e.comp].back()!=si(G))
