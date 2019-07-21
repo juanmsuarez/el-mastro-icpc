@@ -3,7 +3,7 @@
 %"The PDF file may contain up to 25 pages of reference material, single-sided, letter or A4 size, with text and illustrations readable by a person with correctable eyesight without magnification from a distance of 1/2 meter."
 \input{helper/preamble.tex}
 \begin{document}
-\def\title{El Mastro - Mastropiero Limit Exceeded - UNS}
+\def\title{El Mastro - Mastropiero - UNS}
 
 \begin{center}{\includegraphics[width=3.5cm]{../misc/mastro}}\end{center}
 
@@ -282,7 +282,6 @@ determinados por este arreglo.
     $dp(i, m, j_{right}, opt, opt_{right})$.
 }
 
-
 \section{Matemática}%%%%%%%%%%%%%%%%%%MATH%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Teoría de números}
 {
@@ -494,6 +493,19 @@ son los polinomios que se forman al tomar los términos pares e impares respecti
 ya que trabaja con enteros módulo un primo $p$.
 
 \cppfile{math/fft_y_ntt.cpp}
+
+\subsection{Programación lineal: Simplex}
+\textbf{Introducción} \\
+Permite maximizar cierta función lineal dado un conjunto de restricciones lineales.
+\textbf{Algoritmo} \\
+El algoritmo opera con programas lineales en la siguiente forma canónica: maximizar \(z = c^{T}x \) sujeta a \(Ax \leq b, x \geq 0\).  \\
+Por ejemplo, si \(c=(2, -1)\), \(A=\begin{bmatrix} 1 & 0 \end{bmatrix}\) y \(b=(5)\), 
+buscamos maximizar \(z = 2x_1 - x_2\) sujeta a \(x_1 \leq 5\) y \(x_i \geq 0\). \\
+\textbf{Detalles implementativos} \\
+Canonizar si hace falta.\\
+Para obtener soluciones negativas, realizar el cambio de variable \(x_i = x_i' + \text{INF}\).\\
+Si la desigualdad no incluye igual, solo menor, \textbf{no usar epsilon} al agregarla. Esto ya es considerado por el código.
+\cppfile{math/simplex.cpp}
 
 \subsection{Tablas y cotas (Primos, Divisores, Factoriales, etc)}
 %\subsubsection{
