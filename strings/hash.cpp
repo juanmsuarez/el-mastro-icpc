@@ -8,13 +8,11 @@ struct basicHashing {
     }
 
     void randomize() {
-        rng.seed(time(0));
+        rng.seed(chrono::steady_clock::now().time_since_epoch().count());
         mod = uniform_int_distribution<>(0, (int) 5e8)(rng) + 1e9;
         while (!prime(mod)) mod++;
         mul = uniform_int_distribution<>(2,mod-2)(rng);
     }
-
-    basicHashing() { randomize(); }
 
     vi h, pot;
     void process(const string &s) {
