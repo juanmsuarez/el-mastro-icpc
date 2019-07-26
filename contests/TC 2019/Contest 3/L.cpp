@@ -115,7 +115,7 @@ struct blockcut{
                 G.pb(artcomps);
             }
         }
-        cerr << "marcando comp de cada nodo" << endl;
+        //cerr << "marcando comp de cada nodo" << endl;
         for(edge e:comps.e){
             if(e.bridge &&!artpoint[e.u]&&!artpoint[e.v]){
                 G = (vector<vi>){{1},{0}};
@@ -127,7 +127,7 @@ struct blockcut{
                 if(!artpoint[e.v])component[e.v]=e.comp;
             }
         }
-        cerr << "marcado listo" << endl;
+        //cerr << "marcado listo" << endl;
     }
     void print(bridge c){
         cerr << "u pertenece a componente:" << endl;
@@ -181,9 +181,12 @@ bool checkInbetween(int a,int b,int c,int d){
     int compa = bct.component[a],compb=bct.component[b],compc=bct.component[c],compd= bct.component[d];
 
     //cerr << " " << compa << " " << compb << " " << compc <<endl;
-    //D(dist(compa,compb));D(dist(compa,compc));D(dist(compc,compb));
-    return (dist(compa,compb) == (dist(compa,compc)+dist(compd,compb)+1)) ||
-        (dist(compa,compb)==(dist(compa,compd)+dist(compc,compb)+1));
+    //D(dist(compa,compb));
+    //D(dist(compa,compc));D(dist(compd,compb));
+    //D(dist(compa,compd));D(dist(compc,compb));
+    int arts = bct.artpoint[c] + bct.artpoint[d];
+    return (dist(compa,compb) == (dist(compa,compc)+dist(compd,compb)+arts)) ||
+        (dist(compa,compb)==(dist(compa,compd)+dist(compc,compb)+arts));
 }
 int main() {
 	fastio;
