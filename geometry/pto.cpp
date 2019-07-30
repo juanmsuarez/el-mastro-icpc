@@ -1,5 +1,5 @@
 const double EPS=1e-9;
-struct pto{
+struct pto {
 	double x, y;
 	pto(double x=0, double y=0):x(x),y(y){}
 	pto operator+(pto a){return pto(x+a.x, y+a.y);}
