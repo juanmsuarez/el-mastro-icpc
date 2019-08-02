@@ -14,6 +14,8 @@ struct basicHashing {
         mul = uniform_int_distribution<>(2,mod-2)(rng);
     }
 
+    basicHashing() { randomize(); }
+
     vi h, pot;
     void process(const string &s) {
         h.resize(si(s)+1);
