@@ -2,20 +2,18 @@
 // get(i, j) opera sobre el rango [i, j).
 typedef int node; // Tipo de los nodos
 #define MAXN 100000
-#define operacion(x, y) max(x, y)
-const int neutro = 0;
+#define operacion(x, y) min(x, y)
+const int neutro = INT_MAX;
 struct RMQ {
 	int sz;
 	node t[4*MAXN];
 	node &operator [](int p){ return t[sz + p]; }
-	void init(int n){ // O(n lg n)
+	void init(int n){ // O(n)
 		sz = 1 << (32 - __builtin_clz(n));
 		forn(i, 2*sz) t[i] = neutro;
 	}
     void updall(){//O(n)
-        dforsn(i,0, sz){
-            t[i] = operacion(t[2*i], t[2*i + 1]);
-        }
+        dforsn(i,0,sz) t[i] = operacion(t[2*i], t[2*i + 1]);
     }
 	node get(int i, int j){ return get(i, j, 1, 0, sz); }
 	node get(int i, int j, int n, int a, int b){ // O(lg n)
@@ -26,8 +24,7 @@ struct RMQ {
 	}
 	void set(int p, node val){ // O(lg n)
 		for(p += sz; p > 0 && t[p] != val;){
-			t[p] = val;
-			p /= 2;
+			t[p] = val, p /= 2;
 			val = operacion(t[p*2], t[p*2 + 1]);
 		}
 	}
