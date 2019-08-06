@@ -1,32 +1,32 @@
-const int MAXN = 1e5+10;
+const int N = 1e5+10;
 
-vector<int> G[MAXN];
-bool taken[MAXN];//poner todos en FALSE al principio!!
-int padre[MAXN];//padre de cada nodo en el centroid tree
-int szt[MAXN];
+vector<int> adj[N];
+bool taken[N];//poner todos en FALSE al principio!!
+int padre[N];//padre de cada nodo en el centroid tree
+int szt[N];
 void calcsz(int v, int p) {
 	szt[v] = 1;
-	for (int u : G[v]) if (u!=p && !taken[u])
+	for (int u : adj[v]) if (u!=p && !taken[u])
 		calcsz(u,v), szt[v]+=szt[u];
 }
 void centroid(int v=0, int f=-1, int lvl=0, int tam=-1) {//O(nlogn)
 	if(tam==-1)	calcsz(v, -1), tam=szt[v];
-	for(int u : G[v]) if(!taken[u] && szt[u]>=tam/2)
+	for(int u : adj[v]) if(!taken[u] && szt[u]*2>=tam)
 		{szt[v]=0; centroid(u, f, lvl, tam); return;}
 	taken[v]=true;
 	padre[v]=f;
-	for(int u : G[v]) if(!taken[u])
+	for(int u : adj[v]) if(!taken[u])
 		centroid(u, v, lvl+1, -1);
 }
 
 int n;
 //f[v][k] holds the 2^k father of v
 //L[v] holds the level of v
-int f[MAXN][20], L[MAXN];
+int f[N][20], L[N];
 //call before build:
 void dfs(int v, int fa=-1, int lvl=0){//generate required data
 	f[v][0]=fa, L[v]=lvl;
-	for(int u : G[v])if(u!=fa)
+	for(int u : adj[v])if(u!=fa)
 		dfs(u, v, lvl+1);
 }
 void build(){//f[i][0] must be filled previously, O(nlgn)
@@ -54,7 +54,7 @@ int dist(int a, int b) {
 	return L[a]+L[b]-2*L[lca(a, b)];}
 	
 	
-int dstsub[MAXN];
+int dstsub[N];
 void update(int v, int org){
 	dstsub[v]=min(dstsub[v], dist(v, org));
 	if(padre[v]!=-1) update(padre[v], org);
@@ -72,10 +72,10 @@ int main() {
     ios::sync_with_stdio(0);
     int queris;
 	while(cin >> n >> queris){
-        forn(i, n) G[i].clear(), taken[i] = false;
+        forn(i, n) adj[i].clear(), taken[i] = false;
 		forn(i, n-1){
 			int a,b; cin >> a >> b; a--, b--;
-			G[a].pb(b), G[b].pb(a);
+			adj[a].pb(b), adj[b].pb(a);
 		}
 		centroid();
 		dfs(0);
