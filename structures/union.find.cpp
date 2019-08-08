@@ -5,14 +5,13 @@ struct UF { // Operations take O(log*(n))
 	    while (p[i] != i) p[i] = p[p[i]], i = p[i];
 	    return i;
     }
-    bool con(int x, int y){ return find(x) == find(y); }
+    bool connected(int x, int y){ return find(x) == find(y); }
     bool join(int x, int y){
     	x = find(x), y = find(y);
-        if (con(x, y)) return false;
+        if (connected(x, y)) return false;
 
     	if (s[x] < s[y]) p[x] = y, s[y] += s[x];
     	else p[y] = x, s[x] += s[y];
         return true;
     }
 };
-
