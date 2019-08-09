@@ -234,7 +234,7 @@ determinados por este arreglo.
     \textbf{Condición suficiente:} $A[i, j - 1] \leq  A[i, j] \leq A[i + 1, j]$
 
     Es decir, si saco un elemento a derecha el óptimo se mueve a izquierda o se mantiene, y 
-    análogo si saco un elemento a izquierda.
+    si saco un elemento a izquierda el óptimo se mueve a derecha o se mantiene.
 
     \textbf{Complejidad original:} $O(n^3)$
 
@@ -268,7 +268,7 @@ determinados por este arreglo.
     \textbf{Condición suficiente:} $ A[i][j] \leq A[i][j + 1] $ o (normalmente más fácil de probar) 
     $ C[a][d] + C[b][c] \geq C[a][c] + C[b][d]$, con $a < b < c < d. $.
 
-    La segunda condición suficiente es la intuición de que no conviene que los intervalos se crucen.
+    La segunda condición suficiente es la intuición de que no conviene que los intervalos se contengan.
 
     \textbf{Complejidad original:} $O(kn^2)$
 
