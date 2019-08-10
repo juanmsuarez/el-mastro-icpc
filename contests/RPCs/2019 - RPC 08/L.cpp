@@ -27,20 +27,18 @@ int main() {
 	fastio;
 	
     int n; cin >> n;
-    vi days(n); for (int &d : days) cin >> d;
+    vi pos(n); forn(i, n) { int a; cin >> a; a--; pos[a] = i; }
 
-    int ans = 0;
-    vi active;
-    for (int d : days) {
-        int dirt = 0;
-        for (int p : active) dirt += d - p;
-
-        if (dirt >= 20) active.clear(), ans++;
-        active.pb(d);
+    int i = 0, best = 0;
+    forsn(j, 1, n) {
+        if (pos[j] < pos[j-1]) {
+            best = max(best, j-i);
+            i = j;
+        }
     }
-    ans++;
+    best = max(best, n-i);
 
-    cout << ans << endl;
+    cout << n - best << endl;
 	
 	return 0;
 }
