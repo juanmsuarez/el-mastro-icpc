@@ -243,6 +243,8 @@ determinados por este arreglo.
     \textbf{Solución:} iteramos por el tamaño $len$ del subarreglo (creciente), y para cada extremo izquierdo $l$,
     determinamos el extremo derecho $r=l+len$ e iteramos por los $k$ entre $A[l][r-1]$ y $A[l+1][r]$, actualizando la
     solución del estado actual.
+
+    \cppfile{dp-opt/knuth.cpp}
 }
 \subsection{Chull}
 {
@@ -280,6 +282,8 @@ determinados por este arreglo.
     que se encarga de, una vez fijado el punto medio $m$ del rango $[j_{left}, j_{right})$ iterar por los $k$ en $[j_{left}, j_{right})$ 
     para determinar el óptimo $opt$ para $m$, y continuar calculando $dp(i, j_{left}, m, opt_{left}, opt)$ y 
     $dp(i, m, j_{right}, opt, opt_{right})$.
+
+    \cppfile{dp-opt/dc.cpp}
 }
 
 \section{Matemática}%%%%%%%%%%%%%%%%%%MATH%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
