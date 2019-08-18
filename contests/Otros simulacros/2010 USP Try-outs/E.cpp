@@ -23,34 +23,48 @@ using pii = pair<int,int>;
 using vi = vector<int>;
 using ll = long long;
 
-const int N = 200, M = 1e9 + 7;
+const int N = 200, K = 6, MASK = 1 << 6;
+const int MOD = 1e9 + 7;
 
-int add(int a, int b) { return a + b >= M ? a + b - M : a + b; }
+int k;
+int memo[N][MASK][MASK];
 
-map<tuple<int, vi, vi>, int> memo;
+int add(int a, int b) { return a + b >= MOD ? a + b - MOD : a + b; }
 
-vi adv(const vi &v) {
-    vi w = v;
-    for (int &dif : w) dif++;
-    return w;
-}
+bool valid(int difs) { return difs < (1 << k); }
 
-int dp(int pos, const vi empty, const vi moving) {
-    auto state = make_tuple(pos, empty, moving);
-    if (memo.count(state)) return memo[state];
-    int &res = memo[state];
+bool check(int difs, int pos) { return difs & (1 << pos); }
 
-    vi nempty 
+int adv(int difs) { return difs << 1; }
+int rem(int difs, int pos) { return difs ^ (1 << pos); }
+int add(int difs) { return difs | 1; }
+
+int dp(int pos, int empty = 0, int moving = 0) {
+    if (!valid(empty) || !valid(moving)) return 0;
+    if (pos == N) return empty == 0 && moving == 0;
+
+    int &res = memo[pos][empty][moving];
+    if (res != -1) return res;
+    res = 0;
+
     // dont move
     res = add(res, dp(pos + 1, adv(empty), adv(moving)));
 
-    // move right
-    res = add(res, dp(pos + 1, 
+    // move left and leave empty
+    forn(to, 6) if (check(empty, to)) 
+        res = add(res, dp(pos + 1, add(adv(rem(empty, to))), adv(moving)));
 
-    // move left
-    for (int dif : empty) {
+    // move left and fill
+    forn(to, 6) if (check(empty, to)) 
+        forn(from, 6) if (check(moving, from))
+            res = add(res, dp(pos + 1, adv(rem(empty, to)), adv(rem(moving, from))));
 
-    }
+    // move right and leave empty
+    res = add(res, dp(pos + 1, add(adv(empty)), add(adv(moving))));
+
+    // move right and fill
+    forn(from, 6) if (check(moving, from))
+        res = add(res, dp(pos + 1, adv(empty), add(adv(rem(moving, from)))));
 
     return res;
 }
@@ -58,9 +72,10 @@ int dp(int pos, const vi empty, const vi moving) {
 int main() {
     fastio;
 
-    int k; cin >> k;
-    dforn(pos, N) cout << dp(pos, {}, {}) << endl;
+    fill(memo[0][0], memo[N][0], -1);
 
+    cin >> k;
+    dforn(pos, N) cout << dp(pos) << endl;
 
     return 0;
 }
