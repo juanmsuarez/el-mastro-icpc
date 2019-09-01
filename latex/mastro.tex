@@ -86,8 +86,42 @@ con utilizar el mismo algoritmo con la cadena $s_0\#s_1\#...\#s_{n-1}$.
 \cppfile[38-59]{strings/suffix.array.cpp}
 \subsection{LCP (Longest Common Prefix)}
 \cppfile[61-75]{strings/suffix.array.cpp}
-\subsection{Corasick}
-\cppfile[1-36]{strings/corasick.cpp}
+\subsection{Aho-Corasick}
+\textbf{Definición}
+El automáta Aho-Corasick es un autómata $A$ que reconoce un conjunto de cadenas $S$.
+
+\textbf{Conceptos importantes}
+\begin{itemize}
+	\item Cada nodo del autómata se asocia con (al menos) un prefijo de una cadena en $S$.
+	\item Un \emph{suffix link} para un vértice $p$ es un arco que apunta al sufijo propio
+	más largo de la cadena correspondiente al vértice $p$.
+	\item Estando en un estado $p$ que corresponde a una palabra $t$, se pueden definir 
+	arcos de dos tipos:
+	\begin{itemize}
+		\item Transiciones tipo trie: dado un caracter $c$ tal que $t + c$ pertenece al autómata,
+		el arco apunta a $t + c$.
+		\item Transiciones tipo suffix link: dado un caracter $c$ tal que $t + c$ no pertenece al
+		autómata, el arco apunta al máximo sufijo propio de $t + c$ que pertenece al árbol.
+	\end{itemize}
+	\item Implementación:
+	\begin{itemize}
+		\item Cada nodo mantiene:
+		\begin{itemize} 
+			\item Un indicador de la cantidad de cadenas que terminan en ese nodo: \emph{terminal}.
+			\item El padre \emph{p} y el caracter desde el que transicionó \emph{pch}.
+			\item Las transiciones tipo trie en \emph{next}.
+			\item El suffix link en \emph{link}.
+			\item Todas las transiciones (tipo trie y tipo suffix link) en \emph{go}.
+		\end{itemize}
+		\item El algoritmo se divide en:
+		\begin{itemize}
+			\item \emph{add\_string}: agrega una cadena $s$ al autómata.
+			\item \emph{go}: calcula el nodo destino de la transición $(v, ch)$.
+			\item \emph{get\_link}: calcula el suffix link de la cadena correspondiente al nodo $v$.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\cppfile{strings/aho-corasick.cpp}
 \subsection{Suffix Automaton}
 \textbf{Definición}
 Un suffix automaton $A$ es un autómata minimal que reconoce los sufijos de una 
