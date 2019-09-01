@@ -121,6 +121,25 @@ El automáta Aho-Corasick es un autómata $A$ que reconoce un conjunto de cadena
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
+
+\textbf{Problemas clásicos}
+\begin{itemize}
+	\item Encontrar todas las cadenas de un conjunto en un texto: mantener \emph{exit link}
+	(nodo terminal más cercano alcanzable mediante suffix links), recorrer autómata con el 
+	texto como entrada y transicionar por exit links para encontrar matches.
+	\item Cadena lexicográficamente mínima de longitud $len$ que no matchea ninguna 
+	cadena de un conjunto $S$: DFS sobre autómata para encontrar camino de longitud $L$
+	evitando entrar en nodos terminales.
+	\item Mínima cadena que contiene todas las cadenas de un conjunto $S$: BFS sobre 
+	autómata manteniendo máscara de cadenas matcheadas (y máscara de terminales,
+	incluyendo alcanzables por suffix link, en cada nodo). 
+	\textbf{Recordatorio importante: } un nodo solo mantiene los matches para la cadena
+	completa. Para mantener todos los matches (incluyendo sufijos) estando en un nodo 
+	$v$, hay que usar la información que propagan los suffix links.
+	\item Cadena lexicogrficamente mínima de longitud $len$ que contiene $k$ cadenas
+	de un conjunto $S$: DFS sobre grafo $(v, len, cnt)$.
+\end{itemize}
+
 \cppfile{strings/aho-corasick.cpp}
 \subsection{Suffix Automaton}
 \textbf{Definición}
