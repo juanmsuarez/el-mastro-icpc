@@ -148,25 +148,42 @@ cadena $s$.
 
 \textbf{Conceptos importantes}
 \begin{itemize}
-    \item $A$ \emph{reconoce} a una cadena $s$ si comenzando desde el nodo inicial llegamos a un 
-    terminal.
+	\item $A$ \emph{reconoce} a una cadena $s$ si comenzando desde el nodo inicial llegamos a un 
+	terminal.
 
-    \item Llamamos \emph{endpoints} de una cadena $u$ en $s$ a las posiciones $i$ tal que 
-    $u = s_{i-|u|, i-1}$
-
-    \item Dos substrings $u$ y $v$ de $s$ son \emph{equivalentes} si recorrer el autómata con $u$ 
-    y con $v$ nos lleva al mismo nodo. Esto equivale a que los endpoints de $u$ y de
-    $v$ en $s$ sean los mismos. 
-
-    \item Los nodos del automáta corresponden a las \emph{clases de equivalencia} bajo la
+	\item Dada una subcadena $t$ de $s$, definimos $endpos(t)$ como el conjunto de las posiciones
+	en $s$ en las que terminan las apariciones de $t$.
+	
+    \item Dos subcadenas $u$ y $v$ de $s$ son \emph{equivalentes} si recorrer el autómata con $u$ 
+    y con $v$ nos lleva al mismo nodo. Esto es equivalente a $endpos(u) = endpos(v)$. Los nodos del 
+    automáta se corresponden al conjunto de cadenas de las \emph{clases de equivalencia} bajo la
     relación anterior.
 
-    \item Si tomamos la \emph{cadena minimal} de una clase y removemos la primera letra,
-    nos movemos al padre en el \emph{suffix tree} de $s'$. Esto se señaliza mediante \emph{suffix links}.
-        
-    \item Si tomamos la \emph{cadena maximal} de una clase y agregamos una letra al principio,
-    nos movemos a otra clase de equivalencia, recorriendo un \emph{suffix link} en sentido inverso,
-    es decir, nos movemos a los hijos en el suffix tree de $s'$.
+    \item Las cadenas en una clase de equivalencia son sufijos de la cadena de mayor tamaño de la 
+    clase, y forman un intervalo contiguo de tamaños. El \emph{suffix link} nos lleva al primer sufijo 
+    que no pertenece a esta clase.
+    
+    \item \emph{Suffix tree} implícito (de $s'$): el suffix link saliente de un nodo nos lleva al padre 
+    en el suffix tree de $s'$ y los suffix links entrantes de un nodo provienen de los hijos del suffix 
+    tree de $s'$.
+    
+\end{itemize}
+
+\textbf{Algoritmo para construcción}
+\begin{itemize}
+	\item Agregamos un caracter a la vez. Sea $c$ el caracter a agregar.
+	\item Sea $last$ el estado que corresponde a la cadena entera antes de agregar a $c$.
+	\item Creamos un nuevo estado $cur$, que corresponde a la cadena luego de agregar a $c$.
+	\item Agregamos transiciones a través de $c$ a los sufijos de la cadena (recorriendo suffix 
+	links a partir de $last$), hasta encontrar un estado de un sufijo que ya tenga una transición
+	con $c$.
+	\begin{itemize}
+		\item Si no encontramos un estado, el suffix link de $cur$ es $t_0$.
+		\item Si la transición lleva a un estado $q$ que representa una cadena con un solo caracter más,
+		el suffix link de $cur$ es $q$.
+		\item Si no, es necesario dividir el estado $q$, ya que debemos usarlo como suffix link pero tiene
+		sufijos extra. Después de esto hace falta actualizar los estados que tenían transiciones a $q$.
+	\end{itemize}
 \end{itemize}
 
 \textbf{Problemas clásicos}
@@ -181,12 +198,12 @@ cadena $s$.
     \item Encontrar dónde aparece $w$ por primera vez en $s$: correr autómata con $w$. Llamemos $u$
     al nodo en el que terminamos, esto equivale a calcular el camino más largo del autómata 
     a partir del nodo $u$.
-    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: agregar '\$' a $s$,
-    encontrar el nodo $u$ en el que finaliza $w$, armar el \emph{suffix tree}, encontrar
+    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: agregar $\$$ a $s$,
+    encontrar el nodo $u$ que corresponde a $w$, armar el \emph{suffix tree}, encontrar
     todas las hojas en el subárbol con raíz en $u$, cada hoja corresponde a un prefijo
     y por lo tanto a una aparición.
 \end{itemize}
-\cppfile[1-46]{strings/suffix.automaton.cpp}
+\cppfile{strings/suffix.automaton.cpp}
 \subsection{Z Function}
 \textbf{Definición}
 La función Z para una string $s$ de longitud $n$ es un arreglo $a$ de la misma longitud

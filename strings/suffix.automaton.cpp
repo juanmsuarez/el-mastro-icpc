@@ -21,7 +21,7 @@ void sa_extend (char c) {
 	int cur = sz++;
 	st[cur].len = st[last].len + 1;
 	// en cur agregamos la posicion que estamos extendiendo
-	//podria agregar tambien un identificador de las cadenas a las cuales pertenece (si hay varias)
+	// podria agregar tambien un identificador de las cadenas a las cuales pertenece (si hay varias)
 	int p;
 	for (p=last; p!=-1 && !st[p].next.count(c); p=st[p].link) // modificar esta linea para hacer separadores unicos entre varias cadenas (c=='$')
 		st[p].next[c] = cur;
@@ -33,7 +33,6 @@ void sa_extend (char c) {
 			st[cur].link = q;
 		else {
 			int clone = sz++;
-			// no le ponemos la posicion actual a clone sino indirectamente por el link de cur
 			st[clone].len = st[p].len + 1;
 			st[clone].next = st[q].next;
 			st[clone].link = st[q].link;
@@ -43,11 +42,4 @@ void sa_extend (char c) {
 		}
 	}
 	last = cur;
-}
-
-int main() {
-    string s; cin >> s;
-    sa_init();
-    forn(i,si(s)) sa_extend(s[i]);	
-	return 0;
 }
