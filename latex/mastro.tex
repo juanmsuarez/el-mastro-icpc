@@ -202,8 +202,9 @@ cadena $s$.
     \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: encontrar el nodo $u$ que 
     corresponde a $w$, armar el \emph{suffix tree} (mantener los suffix links invertidos), encontrar 
     todos los nodos en el subárbol con raíz en $u$, cada nodo corresponde a por lo menos una aparición 
-    y cada aparición corresponde a un nodo y sus clones (utilizar $firstpos(v)$ para saber la posición, saltear 
-    nodos clonados). 
+    y cada aparición corresponde a un nodo y su clon (utilizar $firstpos(v)$ para saber la posición, saltear 
+    nodos clonados; o bien agregar un \$ al comienzo de la cadena y encontrar todas las hojas, la posición es
+    la longitud). 
     \item Subcadena común más larga de un conjunto de cadenas: dadas $k$ cadenas $S_i$, elegimos
     $k$ separadores distintos entre sí $D_i$, formamos $T = S_1 + D_1 + \dots + S_k + D_k$ y construimos
     el autómata de esa cadena. Saber si una subcadena pertenece a una cadena $S_i$ en particular corresponde 
