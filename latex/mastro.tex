@@ -197,11 +197,19 @@ cadena $s$.
     en $A$ que comienzan en $u$ y llegan a un terminal.
     \item Encontrar dónde aparece $w$ por primera vez en $s$: correr autómata con $w$. Llamemos $u$
     al nodo en el que terminamos, esto equivale a calcular el camino más largo del autómata 
-    a partir del nodo $u$.
-    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: agregar $\$$ a $s$,
-    encontrar el nodo $u$ que corresponde a $w$, armar el \emph{suffix tree}, encontrar
-    todas las hojas en el subárbol con raíz en $u$, cada hoja corresponde a un prefijo
-    y por lo tanto a una aparición.
+    a partir del nodo $u$. Otra solución: mantener $firstpos(v)$, la primera aparición de una subcadena
+    en la cadena (se actualiza cuando se crea un nuevo nodo y cuando se clonan nodos).
+    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: encontrar el nodo $u$ que 
+    corresponde a $w$, armar el \emph{suffix tree} (mantener los suffix links invertidos), encontrar 
+    todos los nodos en el subárbol con raíz en $u$, cada nodo corresponde a por lo menos una aparición 
+    y cada aparición corresponde a un nodo y sus clones (utilizar $firstpos(v)$ para saber la posición, saltear 
+    nodos clonados). 
+    \item Subcadena común más larga de un conjunto de cadenas: dadas $k$ cadenas $S_i$, elegimos
+    $k$ separadores distintos entre sí $D_i$, formamos $T = S_1 + D_1 + \dots + S_k + D_k$ y construimos
+    el autómata de esa cadena. Saber si una subcadena pertenece a una cadena $S_i$ en particular corresponde 
+    a verificar que existe un camino a $D_i$ sin pasar por los demás separadores. Si calculamos para cada nodo
+    a qué separadores puede llegar, la respuesta es la máxima de las cadenas más largas de las clases
+    correspondientes a estados $v$ que puede llegar a todos los separadores.
 \end{itemize}
 \cppfile{strings/suffix.automaton.cpp}
 \subsection{Z Function}
