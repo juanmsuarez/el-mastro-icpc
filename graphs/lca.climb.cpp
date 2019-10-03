@@ -8,15 +8,13 @@ struct LCA {
         for(int v : tree[u]) if(v != p) dfs(v,u,d+1);
     }
  
-    void init(int _n){
-        n = _n; dfs(); forn(k, L-1) forn(i,n) if(a[i][k] != -1) a[i][k+1] = a[a[i][k]][k]; 
+    void init(int m){
+        n = m; dfs(); forn(k, L-1) forn(i,n) if(a[i][k] != -1) a[i][k+1] = a[a[i][k]][k]; 
     }
  
     int climb(int x, int d){
-        if(d){
-            int e = lg(lvl[x]) + 1;
-            dforsn(i, 0, e) if(1 << i <= d) x = a[x][i], d -= 1 << i;
-        }
+        if(d) for(int i = lg(lvl[x]); d && i >= 0; i--) 
+            if(1 << i <= d) x = a[x][i], d -= 1 << i;
         return x; 
     }
  
@@ -24,8 +22,8 @@ struct LCA {
         if(lvl[x] < lvl[y]) swap(x,y);
         x = climb(x, lvl[x] - lvl[y]);
         if(x != y){ 
-            int e = lg(lvl[x]) + 1;
-            dforsn(i, 0, e) if(a[x][i] != a[y][i]) x = a[x][i], y = a[y][i]; 
+            for(int i = lg(lvl[x]); i >= 0; i--) 
+                if(a[x][i] != a[y][i]) x = a[x][i], y = a[y][i]; 
             x = a[x][0]; 
         }
         return x;
