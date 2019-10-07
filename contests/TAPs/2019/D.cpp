@@ -67,8 +67,10 @@ int main() {
     int n; cin >> n;
     vector<Point> points(n); for (Point &p : points) cin >> p.x >> p.y;
 
-    ll convex_quads = 0;
+    ll concave_quads = 0;
     for (Point inner_point : points) {
+        ll outside_triangs = 0;
+
         auto other_points = points; other_points.erase(find(all(other_points), inner_point));
         sort(all(other_points), RadialOrder(inner_point));
 
@@ -78,11 +80,15 @@ int main() {
             Point &start_point = other_points[i];
 
             while (j - i < m && !other_points[j % m].left(start_point, inner_point)) j++;
-            convex_quads += choose(j - i - 1, 2);
+            outside_triangs += choose(j - i - 1, 2);
         }
+        
+        ll total_triangs = choose(n - 1, 3);
+        concave_quads += total_triangs - outside_triangs;
     }
 
-    cout << convex_quads << endl;
+    ll total_quads = choose(n, 4);
+    cout << total_quads - concave_quads << endl;
 	
 	return 0;
 }
