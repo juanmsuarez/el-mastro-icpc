@@ -4,6 +4,5 @@ pair<ll,ll> extendedEuclid (ll a, ll b){ //a * x + b * y = gcd(a,b)
 	auto p=extendedEuclid(b,a%b);
 	x=p.snd;
 	y=p.fst-(a/b)*x;
-    if (a*x + b*y == -gcd(a,b)) a = -a, b = -b;
 	return mp(x,y);
 }
