@@ -5,5 +5,6 @@ pair<pair<ll,ll>,pair<ll,ll> > diophantine(ll a,ll b, ll r) {
 	auto p = extendedEuclid(a,b);
 	p.fst*=r; p.snd*=r;
 	assert(a*p.fst+b*p.snd==r);
-	return mp(p,mp(-b,a)); // solutions: (p.fst - b*k1, p.snd + a*k2)
+	return mp(p,mp(-b,a)); // solutions: (p.fst - b*k, p.snd + a*k)
+                //== (res.fst.fst + res.snd.fst*k, res.fst.snd + res.snd.snd*k)
 }
