@@ -53,14 +53,27 @@
 \cppfile{structures/order.tree.cpp}
 
 
-\section{Algoritmos}%%%%%%%%%%%%%%%%%%ALGORITMOS%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algoritmos varios}%%%%%%%%%%%%%%%%%%ALGORITMOS%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Longest Increasing Subsecuence}
 \cppfile[1-31]{others/lis.cpp}
 \subsection{Alpha-Beta prunning}
 \cppfile{others/alphabeta.cpp}
 \subsection{Mo's algorithm}
 \cppfile{others/mosalgorithm.cpp}
+\subsection{Parallel binary search}
+\textbf{Descripción:} permite reutilizar información cuando se necesitan
+realizar múltiples búsquedas binarias sobre la misma información.
 
+\textbf{Explicación algoritmo:} imaginarse un árbol binario de rangos de
+búsqueda binaria $(lo, hi]$ y queries asignadas a cada nodo, que implican que
+esa query está en ese rango de la búsqueda binaria. El algoritmo aprovecha
+que para cada nivel del árbol las queries están ordenadas, y se puede procesar
+la información hasta el $mid$ de cada query en orden, resultando en un tiempo de
+$O(N + Q_{nivel})$ por nivel (más un $log$ extra por ordenar). 
+
+\textbf{Observación: } se puede implementar de forma recursiva, dependiendo del
+problema. Esto puede mejorar la complejidad ya que se evita el ordenamiento.
+\cppfile{others/parallel_binary_search.cpp}
 
 \section{Strings}%%%%%%%%%%%%%%%%%%STRINGS%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hash}
