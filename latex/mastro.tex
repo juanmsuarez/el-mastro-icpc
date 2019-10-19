@@ -39,10 +39,20 @@
 \cppfile{structures/bigint.cpp}
 \subsection{Modnum}
 \cppfile{structures/mod.cpp}
-\subsection{Treap para set}
-\cppfile[1-74]{structures/treap.cpp}
-\subsection{Treap para arreglo}
-\cppfile[1-73]{structures/treaparr.cpp}
+\subsection{Treap}
+\textbf{Definición:} estructura de datos que combina los conceptos de \emph{binary search tree} (para las claves)
+y \emph{heap} (para las prioridades), y asigna las prioridades de forma aleatoria para asegurar una altura de 
+$O(\log{}n)$ en promedio.
+
+\textbf{Operaciones básicas:}
+\begin{itemize}
+	\item $split(T, X)$: 
+	\item $merge(T_1, T_2)$:
+\end{itemize}
+\subsubsection{Treap set}
+\cppfile[1-74]{structures/treap_set.cpp}
+\subsubsection{Treap array}
+\cppfile[1-73]{structures/treap_arr.cpp}
 \subsection{Convex Hull Trick}
 \cppfile[4-56]{structures/convexhull.trick.cpp}
 \subsection{Convex Hull Trick (Dynamic)}
