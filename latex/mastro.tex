@@ -46,13 +46,26 @@ $O(\log{}n)$ en promedio.
 
 \textbf{Operaciones básicas:}
 \begin{itemize}
-	\item $split(T, X)$: 
-	\item $merge(T_1, T_2)$:
+	\item $split(T, X)$: separa al árbol $T$ en 2 subárboles $T_L$ y $T_R$ tales que $T_L$ contiene a todos los 
+	elementos con claves menores a $X$ y $T_R$ a los demás.
+	\item $merge(T_1, T_2)$: combina dos subárboles $T_1$ y $T_2$ y retorna un nuevo árbol, 
+	asume que las claves en $T_1$ son menores que las claves en $T_2$.
+\end{itemize}
+
+\textbf{Operaciones avanzadas:}
+\begin{itemize}
+	\item $insert(T, X)$: inserta una nueva clave al árbol. Resulta trivial de implementar a partir de las anteriores:
+	$(T_1, T_2) = split(T, X)$ y $T_3 = merge(merge(T_1, X), T_2)$.
 \end{itemize}
 \subsubsection{Treap set}
-\cppfile[1-74]{structures/treap_set.cpp}
+\cppfile{structures/treap_set.cpp}
 \subsubsection{Treap array}
-\cppfile[1-73]{structures/treap_arr.cpp}
+\textbf{Explicación treap implícito:} permite insertar, borrar, hacer queries y updates (incluyendo reverse) en rangos
+en un arreglo. La idea es usar a los índices como claves, pero en vez de almacenarlos (sería difícil actualizar en ese caso),
+aprovechamos que la clave de un nodo es la cantidad de elementos menores a ese nodo (cuidado, no son solo los del
+subárbol izquierdo).
+\cppfile{structures/treap_arr.cpp}
+
 \subsection{Convex Hull Trick}
 \cppfile[4-56]{structures/convexhull.trick.cpp}
 \subsection{Convex Hull Trick (Dynamic)}
