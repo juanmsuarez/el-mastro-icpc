@@ -805,7 +805,14 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \subsection{Hungarian}
 \cppfile[5-59]{graphs/hungarian.cpp}
 \subsection{Dynamic Conectivity}
-\cppfile[17-78]{graphs/dynamic.conectivity.cpp}
+\textbf{Definición:} permite realizar queries sobre un grafo dinámico al que se le pueden agregar y quitar aristas.
+
+\textbf{Explicación: } procesa las queries (y los updates) offline, con una estrategia muy similar a la de la búsqueda
+binaria en paralelo: pensar que los arcos están presentes en cierto intervalo de tiempo, y que solo incluimos los arcos
+que contienen totalmente al intervalo que estamos considerando (a medida que se mueven los extremos). Al igual
+que en la búsqueda binaria en paralelo, se puede ver que se forma un árbol binario en el que se realiza una cantidad
+de operaciones lineal en cada nivel.
+\cppfile{graphs/dynamic.conectivity.cpp}
 
 
 \section{Flujo}%%%%%%%%%%%%%%%%%%FLOW%%%%%%%%%%%%%%%%%%%%%%%%%%%%
