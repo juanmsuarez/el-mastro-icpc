@@ -1,17 +1,14 @@
-struct UF { // Operations take O(log*(n))
-    vi p,s;
-    UF(int n){ p.resize(n), iota(all(p), 0), s.assign(n, 1); }
-    int find(int i){
-	    while (p[i] != i) p[i] = p[p[i]], i = p[i];
-	    return i;
-    }
-    bool connected(int x, int y){ return find(x) == find(y); }
-    bool join(int x, int y){
-    	x = find(x), y = find(y);
-        if (connected(x, y)) return false;
+struct UF {
+    vi par, si;
+    UF(int n) { par.resize(n), iota(all(par), 0), si.assign(n, 1); }
+    int find(int u) { return par[u] == u ? u : par[u] = find(par[u]); }
+    bool connected(int u, int v) { return find(u) == find(v); }
+    bool join(int u, int v) {
+    	u = find(u), v = find(v);
+        if (connected(u, v)) return false;
 
-    	if (s[x] < s[y]) p[x] = y, s[y] += s[x];
-    	else p[y] = x, s[x] += s[y];
+    	if (si[u] < si[v]) par[u] = v, si[v] += si[u];
+    	else par[v] = u, si[u] += si[v];
         return true;
     }
 };
