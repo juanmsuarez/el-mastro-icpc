@@ -831,12 +831,20 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 	tomar cualquier arista incidente.
 	\end{itemize}
 \end{itemize}
+
+\subsection{Ford Fulkerson}
+\textbf{Complejidad: } $O(fE)$.
+
+\textbf{Algoritmo: } cambiar BFS por DFS en Edmonds Karp.
+
+\subsection{Edmonds Karp}
+\textbf{Complejidad: } $O(VE^2)$.
+\cppfile{flow/edmonds.karp.cpp}
+
 \subsection{Dinic}
 \textbf{Complejidad: } $O(V^2E)$ en general. $O(\sqrt{V}E)$ en matching bipartito. $O(min(E^{2/3}, \sqrt{V}E))$ con capacidades unitarias.
 \cppfile{flow/dinic.cpp}
-\subsection{Edmonds Karp's}
-\textbf{Complejidad: } $O(VE^2)$.
-\cppfile{flow/edmonds.karp.cpp}
+
 \subsection{Konig}
 \cppfile[98-122]{flow/konig.cpp}
 
