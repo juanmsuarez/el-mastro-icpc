@@ -849,8 +849,24 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 \cppfile[98-122]{flow/konig.cpp}
 
 \subsection{Min-cost Max-flow}
-\cppfile[16-66]{flow/min.cost.max.flow.cpp}
+\textbf{Algoritmo}: tira camino mínimo hasta encontrar el flujo buscado. Usa SPFA (Bellman-Ford más inteligente, con mejor
+tiempo promedio) porque resulta en la mejor complejidad.
 
+\textbf{Complejidad}: $O(V^2E^2)$.
+\cppfile{flow/min.cost.max.flow.cpp}
+
+\subsection{Flujo con demandas}
+\textbf{Problema}: se pide que $d(e) \leq f(e) \leq c(e)$. \\
+\textbf{Flujo arbitrario}: transformar red de la siguiente forma. Agregar nueva fuente $s'$ y nuevo sumidero $t'$,
+arcos nuevos de $s'$ a todos los demás nodos, arcos nuevos desde todos los nodos a $t'$, y un arco de $t$ a $s$.
+Definimos la nueva función de capacidad $c'$ como:
+\begin{itemize}
+\item $c'((s',v)) = \sum\nolimits_{u \in V} d((u,v))$ para cada arco $(s',v)$.
+\item $c'((v,t')) = \sum\nolimits_{w \in V} d((v,w))$ para cada arco $(v,t')$.
+\item $c'((u,v)) = c((u,v)) - d((u,v))$ para cada arco $(u,v)$ en la red original.
+\item $c'((t,s)) = \infty$
+\end{itemize}
+\textbf{Flujo mínimo}: hacer búsqueda binaria sobre la capacidad de la arco $(t, s)$, viendo que se satisfaga la demanda.
 
 \section{Template}%%%%%%%%%%%%%%%%%%TEMPLATE%%%%%%%%%%%%%%%%
 \cppfile{misc/template.cpp}
