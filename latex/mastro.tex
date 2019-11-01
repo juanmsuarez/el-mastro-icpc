@@ -816,7 +816,23 @@ de operaciones lineal en cada nivel.
 
 
 \section{Flujo}%%%%%%%%%%%%%%%%%%FLOW%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Trucazos generales}
+\begin{itemize}
+\item \textbf{Corte mínimo}: aquellos nodos alcanzables desde $S$ forman un conjunto, los demás forman el otro conjunto.
+En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (del lado del $T$).
+\item \textbf{Para grafos bipartitos}: sean $V_1$ y $V_2$ los conjuntos más próximos a $S$ y a $T$ respectivamente.
+	\begin{itemize}
+	\item \textbf{Matching}: para todo $v_1 \in V_1$ tomar las aristas a vértices en $V_2$ con flujo positivo ($edge.f > 0$).
+	\item \textbf{Min. Vertex Cover}: unión de vértices $v_1 \in V_1$ tales que son inalcanzables ($dist[v_1] == -1$),
+	y vértices $v_2 \in V_2$ tales que son alcanzables ($dist[v_2] > 0$).
+	\item \textbf{Max. Independent Set}: tomar vértices no tomados por el Min. Vertex Cover.
+	\item \textbf{Max. Clique}: construir la red $G'$ (red complemento) y encontrar Max. Independent Set.
+	\item \textbf{Min. Edge Cover}: tomar las aristas del Matching y para todo vértice no cubierto hasta el momento, 
+	tomar cualquier arista incidente.
+	\end{itemize}
+\end{itemize}
 \subsection{Dinic}
+\textbf{Complejidad: } $O(V^2E)$ en general. $O(\sqrt{V}E)$ en matching bipartito. $O(min(E^{2/3}, \sqrt{V}E))$ con capacidades unitarias.
 \cppfile{flow/dinic.cpp}
 \subsection{Konig}
 \cppfile[98-122]{flow/konig.cpp}
