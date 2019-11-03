@@ -1,0 +1,36 @@
+colo desert
+se nu
+se nornu
+se acd 
+se ic
+se sc
+se si
+se cin
+se ts=4
+se sw=4
+se sts=4
+se et
+se spr 
+se cb=unnamedplus
+se nobk
+se nowb   
+se noswf  
+se cc=80
+map j gj
+map k gk
+aug cpp
+    au!
+    au FileType cpp map <f9> :w<CR> :!g++ -Wno-unused-result -D_GLIBCXX_DEBUG -Wconversion -Wshadow -Wall -Wextra -O2 -DLOCAL -std=c++17 -g3 "%" -o "%:p:r" <CR>
+    au FileType cpp map <f5> :!"%:p:r" < a.in <CR>
+    au FileType cpp map <f6> :!"%:p:r" <CR>
+aug END 
+nm <c-h> <c-w><c-h>
+nm <c-j> <c-w><c-j>
+nm <c-k> <c-w><c-k>
+nm <c-l> <c-w><c-l>
+vm > >gv
+vm < <gv
+nn <silent> [b :bp<CR>
+nn <silent> ]b :bn<CR>
+nn <silent> [B :bf<CR>
+nn <silent> ]B :bl<CR>

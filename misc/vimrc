@@ -1,49 +1,62 @@
-colo desert
-set number 
-set norelativenumber
-set autochdir
-set colorcolumn=80
+" to ask for help in vim just type :h command or :h 'variable'
 
-set ignorecase
-set showcmd
+colo desert " color scheme
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+" print absolute line numbers
+se nu     
+se nornu 
 
-set smartindent
-set cindent
+se acd " change current open directory whenever you open a file or switch buffers
 
-set clipboard=unnamedplus
+se ic " ignore case in search patterns
+se sc " show partial command in the last line of the screen
 
-nmap <c-h> <c-w><c-h>
-nmap <c-j> <c-w><c-j>
-nmap <c-k> <c-w><c-k>
-nmap <c-l> <c-w><c-l>
+" define shortcuts to compile and execute
+aug cpp
+    au!
+    au FileType cpp map <f9> :w<CR> :!g++ -Wno-unused-result -D_GLIBCXX_DEBUG -Wconversion -Wshadow -Wall -Wextra -O2 -DLOCAL -std=c++17 -g3 "%" -o "%:p:r" <CR>
+    au FileType cpp map <f5> :!"%:p:r" < a.in <CR>
+    au FileType cpp map <f6> :!"%:p:r" <CR>
+aug END 
 
-vmap > >gv
-vmap < <gv
+" replace all tabs for 4 spaces
+se ts=4
+se sw=4
+se sts=4
+se et
 
-" Para navegar en lineas wrapeadas
+se si " do smart autoindenting when starting a new line
+se cin " enable automatic C program indenting
+
+se cb=unnamedplus " share OS clipboard
+
+se spr " split windows to the right
+
+" no backups
+se nobk
+se nowb   
+se noswf  
+
+
+" color middle column
+se cc=80
+
+" switch between windows
+nm <c-h> <c-w><c-h>
+nm <c-j> <c-w><c-j>
+nm <c-k> <c-w><c-k>
+nm <c-l> <c-w><c-l>
+
+" move around wrapped lines
 map j gj
 map k gk
 
-" Navegacion de buffers
-nnoremap <silent> [b :bp<CR>
-nnoremap <silent> ]b :bn<CR>
-nnoremap <silent> [B :bf<CR>
-nnoremap <silent> ]B :bl<CR>
+" shift lines with < and >
+vm > >gv
+vm < <gv
 
-augroup cpp
-    autocmd!
-    autocmd FileType cpp map <f9> :w<enter> :!g++ -std=c++17 -W -Wall -Wshadow -Wconversion -DLOCAL -D_GLIBCXX_DEBUG -g3 "%" -o "a.exe" &<enter>
-    autocmd FileType cpp map <f5> :!"./a.exe" < a.in &<enter> 
-    autocmd FileType cpp map <f6> :!"./a.exe" &<enter>
-augroup END 
-
-set splitright
-
-set nobackup
-set nowritebackup
-set noswapfile
+" navigate buffers
+nn <silent> [b :bp<CR>
+nn <silent> ]b :bn<CR>
+nn <silent> [B :bf<CR>
+nn <silent> ]B :bl<CR>
