@@ -23,7 +23,7 @@ double dist(pto a, pto b){return (b-a).norm();}
 double dist_sq(pto a, pto b){return (b-a).norm_sq();}
 typedef pto vec;
 
-double angle(pto a, pto o, pto b){
+double angle(pto a, pto o, pto b){ // [-PI, PI]
 	pto oa=a-o, ob=b-o;
 	return atan2(oa^ob, oa*ob);
 }
