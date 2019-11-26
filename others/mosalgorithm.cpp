@@ -1,25 +1,25 @@
-int n,sq;
-struct Qu{//queries [l, r]
-    //intervalos cerrado abiertos !!! importante!!
-    int l, r, id;
-}qs[MAXN];
-int ans[MAXN], curans;//ans[i]=ans to ith query
-bool bymos(const Qu &a, const Qu &b){
-    if(a.l/sq!=b.l/sq) return a.l<b.l;
-    return (a.l/sq)&1? a.r<b.r : a.r>b.r;
-}
-void mos(){//(n+q)*sqrt(n))*(O(add())+O(remove()))
-    forn(i, t) qs[i].id=i;
-    sort(qs, qs+t, bymos);
-    int cl=0, cr=0; 
-    sq=sqrt(n);
-    curans=0;
-    forn(i, t){ //intervalos cerrado abiertos !!! importante!!
-        Qu &q=qs[i];
-        while(cl>q.l) add(--cl);
-        while(cr<q.r) add(cr++);
-        while(cl<q.l) remove(cl++);
-        while(cr>q.r) remove(--cr);
-        ans[q.id]=curans;
+const int Q = 2e5, SQ = 200;
+
+struct Query { // [l, r)
+    int l,r,id;
+    bool operator<(const Query &q){
+        if(l/SQ != q.l/SQ) return l < q.l;
+        return l/SQ & 1 ? r < q.r : r > q.r;
+    }
+} qs[Q];
+
+int ans[Q],res,pl,pr; // ans[i] = ans to ith query
+
+void mo(int m){ // O( (n+q) * sqrt(n) * (add() + remove()) )
+    forn(i,m) qs[i].id = i;
+    sort(qs, qs + m);
+    pl = 0, pr = 0, res = 0;
+    forn(i,m){
+        Query &q = qs[i];
+        while(pl > q.l) add(--pl);
+        while(pr < q.r) add(pr++);
+        while(pl < q.l) remove(pl++);
+        while(pr > q.r) remove(--pr);
+        ans[q.id] = res;
     }
 }
