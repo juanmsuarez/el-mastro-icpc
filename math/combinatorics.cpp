@@ -24,3 +24,18 @@ ll lucas(ll n, ll k, int p){ // Calcula C(n,k) % p teniendo C[p][p] precalculado
     while(n + k){ ans = (ans * C[n%p][k%p]) % p; n/=p; k/=p; }
     return ans;
 }
+
+int F = 1e6, fact[F+1];
+fact[0] = 1;
+forsn(i,1,F+1) fact[i] = mul(i, fact[i-1]);
+
+int choose(int n, int c){
+    return divide(fact[n], mul(fact[n-c], fact[c]));
+}
+
+int k_tuples_of_non_neg_int_whose_sum_is_n(int k, int n){ 
+    return choose(n+k-1, n); 
+}
+int k_tuples_of_pos_int_whose_sum_is_n(int k, int n){ 
+    return choose(n-1, k-1); 
+}
