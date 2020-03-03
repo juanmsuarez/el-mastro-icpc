@@ -14,7 +14,7 @@ void factorize(int x){ // O(log(x)), x <= N, sieve needed
 }
 
 void factorize(ll x) { // O(sqrt(x)), no sieve needed 
-    for(int i = 2; i*i <= x; i++) 
+    for(ll i = 2; i*i <= x; i++) 
         while(x % i == 0) F[i]++, x /= i;
     if(x != 1) F[x]++;
 }

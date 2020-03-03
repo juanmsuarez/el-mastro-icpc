@@ -23,7 +23,7 @@ struct Circle{
 //finds the center of the circle containing p1 and p2 with radius r
 //as there may be two solutions swap p1, p2 to get the other
 bool circle2PtsRad(pto p1, pto p2, double r, pto &c){
-        double d2=(p1-p2).norm_sq(), det=r*r/d2-0.25;
+        double d2=(p1-p2).norm2(), det=r*r/d2-0.25;
         if(det<0) return false;
         c=(p1+p2)/2+perp(p2-p1)*sqrt(det);
         return true;

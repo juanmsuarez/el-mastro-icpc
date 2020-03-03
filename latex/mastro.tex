@@ -288,9 +288,9 @@ se divide en dos casos:
 
 \section{Geometría}%%%%%%%%%%%%%%%%%%geometria%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Punto}
-\cppfile[2-33]{geometry/pto.cpp}
+\cppfile{geometry/pto.cpp}
 \subsection{Orden radial de puntos}
-\cppfile{geometry/orden.radial.cpp}
+\cppfile{geometry/radial.order.cpp}
 \subsection{Line}
 \cppfile{geometry/line.cpp}
 \subsection{Segment}
@@ -321,7 +321,7 @@ se divide en dos casos:
 \subsection{Cayley-Menger}
 {
 Permite calcular el volumen de un simplex (triángulo en k dimensiones) mediante el cálculo de una determinante.
-\cppfile[65-82]{geometry/cayley.cpp}
+\cppfile[40-57]{geometry/cayley.cpp}
 }
 
 \subsection{Heron's formula}
@@ -549,11 +549,9 @@ Las constantes $c_{ij}$ se determinan por los casos base.
 \subsection{Matrices y determinante $O(n^3)$}
 \cppfile[1-36]{math/determinante.cpp}
 \subsection{Primes and factorization}
-\cppfile{math/factorize.cpp}
+\cppfile{math/primes.factorize.cpp}
 \subsection{Euler's Phi}
 \cppfile[1-23]{math/phi_euler.cpp}
-\subsection{Criba}
-\cppfile[1-17]{math/criba.cpp}
 \subsection{Funciones de primos}
 Sea $n=\prod{p_i^{k_i}}$, fact(n) genera un map donde a cada $p_i$ le asocia su $k_i$
 \cppfile{math/func.primos.cpp}

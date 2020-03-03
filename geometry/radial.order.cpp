@@ -1,5 +1,4 @@
-//orden total de puntos alrededor de un punto r
-// hacer operadores ^ y - constantes
+// Absolute order around point r
 struct RadialOrder {
 	pto r;
 	RadialOrder(pto _r) : r(_r) {}

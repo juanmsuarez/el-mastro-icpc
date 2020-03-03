@@ -6,7 +6,7 @@ using namespace std;
 #define forn(i,n) for(int i = 0 ; i < int(n) ; i++)
 typedef long long int  ll;
 
-const int N = 1<<20; // Array size must be at most 40
+const int N = 1 << 25; // Array size must be at most 50
 ll a[] = {3,34,4,12,5,2}, X[N], Y[N];
 
 void subset_sums(ll x[], int n, int s){
