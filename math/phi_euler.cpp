@@ -5,11 +5,11 @@ const int N = 1e6;
 vi lp(N+1), P, phi(N+1);
 
 void initPhi() { // Least prime and phi <= N in O(n)
-	phi[1] = 1;
-	forsn(i, 2, N+1) {
-		if (!lp[i]) 
+    phi[1] = 1;
+    forsn(i, 2, N+1) {
+        if (!lp[i]) 
             lp[i] = i, P.pb(i), phi[i] = i-1;
-		else {
+        else {
             int a = i / lp[i];
             phi[i] = phi[a] * (lp[i] - (lp[i] != lp[a]));
         }
@@ -17,7 +17,7 @@ void initPhi() { // Least prime and phi <= N in O(n)
             if (p > lp[i] || i*p > N) break;
             lp[i * p] = p;
         }
-	}
+    }
 }
 
 ll eulerPhi(ll x) { // O(lg x)
