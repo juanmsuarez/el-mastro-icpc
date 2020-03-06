@@ -1,5 +1,3 @@
-template<class T> T gcd(T a,T b){return b==0?a:gcd(b,a%b);}
-
 struct frac{
 	int p,q;
 	frac(int p=0, int q=1):p(p),q(q) {norm();}
