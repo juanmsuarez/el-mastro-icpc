@@ -22,9 +22,9 @@ struct pto {
         return abs(x - a.x) < EPS && abs(y - a.y) < EPS;
     }
 };
+typedef pto vec;
 double dist(pto a, pto b) { return (b-a).norm(); }
 double dist2(pto a, pto b) { return (b-a).norm2(); }
-typedef pto vec;
 double angle(pto a, pto o, pto b){ // [-pi, pi]
 	pto oa = a-o, ob = b-o;
 	return atan2(oa^ob, oa*ob);

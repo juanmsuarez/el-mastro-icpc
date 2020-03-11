@@ -54,6 +54,13 @@ pair<pto, pto> interCL(Circle c, line l){
 	return p;
 }
 
+------------------------------------------------------------------
+
+struct circle { 
+    pto p; double r; 
+    bool contains(pto a) { return leq(dist(p, a), r); }
+};
+
 vector<pto> interCC(circle &a, circle &b) {
     vector<pto> r;
     double d = dist(a.p, b.p);
