@@ -53,11 +53,15 @@ pair<pto, pto> interCL(Circle c, line l){
 	}
 	return p;
 }
-pair<pto, pto> interCC(Circle c1, Circle c2){
-	line l;
-	l.a = c1.o.x-c2.o.x;
-	l.b = c1.o.y-c2.o.y;
-	l.c = (sqr(c2.r)-sqr(c1.r)+sqr(c1.o.x)-sqr(c2.o.x)+sqr(c1.o.y)
-	-sqr(c2.o.y))/2.0;
-	return interCL(c1, l);
+
+vector<pto> interCC(circle &a, circle &b) {
+    vector<pto> r;
+    double d = dist(a.p, b.p);
+    if (gr(d, a.r + b.r) || le(d + min(a.r, b.r), max(a.r, b.r))) return r;
+    double x = (d*d + a.r*a.r - b.r*b.r) / (2*d);
+    double y = sqrt(a.r*a.r - x*x);
+    pto v = (b.p - a.p) / d;
+    r.pb(a.p + v*x + CCW90(v)*y);
+    if (gr(y, 0)) r.pb(a.p + v*x - CCW90(v)*y);
+    return r;
 }

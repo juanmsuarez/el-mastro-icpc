@@ -1,7 +1,7 @@
 const double EPS = 1e-9;
 struct pto {
 	double x, y;
-	pto(double x=0, double y=0) : x(x),y(y) {}
+	pto(double _x=0, double _y=0) : x(_x),y(_y) {}
 	pto operator+(pto a) { return pto(x + a.x, y + a.y); }
 	pto operator-(pto a) { return pto(x - a.x, y - a.y); }
 	pto operator+(double a) { return pto(x + a, y + a); }
@@ -30,8 +30,8 @@ double angle(pto a, pto o, pto b){ // [-pi, pi]
 	return atan2(oa^ob, oa*ob);
 }
 // Rotate around the origin:
-pto rotateCCW90(pto p) { return pto(-p.y, p.x); }
-pto rotateCW90(pto p) { return pto(p.y, -p.x); }
-pto rotateCCW(pto p, double t){ // rads
+pto CCW90(pto p) { return pto(-p.y, p.x); }
+pto CW90(pto p) { return pto(p.y, -p.x); }
+pto CCW(pto p, double t){ // rads
 	return pto(p.x*cos(t) - p.y*sin(t), p.x*sin(t) + p.y*cos(t));
 }
