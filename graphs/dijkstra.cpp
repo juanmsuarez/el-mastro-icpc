@@ -1,5 +1,7 @@
-vector<pii> adj[N];
-ll dist[N]; int par[N]; bool seen[N];
+const ll N = 2e5, INF = 1e18;
+ll dist[N]; int par[N]; 
+vector<pii> g[N];
+bool seen[N];
 
 ll dijkstra(int n, int s=0, int t=-1) { // O(E lg V)
     forn(i, n) dist[i] = INF, seen[i] = 0, par[i] = -1;
@@ -11,7 +13,7 @@ ll dijkstra(int n, int s=0, int t=-1) { // O(E lg V)
         if (seen[u]) continue;
         seen[u] = true;
 		if (u == t) break;
-		for (auto &e : adj[u]) {
+		for (auto &e : g[u]) {
             int v, w; tie(v, w) = e;
 			if (dist[u] + w < dist[v]) {
 				dist[v] = dist[u] + w;
@@ -22,7 +24,10 @@ ll dijkstra(int n, int s=0, int t=-1) { // O(E lg V)
 	}
 	return t != -1 ? dist[t] : 0;
 }
-// path generator
+
+// Path generator:
 vi path;
-if (dist[t] < INF) 
+if (dist[t] != INF) {
     for (int u = t; u != -1; u = par[u]) path.pb(u);
+    reverse(all(path));
+}
