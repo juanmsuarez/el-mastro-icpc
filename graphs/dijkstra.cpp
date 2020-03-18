@@ -1,11 +1,12 @@
 const ll N = 2e5, INF = 1e18;
+typedef pair<ll,int> pli;
 ll dist[N]; int par[N]; 
 vector<pii> g[N];
 bool seen[N];
 
 ll dijkstra(int n, int s=0, int t=-1) { // O(E lg V)
     forn(i, n) dist[i] = INF, seen[i] = 0, par[i] = -1;
-	priority_queue<pii, vector<pii>, greater<pii>> q;
+	priority_queue<pli, vector<pli>, greater<pli>> q;
 	q.emplace(0, s), dist[s] = 0;
 
 	while (!q.empty()){
