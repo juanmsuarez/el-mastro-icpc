@@ -1,13 +1,13 @@
-// pref[i] = max borde de s[0..i] = failure function al intentar matchear con s[i+1]
+// pre[i] = max borde de s[0..i]
 vi prefix_function(string &s) {
-    int n = si(s); vi pi(n);
+    int n = si(s); vi pre(n);
     forsn(i, 1, n) {
-        int j = pi[i-1];
-        while (j > 0 && s[i] != s[j]) j = pi[j-1];
+        int j = pre[i-1];
+        while (j > 0 && s[i] != s[j]) j = pre[j-1];
         if (s[i] == s[j]) j++;
-        pi[i] = j;
+        pre[i] = j;
     }
-    return pi;
+    return pre;
 }
 
 vi find_occurrences(string &s, string &t) { //apariciones de t en s

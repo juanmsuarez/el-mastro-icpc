@@ -18,7 +18,8 @@ struct Fenwick {
     int lower_bound(tipo v) { // Menor x con suma acumulada >= v, O(lg n)
         int x = 0, d = sz-1;
         if(v > t[d]) return sz;
-        for(; d; d >>= 1) if(t[x|d] < v) v -= t[x |= d];
+        for(; d; d >>= 1) 
+            if(t[x|d] < v) v -= t[x |= d];
         return x+1; 
     }
 };

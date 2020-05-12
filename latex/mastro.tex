@@ -450,7 +450,7 @@ entonces el número de órbitas $|X/G|$ es el número de posibles coloreos de un
 \subsubsection{Combinatorios}
 {
 \(\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!} \)
-\cppfile[9-13]{math/combinatorics.cpp}
+\cppfile[12-23]{math/combinatorics.cpp}
 }
 
 \subsubsection{Lucas Theorem}
@@ -464,7 +464,7 @@ and \({\displaystyle n=n_{k}p^{k}+n_{k-1}p^{k-1}+\cdots +n_{1}p+n_{0}}\)
 \({\displaystyle {\tbinom {m}{n}}=0}\) if \(m < n\).
 
 
-\cppfile[22-26]{math/combinatorics.cpp}
+\cppfile[50-58]{math/combinatorics.cpp}
 }
 \subsubsection{Stirling}
 {
@@ -478,7 +478,10 @@ for \(k > 0\) with initial conditions
 for \(n > 0\).
 
 
-\cppfile[1-7]{math/combinatorics.cpp}
+\cppfile[33-40]{math/combinatorics.cpp}
+
+
+\( {\displaystyle \left\{{n \atop k}\right\}={\frac {1}{k!}}\sum_{i=0}^{k}(-1)^{i}{\binom {k}{i}}(k-i)^{n}.} \)
 }
 \subsubsection{Bell}
 {
@@ -491,7 +494,7 @@ for \(n > 0\).
 \( {\displaystyle B_{n}=\sum _{k=0}^{n}\left\{{n \atop k}\right\}.} \) 
 
 
-\cppfile[15-20]{math/combinatorics.cpp}
+\cppfile[42-48]{math/combinatorics.cpp}
 } 
 \subsubsection{Eulerian}
 {
