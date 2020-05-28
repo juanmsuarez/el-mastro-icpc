@@ -5,6 +5,13 @@ struct BIT { // ops O(lg n), [0, N)
     void add(int i, T x) { for (++i; i <= N; i += i&-i) d[i] += x; }
     T sum(int i) { T r = 0; for (; i; i -= i&-i) r += d[i]; return r; }
     T sum(int l, int r) { return sum(r) - sum(l); }
+    int lower_bound(T v, int n) { // n = first number out of range
+        int x = 0;
+        for (int p = N; p; p >>= 1) 
+            if ((x|p) <= n && d[x|p] < v) 
+                v -= d[x |= p];
+        return x; 
+    }
 } rmq;
 
 // Range update, point query:
