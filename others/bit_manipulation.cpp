@@ -12,10 +12,10 @@ ll leftmost_bit(ll x){
 bool pow_of_two(ll x){ return (x & (x-1)) == 0; }
 bool pow_of_two_min_one(ll x){ return (x & (x+1)) == 0; }
 // x-th least significant bit (zero indexed):
-void set_bit(ll _set, ll x){ _set |= 1 << x; }
-void clear_bit(ll _set, ll x){ _set &= ~(1 << x); }
-bool test_bit(ll _set, ll x){ return _set & (1 << x); }
-bool toggle_bit(ll _set, ll x){ return _set ^ (1 << x); }
+void set_bit(ll _set, ll x){ _set |= 1LL << x; }
+void clear_bit(ll _set, ll x){ _set &= ~(1LL << x); }
+bool test_bit(ll _set, ll x){ return _set & (1LL << x); }
+bool toggle_bit(ll _set, ll x){ return _set ^ (1LL << x); }
 // __builtin_clzll(x>0),__builtin_ctzll(x>0),__builtin_popcountll(x): count leading zeros, trailing zeros, and the number of 1-bits respectively.
 
 int main() {
