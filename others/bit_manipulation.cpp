@@ -15,6 +15,7 @@ bool pow_of_two_min_one(ll x){ return (x & (x+1)) == 0; }
 void set_bit(ll _set, ll x){ _set |= 1 << x; }
 void clear_bit(ll _set, ll x){ _set &= ~(1 << x); }
 bool test_bit(ll _set, ll x){ return _set & (1 << x); }
+bool toggle_bit(ll _set, ll x){ return _set ^ (1 << x); }
 // __builtin_clzll(x>0),__builtin_ctzll(x>0),__builtin_popcountll(x): count leading zeros, trailing zeros, and the number of 1-bits respectively.
 
 int main() {
@@ -59,6 +60,7 @@ Set negation:     ~A  (or ALL_BITS ^ A)
 Set bit:          A |= 1 << bit
 Clear bit:        A &= ~(1 << bit)
 Test bit:         (A & (1 << bit)) != 0 
+Toggle bit:        A ^= 1 << bit
 
 Count number of 1's in the binary representation of x:
 int pop_count(ll x){
