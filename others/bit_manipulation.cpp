@@ -16,7 +16,8 @@ void set_bit(ll _set, ll x){ _set |= 1LL << x; }
 void clear_bit(ll _set, ll x){ _set &= ~(1LL << x); }
 bool test_bit(ll _set, ll x){ return _set & (1LL << x); }
 bool toggle_bit(ll _set, ll x){ return _set ^ (1LL << x); }
-// __builtin_clzll(x>0),__builtin_ctzll(x>0),__builtin_popcountll(x): count leading zeros, trailing zeros, and the number of 1-bits respectively.
+int lg(ll x){ return 63-__builtin_clzll(x); }
+// __builtin_clzll(x>0),__builtin_ctzll(x>0),__builtin_popcountll(x): count leading zeros, trailing zeros, and the number of 1-bits respectively for long long ints. Remove -ll from the end of the functions' names to use the versions for ints.
 
 int main() {
     ll n; cin >> n;
@@ -43,15 +44,10 @@ A 	B 	~A 	A & B  A | B  A ^ B
 
 e.g.: if A is 1010 and B is 1100, then A & B = 1000;   A | B = 1110;   A ^ B = 0110;   ~A = 11110101 (the number of 1′s depends on the type of A).
 
-The other two operators we will need are the shift operators a << b and a >> b. The former shifts all the bits in 
-a to the left by b positions; the latter does the same but shifts right. For non-negative values (which are the 
-only ones we’re interested in), the newly exposed bits are filled with zeros. You can think of left-shifting by b
-as multiplication by 2^b and right-shifting as integer division by 2^b. 
+The other two operators we will need are the shift operators a << b and a >> b. The former shifts all the bits in a to the left by b positions; the latter does the same but shifts right. For non-negative values (which are the only ones we’re interested in), the newly exposed bits are filled with zeros. You can think of left-shifting by b as multiplication by 2^b and right-shifting as integer division by 2^b. 
 
 Set operations:
-We will use an integer to represent a set on a domain of up to 32 values (or 64, using a 64-bit integer),
-with a 1-bit representing a member that is present and a 0-bit one that is absent. 
-ALL_BITS is a number with 1′s for all bits corresponding to the elements of the domain (-1 is represented this way).
+We will use an integer to represent a set on a domain of up to 32 values (or 64, using a 64-bit integer), with a 1-bit representing a member that is present and a 0-bit one that is absent. ALL_BITS is a number with 1′s for all bits corresponding to the elements of the domain (-1 is represented this way).
 
 Set union:        A | B
 Set intersection: A & B
