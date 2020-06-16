@@ -834,6 +834,7 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 	\item \textbf{Max. Clique}: construir la red $G'$ (red complemento) y encontrar Max. Independent Set.
 	\item \textbf{Min. Edge Cover}: tomar las aristas del Matching y para todo vértice no cubierto hasta el momento, 
 	tomar cualquier arista incidente.
+    \item \textbf{Konig's theorem}: $|$minimum vertex cover$|$ = $|$maximum matching$| \Leftrightarrow |$maximum independent set$| + |$maximum matching$| = |$vertices$|$.\\
 	\end{itemize}
 \end{itemize}
 
@@ -848,11 +849,6 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 \subsection{Dinic}
 \textbf{Complejidad: } $O(V^2E)$ en general. $O(min(E^{3/2}, V^{2/3}E))$ con capacidades unitarias. $O(\sqrt{V}E)$ en matching bipartito (se lo llama Hopcroft–Karp algorithm) y en cualquier otra red unitaria (indegree = outdegree = 1 para cada vértice excepto S y T). 
 \cppfile{flow/dinic.cpp}
-
-\subsection{Konig}
-\textbf{Teorema}: $|$minimum vertex cover$|$ = $|$maximum matching$| \Leftrightarrow |$maximum independent set$| + |$maximum matching$| = |$vertices$|$.\\
-Algoritmo para obtener un minimum vertex cover a partir del maximum matching:
-\cppfile[98-122]{flow/konig.cpp}
 
 \subsection{Min-cost Max-flow}
 \textbf{Algoritmo}: tira camino mínimo hasta encontrar el flujo buscado. Usa SPFA (Bellman-Ford más inteligente, con mejor
