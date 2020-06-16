@@ -839,7 +839,6 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 
 \subsection{Ford Fulkerson}
 \textbf{Complejidad: } $O(fE)$.
-
 \textbf{Algoritmo: } cambiar BFS por DFS en Edmonds Karp.
 
 \subsection{Edmonds Karp}
@@ -847,10 +846,12 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 \cppfile{flow/edmonds.karp.cpp}
 
 \subsection{Dinic}
-\textbf{Complejidad: } $O(V^2E)$ en general. $O(\sqrt{V}E)$ en matching bipartito. $O(min(E^{2/3}, \sqrt{V}E))$ con capacidades unitarias.
+\textbf{Complejidad: } $O(V^2E)$ en general. $O(min(E^{3/2}, V^{2/3}E))$ con capacidades unitarias. $O(\sqrt{V}E)$ en matching bipartito (se lo llama Hopcroft–Karp algorithm) y en cualquier otra red unitaria (indegree = outdegree = 1 para cada vértice excepto S y T). 
 \cppfile{flow/dinic.cpp}
 
 \subsection{Konig}
+\textbf{Teorema}: $|$minimum vertex cover$|$ = $|$maximum matching$| \Leftrightarrow |$maximum independent set$| + |$maximum matching$| = |$vertices$|$.\\
+Algoritmo para obtener un minimum vertex cover a partir del maximum matching:
 \cppfile[98-122]{flow/konig.cpp}
 
 \subsection{Min-cost Max-flow}

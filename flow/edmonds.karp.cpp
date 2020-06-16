@@ -1,17 +1,16 @@
 int n;
-vvi capacity; // cuidado int!
-vvi adj;
+vector<vi> adj;
+vector<vector<ll>> capacity;
 
-int bfs(int s, int t, vector<int>& parent) {
-    fill(parent.begin(), parent.end(), -1);
+int bfs(int s, int t, vi &parent) {
+    fill(all(parent), -1);
     parent[s] = -2;
     queue<pii> q;
     q.push({s, INF});
 
     while (!q.empty()) {
-        int cur = q.front().first;
-        int flow = q.front().second;
-        q.pop();
+        int u, flow; 
+        tie(u, flow) = q.front(), q.pop();
 
         for (int next : adj[cur]) {
             if (parent[next] == -1 && capacity[cur][next]) {
