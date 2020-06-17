@@ -850,6 +850,10 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 \textbf{Complejidad: } $O(V^2E)$ en general. $O(min(E^{3/2}, V^{2/3}E))$ con capacidades unitarias. $O(\sqrt{V}E)$ en matching bipartito (se lo llama Hopcroft–Karp algorithm) y en cualquier otra red unitaria (indegree = outdegree = 1 para cada vértice excepto S y T). 
 \cppfile{flow/dinic.cpp}
 
+\subsection{Maximum matching}
+\textbf{Complejidad}: $O(VE)$.
+\cppfile{flow/matching.cpp}
+
 \subsection{Min-cost Max-flow}
 \textbf{Algoritmo}: tira camino mínimo hasta encontrar el flujo buscado. Usa SPFA (Bellman-Ford más inteligente, con mejor
 tiempo promedio) porque resulta en la mejor complejidad.
