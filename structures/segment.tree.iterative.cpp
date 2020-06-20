@@ -1,10 +1,8 @@
-struct rmax {
-    int val;
-    rmax(int _val=-INF){ val=_val; } // Neutral elem = -INF
-    rmax operator+(const rmax &x){ return val > x.val ? *this : x; }
+struct rmax { // op = max, neutro = -INF
+    int x; rmax(int _x=-INF) { x = _x; }
+    rmax operator+(const rmax &o) { return x > o.x ? *this : o; }
 };
-
-template <class T>
+template<class T>
 struct RMQ { // ops O(lg n), [0, n)
     vector<T> t; int n;
     T& operator[](int p){ return t[p+n]; }
@@ -22,5 +20,4 @@ struct RMQ { // ops O(lg n), [0, n)
         return a+b;
     }
 };
-// Use: RMQ<rmax> rmq(n); forn(i,n) cin >> rmq[i]; rmq.build();
-// Method get: a and b will merge with the first and last element respectively
+// Use: RMQ<rmax> rmq(n); forn(i, n) { int x; cin >> x; rmq[i].x = x; } rmq.build();
