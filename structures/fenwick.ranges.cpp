@@ -15,13 +15,13 @@ struct BIT { // ops O(lg n), [0, N)
 } rmq;
 
 // Range update, point query:
-typedef ll T;
+template<class T>
 struct BIT { // ops O(lg n), [0, N)
-    T d[N+1];
+    vector<T> d; int n; BIT(int sz) { n=sz, d.resize(n+1); }
     void add(int l, int r, T x) { _add(l, x), _add(r, -x); }
-    void _add(int i, T x) { for (++i; i <= N; i += i&-i) d[i] += x; }
-    T sum(int i) { T r = 0; for (++i; i; i -= i&-i) r += d[i]; return r; }
-} rmq;
+    void _add(int i, T x) { for (++i; i <= n; i += i&-i) d[i] += x; }
+    T get(int i) { T r = 0; for (++i; i; i -= i&-i) r += d[i]; return r; }
+};
 
 // Range update, range query:
 typedef ll T;
