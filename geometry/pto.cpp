@@ -35,3 +35,10 @@ pto CW90(pto p) { return pto(p.y, -p.x); }
 pto CCW(pto p, double t){ // rads
 	return pto(p.x*cos(t) - p.y*sin(t), p.x*sin(t) + p.y*cos(t));
 }
+// Sorts points in CCW order about origin, points on neg x-axis come last
+// To change pivot to point x, just substract x from all points and then sort
+bool half(pto &p) { return p.y == 0 ? p.x < 0 : p.y > 0; }
+bool angularOrder(pto &x, pto &y) { 
+	bool X = half(x), Y = half(y);
+	return X == Y ? (x ^ y) > 0 : X < Y; 
+}
