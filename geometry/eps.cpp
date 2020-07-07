@@ -1,6 +1,6 @@
 const double EPS = 1e-9;
-#define le(a,b) ((a) < (b) - EPS)      // <
-#define gr(a,b) ((a) > (b) + EPS)      // >
-#define leq(a,b) ((a) < (b) + EPS)     // <=
-#define geq(a,b) ((a) > (b) - EPS)     // >=
-#define eq(a,b) (abs((a) - (b)) < EPS) // ==
+#define less(a,b)          ((a) < (b) - EPS)
+#define greater(a,b)       ((a) > (b) + EPS)
+#define less_equal(a,b)    ((a) < (b) + EPS)
+#define greater_equal(a,b) ((a) > (b) - EPS)
+#define equal(a,b)         (abs((a) - (b)) < EPS)
