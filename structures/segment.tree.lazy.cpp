@@ -1,77 +1,48 @@
-// TODO: Las funciones pueden pasarse a traves de template. Quedara mejor sacar el struct tipo y reemplazar por todo en template?
-
-const int N = 1e5, INF = 1e9;
-
-struct TipoAlt {
-    int val;
-
-    TipoAlt(int _val=0) : val(_val) {}
-
-    static int neutro() { return 0; } // neutro alteracion
-    TipoAlt operator * (const int sz) {
-        return TipoAlt(val*sz);
-    }
-    TipoAlt& operator += (const TipoAlt &o) { val += o.val; return *this; } // propaga alteracion, ejemplo suma
+struct lazy {
+    static const int C = 0; // Neutral for sum: 0
+    int val; lazy(int v=C) : val(v) {}
+    bool dirty() { return val != C; }
+    void clear() { val = C; }
+    void update(const lazy &o) { val += o.val; } // Update: sum
 };
-
-struct TipoNodo {
-    int val;
-
-    TipoNodo(int _val=0) : val(_val) {}
-
-    static int neutro() { return INF; } // neutro nodo
-    TipoNodo operator + (const TipoNodo &o) const { return min(val, o.val); } // operacion nodo, ejemplo min
-    TipoNodo& operator += (const TipoAlt &o) { val += o.val; return *this; } // aplica alteracion, ejemplo suma
+struct node {
+    int val; node(int v=INF) : val(v) {} // Neutral for min: INF
+    node operator+(const node &o) { return min(val, o.val); } // Query: min
+    void update(const lazy &o, int sz) { val += o.val * sz; } // Update: sum
 };
-
-// Dado un arreglo y una operacion asociativa con neutro:
-// get(i, j) opera sobre el rango [i, j).
-template <int N, class TNodo, class TAlt>
-struct RMQ {
-	int sz;
-	TNodo t[4*N];
-	TAlt dirty[4*N];
-	TNodo &operator [](int p){ return t[sz + p]; }
-    void init(int n) { // O(n lg n)
-        sz = 1 << (32 - __builtin_clz(n));
-        forn(i, 2*sz) {
-            t[i] = TNodo::neutro();
-            dirty[i] = TAlt::neutro();
-        }
+template <class T, class D>
+struct RMQ { // ops O(lg n), [0, n)
+    vector<T> t; vector<D> d; int n;
+	T& operator[](int p){ return t[p+n]; }
+	RMQ(int sz) { 
+        n = 1 << (32-__builtin_clz(sz));
+        t.resize(2*n), d.resize(2*n); 
     }
-	void push(int n, int a, int b){ // Propaga el dirty a sus hijos
-		if (dirty[n].val != TAlt::neutro().val){
-			t[n] += dirty[n]*(b - a); // Altera el nodo 
-			if (n < sz){
-				dirty[2*n] += dirty[n];
-				dirty[2*n + 1] += dirty[n];
-			}
-			dirty[n] = TAlt::neutro();
+    void build() { dforn(i, n) t[i] = t[2*i] + t[2*i+1]; }
+	void push(int x, int sz) {
+		if (d[x].dirty()){
+            t[x].update(d[x], sz);
+			if (x < n) d[2*x].update(d[x]), d[2*x+1].update(d[x]);
+		    d[x].clear();
 		}
 	}
-	TNodo get(int i, int j, int n, int a, int b){ // O(lg n)
-		if (j <= a || i >= b) return TNodo::neutro();
-		push(n, a, b); // Corrige el valor antes de usarlo
-		if (i <= a && b <= j) return t[n];
-		int c = (a + b)/2;
-		return get(i, j, 2*n, a, c) + get(i, j, 2*n + 1, c, b);
+	T get(int i, int j) { return get(i, j, 1, 0, n); }
+	T get(int i, int j, int x, int a, int b) {
+		if (j <= a || i >= b) return T();
+		push(x, b-a);
+		if (i <= a && b <= j) return t[x];
+		int c = (a + b) / 2;
+		return get(i, j, 2*x, a, c) + get(i, j, 2*x+1, c, b);
 	}
-	TNodo get(int i, int j){ return get(i, j, 1, 0, sz); }
-	// Altera los valores en [i, j) con una alteracion de val
-	void modify(TAlt val, int i, int j, int n, int a, int b){ // O(lg n)
-		push(n, a, b);
+	void update(int i, int j, const D &v) { update(i, j, v, 1, 0, n); }
+	void update(int i, int j, const D &v, int x, int a, int b) {
+		push(x, b-a);
 		if (j <= a || i >= b) return;
-		if (i <= a && b <= j) {
-			dirty[n] += val;
-			push(n, a, b);
-			return;
-		}
-		int c = (a + b)/2;
-		modify(val, i, j, 2*n, a, c); modify(val, i, j, 2*n + 1, c, b);
-		t[n] = t[2*n] + t[2*n + 1];
+		if (i <= a && b <= j) 
+            { d[x].update(v), push(x, b-a); return; }
+		int c = (a + b) / 2;
+		update(i, j, v, 2*x, a, c), update(i, j, v, 2*x+1, c, b);
+        t[x] = t[2*x] + t[2*x+1];
 	}
-	void modify(TAlt val, int i, int j){ modify(val, i, j, 1, 0, sz); }
 };
-
-RMQ<N, TipoNodo, TipoAlt> rmq;
-
+// Use: RMQ<node, lazy> rmq(n); forn(i, n) cin >> rmq[i].val; rmq.build();

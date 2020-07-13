@@ -21,4 +21,4 @@ struct RMQ { // ops O(lg n), [0, n)
 			t[p] = v, p /= 2, v = t[p*2] + t[p*2+1];
 	}
 };
-// Use: RMQ<rmax> rmq(n); forn(i, n) { int x; cin >> x; rmq[i].x = x; } rmq.build();
+// Use: RMQ<rmax> rmq(n); forn(i, n) cin >> rmq[i].x; rmq.build();
