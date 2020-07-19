@@ -1,6 +1,5 @@
 template<int MAXN>
 struct dinic {
-
     struct edge {
         int u,v; ll c,f;
         ll r() { return c-f; }
@@ -50,7 +49,6 @@ struct dinic {
 
     ll dinic_dfs(int u, ll cap) {
         if (u == T) return cap;
-
         ll res = 0;
         for (auto ind : adjG[u]) {
             auto &ei = e[ind], &ej = e[ind^1];
