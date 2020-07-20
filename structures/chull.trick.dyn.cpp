@@ -17,7 +17,7 @@ struct CHT {
     bool improves(const line &x, const line &y, const line &z) {
         return less_equal(inter(x, z), inter(x, y));
     }
-    void insert(ll a, ll b) {
+    void insert(ll a, ll b) { // ax + b = 0
         query = false;
         line v = {a,b,0};
         auto l = s.lower_bound(v);
