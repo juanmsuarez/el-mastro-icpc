@@ -16,7 +16,7 @@ struct BIT { // ops O(lg n), [0, N)
 
 // Range update, point query:
 template<class T>
-struct BIT { // ops O(lg n), [0, N)
+struct BIT { // ops O(lg n), [0, n)
     vector<T> d; int n; BIT(int sz) { n=sz, d.resize(n+1); }
     void add(int l, int r, T x) { _add(l, x), _add(r, -x); }
     void _add(int i, T x) { for (++i; i <= n; i += i&-i) d[i] += x; }

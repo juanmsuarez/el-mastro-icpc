@@ -1,12 +1,8 @@
-#include <cassert>
-
 #include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace  __gnu_pbds;
-typedef tree<int,null_type,less<int>,//key,mapped type, comparator
-    rb_tree_tag,tree_order_statistics_node_update> Set;
-//find_by_order(i) devuelve iterador al i-esimo elemento
-//order_of_key(k): devuelve la pos del lower bound de k
-//Ej: 12, 100, 505, 1000, 10000.
-//order_of_key(10) == 0, order_of_key(100) == 1,
-//order_of_key(707) == 3, order_of_key(9999999) == 5
+using namespace __gnu_pbds; // key, mapped, comp
+using indexed_set = tree<pii, null_type, less<pii>, 
+rb_tree_tag, tree_order_statistics_node_update>;
+// use STL methods like: insert, erase, etc
+// find_by_order(k): iterator to k-th element
+// order_of_key(x): index of lower bound of x
+// to use it as multiset use pair<key, timestamp>
