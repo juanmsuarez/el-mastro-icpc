@@ -1,14 +1,14 @@
 // Point update, range query:
 template<class T>
 struct BIT { // ops O(lg n), [0, n)
-    int n; vector<T> d;
-    BIT(int sz) { n = sz, d.resize(n+1); }
+    int n, h; vector<T> d;
+    BIT(int sz) { n = sz, d.resize(n+1), h = 1 << int(log2(n)); }
     void add(int i, T x) { for (++i; i <= n; i += i&-i) d[i] += x; }
     T sum(int i) { T r = 0; for (; i; i -= i&-i) r += d[i]; return r; }
     T sum(int l, int r) { return sum(r) - sum(l); }
     int lower_bound(T v) {
         int x = 0;
-        for (int p = 1 << int(log2(n)); p; p >>= 1) 
+        for (int p = h; p; p >>= 1) 
             if ((x|p) <= n && d[x|p] < v) v -= d[x |= p];
         return x; 
     }
