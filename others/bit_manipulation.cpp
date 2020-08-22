@@ -1,37 +1,26 @@
 int setsz = 64;
 string binary(ll x){
 	string r = "";
-	forn(i,setsz) r = (x&1?'1':'0') + r, x >>= 1;
+	forn(i, setsz) 
+        r += r & (1 << i) ? '1':'0';
+    reverse(all(r));
 	return r;
 }
-ll rightmost_bit(ll x){ return x & -x; }
-ll leftmost_bit(ll x){
-    x |= x>>1, x |= x>>2, x |= x>>4, x |= x>>8, x |= x>>16, x |= x>>32;
-    return (x+1) >> 1;
-}
-bool pow_of_two(ll x){ return (x & (x-1)) == 0; }
+ll rightmost_bit(ll x) { return x & -x; }
+ll leftmost_bit(ll x) { 63 - __builtin_clzll(x); } // lg(x)
+
+bool pow_of_two(ll x) { return (x & (x-1)) == 0; }
 bool pow_of_two_min_one(ll x){ return (x & (x+1)) == 0; }
-// x-th least significant bit (zero indexed):
+
+x-th least significant bit (zero indexed):
 void set_bit(ll _set, ll x){ _set |= 1LL << x; }
 void clear_bit(ll _set, ll x){ _set &= ~(1LL << x); }
 bool test_bit(ll _set, ll x){ return _set & (1LL << x); }
 bool toggle_bit(ll _set, ll x){ return _set ^ (1LL << x); }
-int lg(ll x){ return 63-__builtin_clzll(x); }
-// __builtin_clzll(x>0),__builtin_ctzll(x>0),__builtin_popcountll(x): count leading zeros, trailing zeros, and the number of 1-bits respectively for long long ints. Remove -ll from the end of the functions' names to use the versions for ints.
 
-int main() {
-    ll n; cin >> n;
-	cout << "Binary:        "   << binary(n)      << endl;
-	cout << "Left shift:    "   << binary(n << 1) << endl;
-	cout << "Right shift:   "   << binary(n >> 1) << endl;
-    cout << "Leftmost bit:  "   << binary(leftmost_bit(n)) << endl; 
-    cout << "Rightmost bit: "   << binary(rightmost_bit(n)) << endl; 
-	cout << n << " is " << (n&1?("odd"):("even")) << endl; 
-	cout << n << " has " << __builtin_popcountll(n) << " 1-bits\n";
-	return 0;
-}
-
-/*
+__builtin_clzll(x > 0), __builtin_ctzll(x > 0), __builtin_popcountll(x): 
+count leading zeros, trailing zeros, and the number of 1-bits respectively for long long ints. 
+Remove -ll from the end of the functions' names to use the versions for ints.
 
 There are different bitwise operations used in the bit manipulation. These bit operations operate on the individual bits of the bit patterns.
 Bit operations are fast and can be used in optimizing time complexity. The most common ones are  & (and), | (or), ~ (not) and ^ (xor). Their truth tables:
@@ -52,21 +41,18 @@ We will use an integer to represent a set on a domain of up to 32 values (or 64,
 Set union:        A | B
 Set intersection: A & B
 Set subtraction:  A & ~B
-Set negation:     ~A  (or ALL_BITS ^ A)
+Set negation:     ALL_BITS ^ A
 Set bit:          A |= 1 << bit
 Clear bit:        A &= ~(1 << bit)
 Test bit:         (A & (1 << bit)) != 0 
 Toggle bit:        A ^= 1 << bit
 
-Count number of 1's in the binary representation of x:
-int pop_count(ll x){
-    int c = 0;
-    while(x) x &= x-1, c++;
-    return c;
-}
-x&(x-1) will have all the bits equal to x except for the rightmost 1 in x, this is due to the fact that
+Parity of x: (x & 1 ? "odd" : "even")
+
+x modulo 2^k: x & ((1 << k)-1) (get last k bits)
+
+Drop last bit in a mask: x & (x-1)
+x & (x-1) will have all the bits equal to x except for the rightmost 1 in x, this is due to the fact that
 x-1 has the rightmost bits (from the rightmost 1) flipped with regard to x. 
 
-x&(-x) and x^(x&(x-1)) return the rightmost set bit in x.
-
-*/
+Get rightmost set bit in x: x & -x (or alternatively x ^ (x & (x-1)))
