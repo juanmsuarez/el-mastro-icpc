@@ -599,28 +599,54 @@ intentás armar el polinomio (usando el algoritmo online u offline).
 \cppfile[29-62]{math/eclineales.cpp}
 \subsection{FFT y NTT}
 
-\textbf{Base teórica} \\
-Dado el espacio lineal con producto interno (definido como una integral loca) 
-$E$, de funciones continuas definidas por partes $f \colon [-\pi, \pi] \rightarrow \mathbb{C}$, 
-un \textbf{sistema ortonormal cerrado infinito} es $\{1/\sqrt(2), \sin(x), \cos(x), \sin(2x), 
-\cos(2x), ...\}$.  Por lo tanto, cualquier funcion $f \in E$ puede ser representada por 
-$\sum_{n=1}^{\infty} \langle f,\ e_n \rangle e_n$. Esta combinación lineal (utilizando
-la sumatoria y el sistema ya definidos), es la \textbf{serie de Fourier}. \\ 
-También se puede definir la \textbf{serie compleja de Fourier} mediante el
-sistema $\{1, e^{ix}, e^{-ix}, e^{i2x}, e^{-i2x}, ...\}$. \\
-Una \textbf{transformada de Fourier} permite trabajar con funciones que no están
-restringidas al intervalo $[-\pi, \pi]$. La principal diferencia es que el sistema
-ortonormal pasa de ser discreto a continuo. \\
-Sin embargo, existe una versión discreta de la transformada, la \textbf{transformada 
-discreta de Fourier} (DFT). \\
-Una de las propiedades importantes de la transformada es que la \textbf{convolución} 
-de funciones sin transformar se traduce en multiplicar las transformadas. \\
-\textbf{FFT}, el algoritmo para calcular rápidamente la DFT, se basa en que
-dado un polinomio $A(x)$, $A(x) = A_0(x^2) + x*A_1(x^2)$, donde $A_0(x)$ y $A_1(x)$ 
-son los polinomios que se forman al tomar los términos pares e impares respectivamente. \\
+\textbf{Base teórica (e intuición)}: \\
+La \textbf{transformada de Fourier} mapea una función temporal a un dominio de frecuencias. \\
+Podemos pensar que rotamos la función temporal alrededor de un círculo a diferentes frecuencias y
+calculamos la magnitud del centro de masa de la figura resultante; la función del dominio de 
+frecuencias representa este mapeo. \\
+\[
+    F_n = 
+    \begin{bmatrix}
+        1 & 1 & 1 & \ldots & 1 \\
+        1 & \xi_n & \xi_n^2 & \dots & \xi_n^{n-1} \\
+        1 & \xi_n^2 & \xi_n^4 & \dots & \xi_n^{2(n-1)} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        1 & \xi_n^{n-1} & \xi_n^{2(n-1)} & \dots & \xi_n^{(n-1)(n-1)}
+    \end{bmatrix}
+\]
+\[
+    y = F_nx
+\]
+Donde $\omega_n$ es una raíz primitiva n-ésima de la unidad y $\xi_n = w_n^{n-1}$.
+La \textbf{transformada rápida de Fourier} se basa en que las raíces de la unidad cumplen la propiedad $ \omega_{2n}^{2} = \omega_{n} $. Por lo tanto:
+\[
+    F_n = 
+    \begin{bmatrix}
+        F_{n/2} & D_{n/2}F_{n/2} \\
+        F_{n/2} & -D_{n/2}F_{n/2}
+    \end{bmatrix}
+    P_n 
+\]
+donde: 
+\[
+    D_{n/2} = 
+    \begin{bmatrix}
+        1 \\
+        & \xi_n \\
+        & & \xi_n^2 \\
+        & & & \ddots \\
+        & & & & \xi_n^{n/2-1}
+    \end{bmatrix}
+\]
+    y
+\[
+    P_n^T = 
+    \begin{bmatrix}
+        e_0 & e_2 & e_4 & \ldots & e_{n-2} & e_1 & e_3 & \ldots & e_{n-1}
+    \end{bmatrix}
+\] \\
 \textbf{NTT} es un algoritmo más lento pero más preciso para calcular la DFT,
 ya que trabaja con enteros módulo un primo $p$.
-
 \cppfile{math/fft_y_ntt.cpp}
 
 \subsection{Programación lineal: Simplex}
