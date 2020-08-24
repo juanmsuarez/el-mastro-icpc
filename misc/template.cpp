@@ -23,8 +23,7 @@ using vi = vector<int>;
 using ll = long long;
 
 int main() {
-	fastio;
-	
-	
-	return 0;
+    fastio;
+    
+    return 0;
 }
