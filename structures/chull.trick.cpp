@@ -1,98 +1,23 @@
-#include <bits/stdc++.h>
-typedef ll tipo;
-
-struct Line{tipo m,h;};
-tipo inter(Line a, Line b){
-    tipo x=b.h-a.h, y=a.m-b.m;
-    return x/y+(x%y?!((x>0)^(y>0)):0);//==ceil(x/y)
-}
-struct CHT {
-	vector<Line> c;
-	bool mx;
-	int pos;
-	CHT(bool mx=0):mx(mx),pos(0){}//mx=1 si las query devuelven el max
-	inline Line acc(int i){return c[c[0].m>c.back().m? i : si(c)-1-i];}
-	inline bool irre(Line x, Line y, Line z){
-		return c[0].m>z.m? inter(y, z) <= inter(x, y)
-                         : inter(y, z) >= inter(x, y);
-	}
-	void add(tipo m, tipo h) {//O(1), los m tienen que entrar ordenados
-        if(mx) m*=-1, h*=-1;
-		Line l=(Line){m, h};
-        if(si(c) && m==c.back().m) { l.h=min(h, c.back().h), c.pop_back(); if(pos) pos--; }
-        while(si(c)>=2 && irre(c[si(c)-2], c[si(c)-1], l)) { c.pop_back(); if(pos) pos--; }
-        c.pb(l);
-	}
-	inline bool fbin(tipo x, int m) {return inter(acc(m), acc(m+1))>x;}
-	tipo eval(tipo x){
-		int n = si(c);
-		//query con x no ordenados O(lgn)
-		int a=-1, b=n-1;
-		while(b-a>1) { int m = (a+b)/2;
-			if(fbin(x, m)) b=m;
-			else a=m;
-		}
-		return (acc(b).m*x+acc(b).h)*(mx?-1:1);
-        //query O(1)
-		while(pos>0 && fbin(x, pos-1)) pos--;
-		while(pos<n-1 && !fbin(x, pos)) pos++;
-		return (acc(pos).m*x+acc(pos).h)*(mx?-1:1);
-	}
-} ch;
-struct CHTBruto {
-	vector<Line> c;
-	bool mx;
-	CHTBruto(bool mx=0):mx(mx){}//mx=si las query devuelven el max o el min
-	void add(tipo m, tipo h) {
-		Line l=(Line){m, h};
-        c.pb(l);
-	}
-	tipo eval(tipo x){
-        tipo r=c[0].m*x+c[0].h;
-        forn(i, si(c)) if(mx) r=max(r, c[i].m*x+c[i].h);
-                       else r=min(r, c[i].m*x+c[i].h);
-        return r;
-	}
-} chb;
-
-#define RND(a, b) (rand()%((b)-(a)+1)+(a))  
-#define MAXM 10000
-#define MINIT RND(-1000, 1000)
-#define MSTEP RND(0, 10)
-
-#define HVAL RND(-1000, 1000)
-#define XVAL RND(-1000, 1000)
-#define MAXSZ 1000000
-
-int main() {   
-    tipo m,h,x;
-    int t;
-    int dir;
-    int seed=time(NULL);
-    srand(seed);
-    for(int tc=0; ; tc++){ reset:
-        t=0;
-        t=rand()%2;
-        dir=-1;
-        dir=rand()%2?1:-1;
-        m=MINIT;
-        if(!m) m++;
-        cout << "CLEAR, QUERY " << (t?"MAX":"MIN") << endl;
-        ch=CHT(t), chb=CHTBruto(t);
-        forn(_, 25){
-            m=m+dir*MSTEP;
-            if(!m) m+=dir;
-            if(m>MAXM) goto reset;
-            h=HVAL;
-            cout << "ADD " << m << ' ' << h << endl;
-            ch.add(m, h);
-            chb.add(m, h);
-        }
-        x=XVAL;
-        tipo v=ch.eval(x);
-        tipo b=chb.eval(x);
-        cout << "QUERY " << x << ' ' << v << ' ' << b << endl;
-        assert(v==b || !(dprint(seed)));
+/* Restricciones: Asume que las pendientes están de mayor a menor para calcular mínimo o 
+de menor a mayor para calcular máximo. Si puede haber pendientes iguales agregar if 
+y dejar la que tiene menor (mayor) ter. ind para mínimo (máximo). Sino usar CHT online.
+Asume que los puntos a evaluar están de menor a mayor, sino hacer bb en la chull
+y encontrar primera recta con Line.i >= x (lower_bound(x)).
+Si las rectas usan valores reales cambiar div por a/b y el <= para que use EPS.
+Complejidad: Operaciones en O(1) amortizado. */
+struct Line { ll a,b,i; };
+struct CHT : vector<Line> {
+    int p = 0; // pointer to lower_bound(x)
+    ll div(ll a, ll b) { return a/b - ((a^b) < 0 && a % b); }
+    void add(ll a, ll b) { // ax + b = 0
+        while (size() > 1 && div(b - back().b, back().a - a) 
+            <= at(size()-2).i) pop_back();
+        if (!empty()) back().i = div(b - back().b, back().a - a);
+        pb(Line{a, b, INF}); 
+        if (p >= si(*this)) p = si(*this)-1;
     }
-    return 0;
-}
+    ll eval(ll x) {
+        while (at(p).i < x) p++;
+        return at(p).a * x + at(p).b; 
+    }
+};
