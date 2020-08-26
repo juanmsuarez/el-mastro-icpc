@@ -597,8 +597,8 @@ intentás armar el polinomio (usando el algoritmo online u offline).
 \cppfile{math/polinomio.cpp}
 \subsection{Ec. Lineales}
 \cppfile[29-62]{math/eclineales.cpp}
-\subsection{FFT y NTT}
 
+\subsection{FFT y NTT}
 \textbf{Base teórica (e intuición)}: \\
 La \textbf{transformada de Fourier} mapea una función temporal a un dominio de frecuencias. \\
 Podemos pensar que rotamos la función temporal alrededor de un círculo a diferentes frecuencias y
@@ -644,10 +644,35 @@ donde:
     \begin{bmatrix}
         e_0 & e_2 & e_4 & \ldots & e_{n-2} & e_1 & e_3 & \ldots & e_{n-1}
     \end{bmatrix}
-\] \\
-\textbf{NTT} es un algoritmo más lento pero más preciso para calcular la DFT,
-ya que trabaja con enteros módulo un primo $p$.
-\cppfile{math/fft_y_ntt.cpp}
+\] 
+Observación: \textbf{NTT} es un algoritmo más lento pero más preciso para calcular la DFT,
+ya que trabaja con enteros módulo un primo $p$. \\
+
+\textbf{Operaciones}: \\
+Es mucho más fácil realizar ciertas operaciones en un dominio de frecuencias:
+\begin{itemize}
+	\item Multiplicar en $O(n\log(n))$: simplemente multiplicar punto a punto.
+
+    \item Invertir en $O(n\log(n))$: asumiendo $B(0) \neq 0$, existe una serie infinita $C(x)$ que es inverso del polinomio.
+    Aprovechando ciertas propiedades del producto $B(x)C(x)$ ($b_0c_0 = 1$ y el resto de los coeficientes resultantes son $0$),
+    podemos ir despejando el inverso. Es posible aplicar Divide and Conquer notando la relación entre los primeros $n/2$ términos
+    del inverso y los siguientes $n/2$.
+
+	\item Dividir en $O(n\log(n))$: resulta más fácil dividir los polinomios reversos (ya que un polinomio y su reverso son casi iguales,
+	y no hace falta considerar resto de la división de los reversos).
+	
+    \item Multievaluar en $O(n\log^2(n))$: evaluar un polinomio $A(x)$ en $x_1$ es lo mismo que dividir $A(x)$ por $x - x_1$ y evaluar el resto
+    $R(x)$ en $x_1$. Para múltiples puntos, podemos utilizar una estrategia estilo Divide and Conquer.
+
+    \item Interpolar en $O(n\log^2(n))$: para interpolar se utilizan los polinomios de Lagrange (ver interpolación de Lagrange, 
+    $A(x)=\sum_{i=1}^{n} y_i\frac{1}{p_i(x_i)}p_i(x)$ y $p_i(x) = \frac{p(x)}{x-x_i}$). Para poder computarlos rápidamente, aprovechamos que
+    $p'(x_i)=p_i(x_i)$ (podemos computar la derivada y evaluar con multievaluación) y utilizamos una estrategia estilo Segment Tree para
+    generar los polinomios rápidamente (notando que si mantenemos los polinomios para dos conjuntos de puntos es fácil unirlos).
+
+\end{itemize}
+
+\cppfile{math/fft_ntt.cpp}
+\cppfile{math/fft_ntt_operations.cpp}
 
 \subsection{Programación lineal: Simplex}
 \textbf{Introducción} \\

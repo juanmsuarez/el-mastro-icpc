@@ -21,26 +21,26 @@ const double pi=acos(-1.0);
 const tf M=2305843009255636993,RT=5;
 struct CD {
 	tf x;
-	CD(tf x):x(x){}
+	CD(tf _x):x(_x){}
 	CD(){}
 };
 CD operator*(const CD& a, const CD& b){return CD(mul(a.x,b.x));}
 CD operator+(const CD& a, const CD& b){return CD(add(a.x,b.x));}
 CD operator-(const CD& a, const CD& b){return CD(sub(a.x,b.x));}
 vector<tf> rts(N+9,-1);
-CD root(int n, bool inv){
+CD root(int n, bool to_inv){
 	tf r=rts[n]<0?rts[n]=pot(RT,(M-1)/n):rts[n];
-	return CD(inv?inv(r):r);
+	return CD(to_inv?inv(r):r);
 }
 */
 CD cp1[N+9],cp2[N+9];
 int R[N+9];
-void dft(CD* a, int n, bool inv){
+void dft(CD* a, int n, bool to_inv){
 	forn(i,n)if(R[i]<i)swap(a[R[i]],a[i]);
 	for(int m=2;m<=n;m*=2){
-		double z=2*pi/m*(inv?-1:1); // FFT
+		double z=2*pi/m*(to_inv?-1:1); // FFT
 		CD wi=CD(cos(z),sin(z)); // FFT
-		// CD wi=root(m,inv); // NTT
+		// CD wi=root(m,to_inv); // NTT
 		for(int j=0;j<n;j+=m){
 			CD w(1);
 			for(int k=j,k2=j+m/2;k2<j+m;k++,k2++){
@@ -48,8 +48,8 @@ void dft(CD* a, int n, bool inv){
 			}
 		}
 	}
-	if(inv)forn(i,n)a[i]/=n; // FFT
-	//if(inv){ // NTT
+	if(to_inv)forn(i,n)a[i]/=n; // FFT
+	//if(to_inv){ // NTT
 	//	CD z(inv(n));
 	//	forn(i,n)a[i]=a[i]*z;
 	//}
