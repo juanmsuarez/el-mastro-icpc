@@ -65,7 +65,7 @@ void filltree(vector<tf> &x){
     int k=si(x);
     tree.resize(2*k);
     forsn(i,k,2*k) tree[i]={sub(0,x[i-k]),1};
-    for(int i=k-1;i;i--) tree[i]=multiply(tree[2*i],tree[2*i+1]);
+    dforsn(i,1,k) tree[i]=multiply(tree[2*i],tree[2*i+1]);
 }
 
 vector<tf> evaluate(poly &a, vector<tf> &x){
@@ -91,7 +91,7 @@ poly interpolate(vector<tf> &x, vector<tf> &y){
     vector<tf> d=evaluate(p,x);
     vector<poly> intree(2*k);
     forsn(i,k,2*k) intree[i]={divide(y[i-k],d[i-k])};
-    for(int i=k-1;i;i--){
+    dforsn(i,1,k) {
         poly p1=multiply(tree[2*i],intree[2*i+1]);
         poly p2=multiply(tree[2*i+1],intree[2*i]);
         intree[i]=add(p1,p2);

@@ -7,9 +7,9 @@ void mul(int a[S][S], int b[S][S]){
 }
 void powmat(int a[S][S], ll n, int res[S][S]){
     forn(i, S) forn(j, S) res[i][j]=(i==j);
-    while(n){
-        if(n&1) mul(res, a), n--;
-        else mul(a, a), n/=2;
-    } 
+    while (n) {
+        if (n&1) mul(res, a); 
+        n >>= 1; mul(a, a);
+    }
 }
 
