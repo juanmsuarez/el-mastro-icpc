@@ -644,9 +644,12 @@ donde:
     \begin{bmatrix}
         e_0 & e_2 & e_4 & \ldots & e_{n-2} & e_1 & e_3 & \ldots & e_{n-1}
     \end{bmatrix}
-\] 
-Observación: \textbf{NTT} es un algoritmo más lento pero más preciso para calcular la DFT,
-ya que trabaja con enteros módulo un primo $p$. \\
+\]  
+\textbf{NTT}: es un algoritmo más lento pero más preciso para calcular la DFT,
+ya que trabaja con enteros módulo un primo $m$. \\
+El módulo $m$ debe ser un primo de la forma $m = c2^k + 1$.
+Para encontrar la raíz $2^k$-ésima de la unidad $r$: $r = g ^ c$, donde $g$ es una raíz primitiva de $p$ (número tal que si lo elevamos a diferentes potencias recorremos todos los demás). \\
+Valores tradicionales: $m = 998244353$ y $r = 3$, $m = 2305843009255636993$ y $r = 5$ (este último da overflow, se podría fixear). \\
 
 \textbf{Operaciones}: \\
 Es mucho más fácil realizar ciertas operaciones en un dominio de frecuencias:

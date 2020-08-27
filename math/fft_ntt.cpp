@@ -1,5 +1,6 @@
-// N must be power of 2 !!
-using tf = ll;
+// N must be power of 2 !!!
+// Tiene que entrar el resultado!!! (el producto, probablemente el doble de la entrada)
+using tf = int;
 using poly = vector<tf>;
 // FFT
 struct CD {
@@ -15,10 +16,10 @@ CD operator-(const CD& a, const CD& b){return CD(a.r-b.r,a.i-b.i);}
 const double pi=acos(-1.0);
 // NTT
 // M-1 needs to be a multiple of N !!
-// tf TIENE que ser ll
+// tf TIENE que ser ll (si el modulo es grande)
 // big mod and primitive root for NTT:
 /*
-const tf M=2305843009255636993,RT=5;
+const tf M=998244353,RT=3;
 struct CD {
 	tf x;
 	CD(tf _x):x(_x){}
