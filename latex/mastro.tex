@@ -102,17 +102,18 @@ problema. Esto puede mejorar la complejidad ya que se evita el ordenamiento.
 \subsection{Hash}
 \cppfile{strings/hash.cpp}
 \subsection{Manacher}
-\textbf{Definición: } permite calcular todas las substrings
-de una string $s$ que son palíndromos de longitud impar (y par, ver 
-\emph{observación}) . Para ello, mantiene un arreglo $len$ tal que $len[i]$ 
-almacena la longitud del palíndromo impar maximal con centro en $i$. \\
-\textbf{Explicación algoritmo: } muy similar al algoritmo para calcular
-la \emph{función Z}. Mantiene el palíndromo que termina más a la derecha
-entre todos los palíndromos ya detectados. Para calcular $len[i]$, utiliza
-la información ya calculada si $i$ está dentro de $[l, r]$, y luego corre
-el algoritmo trivial. \\
-\textbf{Observación: } para calcular los palíndromos de longitud par, basta
-con utilizar el mismo algoritmo con la cadena $s_0\#s_1\#...\#s_{n-1}$.
+\textbf{Definición:} permite calcular todas las substrings
+de una string $s$ que son palíndromos.
+Para ello, mantiene un arreglo $odd$ tal que $odd[i]$ 
+almacena la longitud del palíndromo impar maximal con centro en $i$. 
+Análogamente mantiene un arreglo $even$ tal que $even[i]$ guarda la 
+longitud del palíndromo par maximal con centro derecho en $i$. \\
+\textbf{Explicación del algoritmo:} muy similar al algoritmo para calcular
+la \emph{función Z}, mantiene el palíndromo que termina más a la derecha
+entre todos los palíndromos ya detectados con rango $[l, r]$. Utiliza la 
+información ya calculada si $i$ está dentro de $[l, r]$, y luego corre
+el algoritmo trivial. Cada vez que se corre el algoritmo trivial, r se 
+incrementa en 1 y r jamás decrece.\\
 \cppfile{strings/manacher.cpp}
 \subsection{KMP}
 \cppfile{strings/kmp.cpp}

@@ -1,7 +1,7 @@
 /* Restricciones: Asume que las pendientes están de mayor a menor para calcular mínimo o 
 de menor a mayor para calcular máximo. Si puede haber pendientes iguales agregar if 
 y dejar la que tiene menor (mayor) ter. ind para mínimo (máximo). Sino usar CHT online.
-Asume que los puntos a evaluar están de menor a mayor, sino hacer bb en la chull
+Asume que los puntos a evaluar se encuentran de menor a mayor, sino hacer bb en la chull
 y encontrar primera recta con Line.i >= x (lower_bound(x)).
 Si las rectas usan valores reales cambiar div por a/b y el <= para que use EPS.
 Complejidad: Operaciones en O(1) amortizado. */
