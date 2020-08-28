@@ -24,7 +24,7 @@
 \subsection{Segment Tree (Persistent)}
 \cppfile{structures/segment.tree.persistent.cpp}
 \subsection{Sliding Window RMQ}
-\cppfile{structures/sliding-window-rmq.cpp}
+\cppfile{structures/sliding.window.rmq.cpp}
 \subsection{Fenwick Tree}
 \cppfile{structures/fenwick.cpp}
 \subsection{Fenwick Tree (Ranges)}
@@ -58,20 +58,22 @@ $O(\log{}n)$ en promedio.
 	$(T_1, T_2) = split(T, X)$ y $T_3 = merge(merge(T_1, X), T_2)$.
 \end{itemize}
 \subsubsection{Treap set}
-\cppfile{structures/treap_set.cpp}
+\cppfile{structures/treap.set.cpp}
 \subsubsection{Treap array}
 \textbf{Explicación treap implícito:} permite insertar, borrar, hacer queries y updates (incluyendo reverse) en rangos
 en un arreglo. La idea es usar a los índices como claves, pero en vez de almacenarlos (sería difícil actualizar en ese caso),
 aprovechamos que la clave de un nodo es la cantidad de elementos menores a ese nodo (cuidado, no son solo los del
 subárbol izquierdo).
-\cppfile{structures/treap_arr.cpp}
+\cppfile{structures/treap.array.cpp}
 
 \subsection{Convex Hull Trick}
 \cppfile[4-56]{structures/chull.trick.cpp}
 \subsection{Convex Hull Trick (Dynamic)}
 \cppfile{structures/chull.trick.dyn.cpp}
+\subsection{Li-Chao Tree}
+\cppfile{structures/li.chao.tree.cpp}
 \subsection{Gain-Cost Set}
-\cppfile[1-24]{structures/gain-cost.set.cpp}
+\cppfile[1-24]{structures/gain.cost.set.cpp}
 \subsection{Set con índices}
 \cppfile{structures/order.statistics.tree.cpp}
 
