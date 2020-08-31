@@ -7,7 +7,7 @@ de menor a mayor, sino hacer bb en la chull y encontrar primera
 recta con Line.i >= x (lower_bound(x)). Si las rectas usan valores 
 reales cambiar div por a/b y las comparaciones para que use EPS. 
 Complejidad: Operaciones en O(1) amortizado. */
-struct Line { ll a,b,i; };
+struct Line { ll a, b, i; };
 struct CHT : vector<Line> {
     int p = 0; // pointer to lower_bound(x)
     ll div(ll a, ll b) { return a/b - ((a^b) < 0 && a % b); } // floor(a/b)
