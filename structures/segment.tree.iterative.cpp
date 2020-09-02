@@ -1,6 +1,6 @@
-struct rmax { // op = max, neutro = -INF
-    int x; rmax(int _x=-INF) { x = _x; }
-    rmax operator+(const rmax &o) { return x > o.x ? *this : o; }
+struct Max { // op = max, neutro = -INF
+    int x; Max(int _x=-INF) { x = _x; }
+    Max operator+(const Max &o) { return x > o.x ? *this : o; }
 };
 template<class T>
 struct RMQ { // ops O(lg n), [0, n)
@@ -20,4 +20,4 @@ struct RMQ { // ops O(lg n), [0, n)
         return a + b;
     }
 };
-// Use: RMQ<rmax> rmq(n); forn(i, n) { int x; cin >> x; rmq[i] = x; } rmq.build();
+// Use: RMQ<Max> rmq(n); forn(i, n) { int x; cin >> x; rmq[i] = x; } rmq.build();
