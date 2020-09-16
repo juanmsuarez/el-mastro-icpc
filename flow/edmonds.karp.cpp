@@ -1,54 +1,43 @@
-const int INF = 1e9;
-template<class T>
 struct EK {
-    int n;
-    vector<vi> adj;
-    vector<vector<T>> capacity;
-    
-    EK(int _n) : n(_n) {
-        adj = vector<vi>(n);
-        capacity = vector<vector<T>>(n, vector<T>(n));
+    vector<vi> g; vector<vector<ll>> cap;
+    static const ll INF = 1e18;
+    int n, s, t; vi par;
+    EK(int _n, int _s, int _t) {
+        n = _n, s = _s, t = _t;
+        par = vi(n), g.resize(n);
+        cap.assign(n, vector<ll>(n));
     }
-
-    void addEdge(int u, int v, T c) {
-        adj[u].pb(v), adj[v].pb(u); 
-        capacity[u][v] = c;
+    void addEdge(int u, int v, ll c) {
+        g[u].pb(v), g[v].pb(u), cap[u][v] = c;
     }
-    
-    T bfs(int s, int t, vi &parent) {
-        fill(all(parent), -1);
-        parent[s] = s;
-        queue<pair<int, T>> q;
-        q.emplace(s, INF);
-        while (!q.empty()) {
-            int u = q.front().fst;
-            T flow = q.front().snd;
-            q.pop();
-            for (int v : adj[u]) {
-                if (parent[v] == -1 && capacity[u][v]) {
-                    parent[v] = u;
-                    T new_flow = min(flow, capacity[u][v]);
-                    if (v == t) return new_flow;
-                    q.emplace(v, new_flow);
+    ll bfs() {
+        fill(all(par), -1), par[s] = s;
+        queue<pair<int, ll>> q({{s, INF}});
+        while (si(q)) {
+            auto [u, f] = q.front(); q.pop();
+            for (int v : g[u]) {
+                if (par[v] == -1 && cap[u][v]) {
+                    par[v] = u;
+                    ll flow = min(f, cap[u][v]);
+                    if (v == t) return flow;
+                    q.emplace(v, flow);
                 }
             }
         }
         return 0;
     }
-    
-    T maxflow(int s, int t) {
-        T flow = 0, new_flow;
-        vi parent(n);
-        while ((new_flow = bfs(s, t, parent))) {
-            flow += new_flow;
+    ll maxflow() {
+        ll res = 0;
+        while ((ll flow = bfs())) {
+            res += flow;
             int cur = t;
             while (cur != s) {
-                int prev = parent[cur];
-                capacity[prev][cur] -= new_flow;
-                capacity[cur][prev] += new_flow;
+                int prev = par[cur];
+                cap[prev][cur] -= flow;
+                cap[cur][prev] += flow;
                 cur = prev;
             }
         }
-        return flow;
+        return res;
     }
 };

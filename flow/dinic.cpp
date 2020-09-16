@@ -1,88 +1,48 @@
-template<int MAXN>
-struct dinic {
-    struct edge {
-        int u,v; ll c,f;
-        ll r() { return c-f; }
-    };
-
+struct Dinic {
+    struct Edge { int v, r; ll c, f=0; };
+    vector<vector<Edge>> g; vi dist, ptr;
     static const ll INF = 1e18;
-
-    int N,S,T;
-    vector<edge> e;
-    //edge red[MAXN][MAXN];
-    vi adjG[MAXN];
-
-    void reset() {
-        forn(u,N) for (auto ind : adjG[u]) {
-            auto &ei = e[ind];
-            ei.f = 0;
-        }
+    int n, s, t; 
+    Dinic(int _n, int _s, int _t) {
+        n = _n, s = _s, t = _t;
+        g.resize(n), dist = vi(n), ptr = vi(n);
     }
-
-    void initGraph(int n, int s, int t) {
-        N = n; S = s; T = t;
-        e.clear();
-        forn(u,N) adjG[u].clear();
+    void addEdge(int u, int v, ll c1, ll c2=0) {
+        g[u].pb((Edge){v, si(g[v]), c1});
+        g[v].pb((Edge){u, si(g[u])-1, c2});
     }
-
-    void addEdge(int u, int v, ll c) {
-        adjG[u].pb(si(e)); e.pb((edge){u,v,c,0});
-        adjG[v].pb(si(e)); e.pb((edge){v,u,0,0});
-    }
-
-    int dist[MAXN];
-    bool dinic_bfs() {
-        forn(u,N) dist[u] = -1;
-        queue<int> q; q.push(S); dist[S] = 0;
-        while (!q.empty()) {
+    bool bfs() {
+        fill(all(dist), -1), dist[s] = 0;
+        queue<int> q({s}); 
+        while (si(q)) {
             int u = q.front(); q.pop();
-            for (auto ind : adjG[u]) {
-                auto &ei = e[ind];
-                int v = ei.v;
-                if (dist[v] != -1 || ei.r() == 0) continue;
-                dist[v] = dist[u] + 1;
-                q.push(v);
+            for (auto &e : g[u])
+                if (dist[e.v] == -1 && e.f < e.c)
+                    dist[e.v] = dist[u] + 1, q.push(e.v);
+        }
+        return dist[t] != -1;
+    }
+    ll dfs(int u, ll cap = INF) {
+        if (u == t) return cap;
+        for (int &i = ptr[u]; i < si(g[u]); ++i) {
+            auto &e = g[u][i];
+            if (e.f < e.c && dist[e.v] == dist[u] + 1) {
+                ll flow = dfs(e.v, min(cap, e.c - e.f));
+                if (flow) {
+                    e.f += flow, g[e.v][e.r].f -= flow;
+                    return flow;
+                }
             }
         }
-        return dist[T] != -1;
+        return 0;
     }
-
-    ll dinic_dfs(int u, ll cap) {
-        if (u == T) return cap;
+    ll maxflow() {
         ll res = 0;
-        for (auto ind : adjG[u]) {
-            auto &ei = e[ind], &ej = e[ind^1];
-            int v = ei.v;
-            if (ei.r() && dist[v] == dist[u] + 1) {
-                ll send = dinic_dfs(v,min(cap, ei.r()));
-                ei.f += send; ej.f -= send;
-                res += send; cap -= send;
-                if (cap == 0) break;
-            }
+        while (bfs()) {
+            fill(all(ptr), 0);
+            while (ll flow = dfs(s)) res += flow;
         }
-        if (res == 0) dist[u] = -1;
         return res;
     }
-
-    ll flow() {
-        ll res = 0;
-        while (dinic_bfs()) res += dinic_dfs(S,INF);
-        return res;
-    }
-
-    vi cut() {
-        dinic_bfs();
-        vi ans;
-        for (auto u : adjG[S]) if (dist[e[u].v] == -1) ans.pb(e[u].v);
-        for (auto u : adjG[T]) if (dist[e[u].v] != -1) ans.pb(e[u].v);
-        return ans;
-    }
-
-    vi indep() {
-        dinic_bfs();
-        vi ans;
-        for (auto u : adjG[S]) if (dist[e[u].v] != -1) ans.pb(e[u].v);
-        for (auto u : adjG[T]) if (dist[e[u].v] == -1) ans.pb(e[u].v);
-        return ans;
-    }
+    void reset() { for (auto &v : g) for (auto &e : v) e.f = 0; }
 };
