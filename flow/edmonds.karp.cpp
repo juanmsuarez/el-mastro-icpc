@@ -28,7 +28,7 @@ struct EK {
     }
     ll maxflow() {
         ll res = 0;
-        while ((ll flow = bfs())) {
+        while (ll flow = bfs()) {
             res += flow;
             int cur = t;
             while (cur != s) {
