@@ -35,7 +35,7 @@ vll divisors(const map<ll,int> &f) { // O(num of divs)
 
 ll sumDivisors(ll x) { // O(lg x)
     ll r = 1;
-    map<ll,int> f = fact(x);
+    map<ll, int> f = fact(x);
     for (auto &i : f) {
 	    ll pow = 1, s = 0;  
 	    forn(j, i.snd + 1) 
