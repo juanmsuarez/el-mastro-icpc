@@ -17,22 +17,21 @@ struct DSU {
     }
 };
 struct DynCon { // O((m + q) * lg q * lg n)
-    vi match, ans;
-    map<pii, int> last;
-    vector<pii> q; DSU dsu; 
+    vi match, ans, from, to; int sz = 0;
+    map<pii, int> last; DSU dsu; 
     DynCon(int n): dsu(n) {}
     void add(int u, int v) {
         if (u > v) swap(u, v);
-        q.pb(u, v), match.pb(-2), last[{u, v}] = si(q)-1;
+        from.pb(u), to.pb(v), match.pb(-2), last[{u, v}] = sz++;
     }
     void del(int u, int v) {
         if (u > v) swap(u, v);
-        int p = last[{u, v}]; q.pb(u, v), match[p] = si(q)-1, match.pb(p);
+        int p = last[{u, v}]; from.pb(u), to.pb(v), match[p] = sz++, match.pb(p);
     }
-    void query() { q.pb(0, 0), match.pb(-1); } // make at least one
+    void query() { from.pb(0), to.pb(0), match.pb(-1), sz++; } // make at least one
     void process() { // call after all queries, they're answered in order
-        forn(i, si(q)) if (match[i] == -2) match[i] = si(q);
-        go(0, si(q));
+        forn(i, sz) if (match[i] == -2) match[i] = sz;
+        go(0, sz);
     }
     void go(int l, int r) {
         if (l+1 == r) {
@@ -40,9 +39,9 @@ struct DynCon { // O((m + q) * lg q * lg n)
             return;
         }
         int m = (l + r) / 2, s = dsu.snap(); 
-        forsn(i, m, r) if (match[i] != -1 && match[i] < l) dsu.join(q[i].fst, q[i].snd);
+        forsn(i, m, r) if (match[i] < l && match[i] != -1) dsu.join(from[i], to[i]);
         go(l, m), dsu.rollback(s);
-        forsn(i, l, m) if (match[i] != -1 && match[i] >= r) dsu.join(q[i].fst, q[i].snd);
+        forsn(i, l, m) if (match[i] >= r) dsu.join(from[i], to[i]);
         go(m, r), dsu.rollback(s);
     }
 };
