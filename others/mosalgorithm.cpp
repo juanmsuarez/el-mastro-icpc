@@ -1,5 +1,5 @@
 struct Mo {
-    static const int SQ = 200;
+    static const int SQ = 500;
     struct Query { // [l, r)
         int l, r, id;
         bool operator<(const Query &q) {
@@ -7,8 +7,8 @@ struct Mo {
             return l/SQ & 1 ? r < q.r : r > q.r;
         }
     }; vector<Query> qs;
-    int res = 0, l = 0, r = 0, p = 0; vi ans;
-    Mo(int q) { ans = vi(q), qs.resize(q); }
+    int l = 0, r = 0, p = 0, res = 0; vi ans;
+    Mo(int q) : qs(q), ans(q) {}
     void addQuery(int x, int y) { qs[p] = {x, y, p++}; }
     void run() { // O((n + q) * sqrt(n) * (add() + del()))
         sort(all(qs));
