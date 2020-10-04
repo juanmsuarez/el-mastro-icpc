@@ -66,49 +66,6 @@ aprovechamos que la clave de un nodo es la cantidad de elementos menores a ese n
 subárbol izquierdo).
 \cppfile{structures/treap.array.cpp}
 
-\subsection{Splay Tree + Link-Cut Tree}
-\textbf{Definición:} Splay Tree es un \emph{binary search tree} eficiente.
-
-\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
-\begin{itemize}
-    \item $splay(X)$: lleva el nodo $X$ a la raíz del árbol (manteniendo el orden de los nodos). 
-    Para esto, se realizan rotaciones de forma tal que el árbol "quede más balanceado", resultando
-    en una complejidad amortizada de $O(\log{}n)$.
-    \item $search(X)$: igual que en cualquier árbol binario de búsqueda, pero después se ejecuta $splay(X)$.
-    \item $split(X)$ y $merge(X, Y)$: usando $search$, funcionan igual que en Treap.
-    \item $insert(X)$ y $erase(X)$: usando $split$ y $merge$, igual que en Treap.
-    \item $reverse()$ y otras operaciones asociativas: usando lazy-propagation, similar a Treap.
-    \item Mantener una lista en vez de un conjunto: igual que en Treap.
-\end{itemize}
-
-\textbf{Definición:} Link-Cut Tree es una estructura que mantiene un \emph{bosque de árboles con raíz}.
-
-\textbf{Conceptos base:}
-\begin{itemize}
-    \item Hijo preferido de $X$: es la raíz del subárbol en el cual se realizó el último acceso 
-    entre los descendientes de $X$, o ninguno si el último acceso fue en $X$.
-    \item Camino preferido: se representan con un \emph{splay tree}, además se almacena el padre 
-    del nodo más alto del camino (manteniendo así toda la info del árbol original)
-    \item $access(X)$: es la operación básica de la estructura, se hace cada vez que realizamos una
-    operación sobre el nodo $X$. Se encarga de mantener actualizado al "hijo preferido" de cada ancestro
-    de $X$, realizando operaciones en los splay trees correspondientes. Primero hace $splay(X)$ y desconecta
-    a su hijo derecho. Luego, iterativamente: hace $splay(Y)$ con $Y$ padre del camino de $X$, corta 
-    al hijo derecho de $Y$, luego concatena el camino preferido de $Y$ con el de $X$, y finalmente rota 
-    a $X$ y continúa.
-\end{itemize}
-
-\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
-\begin{itemize}
-    \item $link(X, Y)$: hacer a $X$ hijo de $Y$.
-    \item $cut(X)$: desconectar a $X$ de su padre.
-    \item $makeRoot(X)$: hace a $X$ raíz de su árbol.
-    \item $getRoot(X)$: devuelve la raíz del árbol de $X$.
-    \item $lca(X,Y)$: LCA tradicional.
-    \item $lift(X,k)$: k-ésimo ancestro.
-    \item $update(X,v)$: cambiar a $v$ el valor asociado a $X$.
-    \item $aggregate(X,Y)$: resultado de una operación asociativa en los nodos del camino de $X$ a $Y$.
-\end{itemize}
-
 \subsection{Convex Hull Trick}
 \cppfile{structures/chull.trick.cpp}
 \subsection{Convex Hull Trick (Dynamic)}
@@ -899,6 +856,52 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \cppfile{graphs/lca.climb.cpp}
 \subsection{Union Find} 
 \cppfile{graphs/union.find.cpp}
+
+\subsection{Splay Tree + Link-Cut Tree}
+\textbf{Definición:} Splay Tree es un \emph{binary search tree} eficiente.
+
+\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
+\begin{itemize}
+    \item $splay(X)$: lleva el nodo $X$ a la raíz del árbol (manteniendo el orden de los nodos). 
+    Para esto, se realizan rotaciones de forma tal que el árbol "quede más balanceado", resultando
+    en una complejidad amortizada de $O(\log{}n)$.
+    \item $search(X)$: igual que en cualquier árbol binario de búsqueda, pero después se ejecuta $splay(X)$.
+    \item $split(X)$ y $merge(X, Y)$: usando $search$, funcionan igual que en Treap.
+    \item $insert(X)$ y $erase(X)$: usando $split$ y $merge$, igual que en Treap.
+    \item $reverse()$ y otras operaciones asociativas: usando lazy-propagation, similar a Treap.
+    \item Mantener una lista en vez de un conjunto: igual que en Treap.
+\end{itemize}
+
+\textbf{Definición:} Link-Cut Tree es una estructura que mantiene un \emph{bosque de árboles con raíz}.
+
+\textbf{Conceptos base:}
+\begin{itemize}
+    \item Hijo preferido de $X$: es la raíz del subárbol en el cual se realizó el último acceso 
+    entre los descendientes de $X$, o ninguno si el último acceso fue en $X$.
+    \item Camino preferido: se representan con un \emph{splay tree}, además se almacena el padre 
+    del nodo más alto del camino (manteniendo así toda la info del árbol original)
+    \item $access(X)$: es la operación básica de la estructura, se hace cada vez que realizamos una
+    operación sobre el nodo $X$. Se encarga de mantener actualizado al "hijo preferido" de cada ancestro
+    de $X$, realizando operaciones en los splay trees correspondientes. Primero hace $splay(X)$ y desconecta
+    a su hijo derecho. Luego, iterativamente: hace $splay(Y)$ con $Y$ padre del camino de $X$, corta 
+    al hijo derecho de $Y$, luego concatena el camino preferido de $Y$ con el de $X$, y finalmente rota 
+    a $X$ y continúa.
+\end{itemize}
+
+\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
+\begin{itemize}
+    \item $link(X, Y)$: hacer a $X$ hijo de $Y$.
+    \item $cut(X)$: desconectar a $X$ de su padre.
+    \item $makeRoot(X)$: hace a $X$ raíz de su árbol.
+    \item $getRoot(X)$: devuelve la raíz del árbol de $X$.
+    \item $lca(X,Y)$: LCA tradicional.
+    \item $lift(X,k)$: k-ésimo ancestro.
+    \item $update(X,v)$: cambiar a $v$ el valor asociado a $X$.
+    \item $aggregate(X,Y)$: resultado de una operación asociativa en los nodos del camino de $X$ a $Y$.
+\end{itemize}
+
+\cppfile{graphs/link.cut.tree.splay.tree.cpp}
+
 \subsection{Heavy Light Decomposition}
 \cppfile{graphs/heavy.light.cpp}
 \subsection{Centroid Decomposition}
