@@ -52,4 +52,9 @@ struct HLD {
     void update(int u, int v, const T &x) { // requires lazy
         processPath(u, v, [&](int l, int r) { rmq.update(l, r, x); });
     }
+    int lca(int u, int v) { // not needed
+        for (; root[u] != root[v]; v = par[root[v]])
+            if (depth[root[u]] > depth[root[v]]) swap(u, v);
+        return depth[u] > depth[v] ? v : u;
+    }
 };

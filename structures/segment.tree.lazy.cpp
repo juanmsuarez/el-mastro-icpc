@@ -1,14 +1,14 @@
-struct lazy {
+struct Lazy {
     static const int C = 0; // Neutral for sum: 0
-    int val; lazy(int v=C) : val(v) {}
+    int val; Lazy(int v=C) : val(v) {}
     bool dirty() { return val != C; }
     void clear() { val = C; }
-    void update(const lazy &o) { val += o.val; } // Update: sum
+    void update(const Lazy &o) { val += o.val; } // Update: sum
 };
-struct node {
-    int val; node(int v=INF) : val(v) {} // Neutral for min: INF
-    node operator+(const node &o) { return min(val, o.val); } // Query: min
-    void update(const lazy &o, int sz) { val += o.val * sz; } // Update: sum
+struct Node {
+    int val; Node(int v=INF) : val(v) {} // Neutral for min: INF
+    Node operator+(const Node &o) { return min(val, o.val); } // Query: min
+    void update(const Lazy &o, int sz) { val += o.val * sz; } // Update: sum
 };
 template <class T, class D>
 struct RMQ { // ops O(lg n), [0, n)
@@ -45,4 +45,4 @@ struct RMQ { // ops O(lg n), [0, n)
         t[x] = t[2*x] + t[2*x+1];
 	}
 };
-// Use: RMQ<node, lazy> rmq(n); forn(i, n) cin >> rmq[i].val; rmq.build();
+// Use: RMQ<Node, Lazy> rmq(n); forn(i, n) cin >> rmq[i].val; rmq.build();
