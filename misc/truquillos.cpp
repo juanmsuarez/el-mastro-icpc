@@ -4,6 +4,7 @@ using namespace std;  // It avoids the use of std::func(), instead we can simply
 ios_base::sync_with_stdio(0); cin.tie(0); // Speeds up considerably the read speed, very convenient when the input is large
 
 #pragma GCC optimize ("O3") // Asks the compiler to apply more optimizations, that way speeding up the program very much!
+#pragma GCC target ("avx,avx2,fma") 
 
 Math:
 max(a,b);  // Returns the largest of a and b
