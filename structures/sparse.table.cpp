@@ -2,7 +2,7 @@
 template<class T>
 struct RMQ {
     int n; vector<vector<T>> t;
-    RMQ(int sz) { 
+    RMQ(int sz) { // sz must be > 0!
         n = sz, t.assign(lg(n)+1, vector<T>(n)); 
     }
     T& operator[](int p) { return t[0][p]; }
