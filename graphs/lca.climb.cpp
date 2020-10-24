@@ -15,7 +15,7 @@ struct LCA {
     }
     int lca(int x, int y) { // O(lg n)
         if (lvl[x] < lvl[y]) swap(x, y);
-        x = climb(x, lvl[x] - lvl[y]);
+        if (lvl[x] != lvl[y]) x = climb(x, lvl[x] - lvl[y]);
         if (x != y) { 
             for (int i = lg(lvl[x]); i >= 0; i--) 
                 if (a[x][i] != a[y][i]) x = a[x][i], y = a[y][i]; 
