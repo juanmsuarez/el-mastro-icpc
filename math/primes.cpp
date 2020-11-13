@@ -21,6 +21,7 @@ void eratosthenes() { // O(n * log log n)
 }
 
 bool prime(int x) { // O(sqrt x)
+    if(x == 2) return true;
     if (x < 2 || x % 2 == 0) return false;
     for (int i = 3; i*i <= x; i += 2) 
         if (x % i == 0) return false;
