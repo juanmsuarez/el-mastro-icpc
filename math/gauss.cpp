@@ -28,7 +28,7 @@ int gauss(Mat mat, vector<double> &ans) { // returns number of solutions
     forn(i, m)
         if (where[i] != -1)
             ans[i] = mat[where[i]][m] / mat[where[i]][i]; // calculate x_i
-    forn(i, n) { // check if the solution is valid
+    forn(i, n) { // check if the solution is valid (also possible to check: if a row has all zero-coefficients -> the constant term is also zero)
         double sum = 0;
         forn(j, m) 
             sum += ans[j] * mat[i][j];
