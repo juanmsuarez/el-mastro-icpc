@@ -1,7 +1,9 @@
 // Para 2D: tratar cada columna como un Fenwick Tree, 
 // agregando un for anidado en cada operacion.
-// Trucazo para 2D: si los elementos no se repiten,
-// se puede usar un ordered set para memoria O(n*log^2(n))
+// Trucos: 
+// - Además de point upd. range query, es posible: point query + range update, o range + range
+// - La operación puede no tener inverso ;)
+// - Podemos usar unordered_map si tenemos que trabajar con números grandes
 typedef ll tipo;
 struct Fenwick {
     static const int sz = (1 << 18) + 1;
