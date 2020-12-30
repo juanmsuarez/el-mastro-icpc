@@ -8,7 +8,7 @@ typedef ll tipo;
 struct Fenwick {
     static const int sz = (1 << 18) + 1;
     tipo t[sz];
-    void adjust(int p, tipo v){ // p en [1, sz), O(lg n)
+    void add(int p, tipo v){ // p en [1, sz), O(lg n)
         for(int i = p; i < sz; i += (i & -i)) t[i] += v; 
     }
     tipo sum(int p){ // Suma acumulada en [1, p], O(lg n)
