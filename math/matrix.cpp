@@ -19,3 +19,4 @@ struct Mat {
     }
 };
 // to calculate determinants, use determinant.cpp
+// TODO: merge with expomat

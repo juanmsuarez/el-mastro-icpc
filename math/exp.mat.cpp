@@ -12,4 +12,4 @@ void powmat(int a[S][S], ll n, int res[S][S]){
         n >>= 1; mul(a, a);
     }
 }
-
+// TODO: merge with matrix

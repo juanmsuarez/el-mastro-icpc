@@ -1,5 +1,5 @@
 const ll N = 2e5, INF = 1e18;
-typedef pair<ll,int> pli;
+using pli = pair<ll,int>;
 ll dist[N]; int par[N]; 
 vector<pii> g[N];
 bool seen[N];

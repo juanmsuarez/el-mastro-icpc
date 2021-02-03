@@ -1,39 +1,39 @@
-struct trie {
-    int p = 0, w = 0;
-    map<char,trie*> c;
-    trie(){}
-    void add(const string &s){
-        trie *x = this;
-        forn(i,si(s)){
-            if(!x->c.count(s[i])) x->c[s[i]] = new trie();
+struct Trie {
+    int u = 0, ws = 0;
+    map<char, Trie*> c;
+    Trie() {}
+    void add(const string &s) {
+        Trie *x = this;
+        forn(i, si(s)){
+            if(!x->c.count(s[i])) x->c[s[i]] = new Trie();
             x = x->c[s[i]];
-            x->p++;
+            x->u++;
         }
-        x->w++;
+        x->ws++;
     }
-    int find(const string &s){
-        trie *x = this;
-        forn(i,si(s)){
-            if(x->c.count(s[i])) x = x->c[s[i]];
+    int find(const string &s) {
+        Trie *x = this;
+        forn(i, si(s)){
+            if (x->c.count(s[i])) x = x->c[s[i]];
             else return 0;
         }
-        return x->w;
+        return x->ws;
     }
-    void erase(const string &s){
-        trie *x = this, *y;
-        forn(i,si(s)){
-            if(x->c.count(s[i])) y = x->c[s[i]], y->p--;
+    void erase(const string &s) {
+        Trie *x = this, *y;
+        forn(i, si(s)){
+            if (x->c.count(s[i])) y = x->c[s[i]], y->u--;
             else return;
-            if(!y->p){
+            if (!y->u){
                 x->c.erase(s[i]);
                 return;
             }
             x = y;
         }
-        x->w--;
+        x->ws--;
     }
 	void print(string tab = "") {
-		for(auto &i : c) {
+		for (auto &i : c) {
 			cerr << tab << i.fst << endl;
 			i.snd->print(tab + "--");			
 		}
