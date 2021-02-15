@@ -59,4 +59,18 @@ struct Mo {
             ans[q.id] = res;
         }
     }
+
+    void upd(int u) { // IMPLEMENT! ex. op.: a[x] = v
+        bool in = cl <= us[u].x && us[u].x < cr;
+        if (in) del(us[u].x);
+        swap(a[us[u].x], us[u].v);         
+        if (in) add(us[u].x);
+    }
+
+    void undo(int u) { // IMPLEMENT! could be different to upd(), ex. op.: a[x] = v
+        bool in = cl <= us[u].x && us[u].x < cr;
+        if (in) del(us[u].x);
+        swap(a[us[u].x], us[u].v);
+        if (in) add(us[u].x);
+    }
 };
