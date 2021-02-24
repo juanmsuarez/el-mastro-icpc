@@ -14,7 +14,7 @@ struct Point {
 	// Magnitude of the cross product (if a is less than 180 CW from b, a^b > 0):
 	double operator^(Point a) { return x*a.y - y*a.x; }
 	// Returns true if this point is at the left side of line qr:
-	bool left(Point q, Point r) { return ((q - *this) ^ (r - *this)) > 0; }
+	bool left(Point q, Point r) { return ((q - *this) ^ (r - *this)) > EPS; }
 	bool operator<(const Point &a) const { 
         return x < a.x - EPS || (abs(x - a.x) < EPS && y < a.y - EPS); 
     }
