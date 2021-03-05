@@ -847,6 +847,8 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \cppfile[23-40]{graphs/prim.cpp}
 \subsection{2-SAT + Tarjan SCC}
 \cppfile{graphs/2sat.cpp}
+\subsection{Tarjan}
+\cppfile{graphs/tarjan.cpp}
 \subsection{Kosaraju}
 \cppfile[23-72]{graphs/kosaraju.cpp}
 \subsection{Articulation Points}
@@ -913,8 +915,6 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \cppfile{graphs/diametro.cpp}
 \subsection{Chu-liu}
 \cppfile{graphs/chuliu.cpp}
-\subsection{Hungarian}
-\cppfile[5-59]{graphs/hungarian.cpp}
 \subsection{Dynamic Conectivity}
 \textbf{Definición:} permite realizar queries sobre un grafo dinámico al que se le pueden agregar y quitar aristas.
 
@@ -959,6 +959,10 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 \subsection{Maximum matching}
 \textbf{Complejidad}: $O(VE)$.
 \cppfile{flow/matching.cpp}
+
+\subsection{Hungarian}
+\textbf{Complejidad: } $O(V^3)$.
+\cppfile{flow/hungarian.cpp}
 
 \subsection{Min-cost Max-flow}
 \textbf{Algoritmo}: tira camino mínimo hasta encontrar el flujo buscado. Usa SPFA (Bellman-Ford más inteligente, con mejor
