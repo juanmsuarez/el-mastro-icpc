@@ -1,30 +1,32 @@
-int used[MAXN], ars[MAXE], eq, n, m;
-using lit = list<int>::iterator;
-bool usede[MAXE];
+int n,m,ars[MAXE], eq;
+vector<int> G[MAXN];//fill G,n,m,ars,eq
 list<int> path;
-queue<lit> q;
-vi g[MAXN];
-int get(int v) {
-	while (used[v] < si(g[v]) && usede[g[v][used[v]]]) used[v]++;
+int used[MAXN];
+bool usede[MAXE];
+queue<list<int>::iterator> q;
+int get(int v){
+	while(used[v]<sz(G[v]) && usede[ G[v][used[v]] ]) used[v]++;
 	return used[v];
 }
-void explore(int v, int r, lit it) {
-	int ar = g[v][get(v)], u = v ^ ars[ar];
-	usede[ar] = true;
-	lit it2 = path.insert(it, u);
-	if (u != r) explore(u, r, it2);
-	if (get(v) < si(g[v])) q.push(it);
+void explore(int v, int r, list<int>::iterator it){
+	int ar=G[v][get(v)]; int u=v^ars[ar];
+	usede[ar]=true;
+	list<int>::iterator it2=path.insert(it, u);
+	if(u!=r) explore(u, r, it2);
+	if(get(v)<sz(G[v])) q.push(it);
 }
-void euler() {
-	path.pb(0), q.push(begin(path));
-	while (si(q)) {
-		lit it = q.front(); q.pop();
-		if (used[*it] < si(g[*it])) explore(*it, *it, it);
+void euler(){
+	zero(used), zero(usede);
+	path.clear();
+	q=queue<list<int>::iterator>();
+	path.push_back(0); q.push(path.begin());
+	while(sz(q)){
+		list<int>::iterator it=q.front(); q.pop();
+		if(used[*it]<sz(G[*it])) explore(*it, *it, it);
 	}
-	reverse(all(path));
+	reverse(path.begin(), path.end());
 }
-void addEdge(int u, int v, bool undirected = true) { 
-    g[u].pb(eq);
-    if (undirected) g[v].pb(eq);
-    ars[eq++] = u ^ v;
+void addEdge(int u, int v){
+	G[u].pb(eq), G[v].pb(eq);
+	ars[eq++]=u^v;
 }
