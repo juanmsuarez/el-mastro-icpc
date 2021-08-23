@@ -1,4 +1,4 @@
-struct Matching {
+struct matching {
     // Indicate whether each node is on the left or call bipartition
     int n;
     vi match;
@@ -7,7 +7,7 @@ struct Matching {
 
     void addEdge(int u, int v) { g[u].pb(v), g[v].pb(u); }
 
-    Matching(int _n) : n(_n), match(n, -1), g(n), vis(n), left(n) {}
+    matching(int _n) { n = _n, match = vi(n, -1), g.resize(n), left.resize(n); } 
 
     bool dfs(int u) {
         if (vis[u]) return false;
@@ -24,8 +24,6 @@ struct Matching {
             vis.assign(n, 0), flow += dfs(i);
         return flow;
     }
-    
-    void clear() { forn(i, n) g[i].clear(), vis[i] = 0, match[i] = -1; }
 
     bool bipartition() {
         queue<int> q; 

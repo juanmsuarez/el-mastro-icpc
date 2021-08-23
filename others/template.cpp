@@ -25,6 +25,5 @@ using ll = long long;
 int main() {
     fastio;
     
-    
     return 0;
 }
