@@ -30,3 +30,9 @@ ostream & operator <<(ostream &os, const vector<T>&v){
     }
     return os<<"]";
 }
+
+/* recursion depth counter
+ * f(int x,int z=0)
+ *  cerr << strint(z,'\t');D(x);
+ *  f(x,z+1)
+ */
