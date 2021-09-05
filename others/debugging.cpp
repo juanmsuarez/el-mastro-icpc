@@ -36,3 +36,8 @@ ostream & operator <<(ostream &os, const vector<T>&v){
  *  cerr << strint(z,'\t');D(x);
  *  f(x,z+1)
  */
+
+/* find line in which it RTEs
+ * gdb -ex 'run <a.in' ./a.exe
+ * where
+ */
