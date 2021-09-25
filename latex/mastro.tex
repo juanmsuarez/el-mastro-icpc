@@ -3,100 +3,100 @@
 %"The PDF file may contain up to 25 pages of reference material, single-sided, letter or A4 size, with text and illustrations readable by a person with correctable eyesight without magnification from a distance of 1/2 meter."
 \input{helper/preamble.tex}
 \begin{document}
-\def\title{El Mastro - Mastropiero - UNS}
+\def\title{Universidad Nacional del Sur - Mastropiero Limit Exceeded}
 
-\begin{center}{\includegraphics[width=4cm]{../others/mastro}}\end{center}
+%\begin{center}{\includegraphics[width=4cm]{../others/mastro}}\end{center}
 
-\tableofcontents\newpage
+%\tableofcontents\newpage
  
-\section{Referencia}%%%%%%%%%%%%%%%%%%REFERENCIA%%%%%%%%%%%%%%%%%%
-\input{helper/referencia.tex}
+%\section{Referencia}%%%%%%%%%%%%%%%%%%REFERENCIA%%%%%%%%%%%%%%%%%%
+%\input{helper/referencia.tex}
 
 \section{Estructuras}%%%%%%%%%%%%%%%%%%ESTRUCTURAS%%%%%%%%%%%%%%%%%%
-\subsection{Sparse Table}
-\cppfile{../structures/sparse.table.cpp}
-\subsection{Segment Tree}
-\cppfile{structures/segment.tree.cpp}
-\subsection{Segment Tree (Iterative)}
-\cppfile{structures/segment.tree.iterative.cpp}
+%\subsection{Sparse Table}
+%\cppfile{../structures/sparse.table.cpp}
+%\subsection{Segment Tree}
+%\cppfile{structures/segment.tree.cpp}
+%\subsection{Segment Tree (Iterative)}
+%\cppfile{structures/segment.tree.iterative.cpp}
 \subsection{Segment Tree (Lazy)}
 \cppfile{structures/segment.tree.lazy.cpp}
-\subsection{Segment Tree (Persistent)}
-\cppfile{structures/segment.tree.persistent.cpp}
-\subsection{Sliding Window RMQ}
-\cppfile{structures/sliding.window.rmq.cpp}
-\subsection{Fenwick Tree}
-\cppfile{structures/fenwick.cpp}
-
-\subsection{Disjoint Intervals}
-\cppfile{structures/disjoint.intervals.cpp}
-\subsection{Segment Tree (2D)}
-\cppfile{structures/segment.tree.2d.cpp}
-\subsection{Big Int}
-\cppfile{structures/bigint.cpp}
-\subsection{Modnum}
-\cppfile{structures/mod.cpp}
+%\subsection{Segment Tree (Persistent)}
+%\cppfile{structures/segment.tree.persistent.cpp}
+%\subsection{Sliding Window RMQ}
+%\cppfile{structures/sliding.window.rmq.cpp}
+%\subsection{Fenwick Tree}
+%\cppfile{structures/fenwick.cpp}
+%
+%\subsection{Disjoint Intervals}
+%\cppfile{structures/disjoint.intervals.cpp}
+%\subsection{Segment Tree (2D)}
+%\cppfile{structures/segment.tree.2d.cpp}
+%\subsection{Big Int}
+%\cppfile{structures/bigint.cpp}
+%\subsection{Modnum}
+%\cppfile{structures/mod.cpp}
 
 \subsection{Treap}
-\textbf{Definición:} estructura de datos que combina los conceptos de \emph{binary search tree} (para las claves)
-y \emph{heap} (para las prioridades), y asigna las prioridades de forma aleatoria para asegurar una altura de 
-$O(\log{}n)$ en promedio.
-
-\textbf{Operaciones básicas:}
-\begin{itemize}
-	\item $split(T, X)$: separa al árbol $T$ en 2 subárboles $T_L$ y $T_R$ tales que $T_L$ contiene a todos los 
-	elementos con claves menores a $X$ y $T_R$ a los demás.
-	\item $merge(T_1, T_2)$: combina dos subárboles $T_1$ y $T_2$ y retorna un nuevo árbol, 
-	asume que las claves en $T_1$ son menores que las claves en $T_2$.
-\end{itemize}
-
-\textbf{Operaciones avanzadas:}
-\begin{itemize}
-	\item $insert(T, X)$: inserta una nueva clave al árbol. Resulta trivial de implementar a partir de las anteriores:
-	$(T_1, T_2) = split(T, X)$ y $T_3 = merge(merge(T_1, X), T_2)$.
-\end{itemize}
-\subsubsection{Treap set}
-\cppfile{structures/treap.set.cpp}
-\subsubsection{Treap array}
-\textbf{Explicación treap implícito:} permite insertar, borrar, hacer queries y updates (incluyendo reverse) en rangos
-en un arreglo. La idea es usar a los índices como claves, pero en vez de almacenarlos (sería difícil actualizar en ese caso),
-aprovechamos que la clave de un nodo es la cantidad de elementos menores a ese nodo (cuidado, no son solo los del
-subárbol izquierdo).
+%\textbf{Definición:} estructura de datos que combina los conceptos de \emph{binary search tree} (para las claves)
+%y \emph{heap} (para las prioridades), y asigna las prioridades de forma aleatoria para asegurar una altura de 
+%$O(\log{}n)$ en promedio.
+%
+%\textbf{Operaciones básicas:}
+%\begin{itemize}
+%	\item $split(T, X)$: separa al árbol $T$ en 2 subárboles $T_L$ y $T_R$ tales que $T_L$ contiene a todos los 
+%	elementos con claves menores a $X$ y $T_R$ a los demás.
+%	\item $merge(T_1, T_2)$: combina dos subárboles $T_1$ y $T_2$ y retorna un nuevo árbol, 
+%	asume que las claves en $T_1$ son menores que las claves en $T_2$.
+%\end{itemize}
+%
+%\textbf{Operaciones avanzadas:}
+%\begin{itemize}
+%	\item $insert(T, X)$: inserta una nueva clave al árbol. Resulta trivial de implementar a partir de las anteriores:
+%	$(T_1, T_2) = split(T, X)$ y $T_3 = merge(merge(T_1, X), T_2)$.
+%\end{itemize}
+%\subsubsection{Treap set}
+%\cppfile{structures/treap.set.cpp}
+%\subsubsection{Treap array}
+%\textbf{Explicación treap implícito:} permite insertar, borrar, hacer queries y updates (incluyendo reverse) en rangos
+%en un arreglo. La idea es usar a los índices como claves, pero en vez de almacenarlos (sería difícil actualizar en ese caso),
+%aprovechamos que la clave de un nodo es la cantidad de elementos menores a ese nodo (cuidado, no son solo los del
+%subárbol izquierdo).
 \cppfile{structures/treap.array.cpp}
 
 \subsection{Convex Hull Trick}
 \cppfile{structures/chull.trick.cpp}
 \subsection{Convex Hull Trick (Dynamic)}
 \cppfile{structures/chull.trick.dyn.cpp}
-\subsection{Li-Chao Tree}
-\cppfile{structures/li.chao.tree.cpp}
-\subsection{Gain-Cost Set}
-\cppfile[1-24]{structures/gain.cost.set.cpp}
-\subsection{Set con índices}
-\cppfile{structures/order.statistics.tree.cpp}
+%\subsection{Li-Chao Tree}
+%\cppfile{structures/li.chao.tree.cpp}
+%\subsection{Gain-Cost Set}
+%\cppfile[1-24]{structures/gain.cost.set.cpp}
+%\subsection{Set con índices}
+%\cppfile{structures/order.statistics.tree.cpp}
 
 
-\section{Algoritmos varios}%%%%%%%%%%%%%%%%%%ALGORITMOS%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Longest Increasing Subsequence}
-\cppfile[1-31]{misc/lis.cpp}
-\subsection{Alpha-Beta prunning}
-\cppfile{misc/alphabeta.cpp}
-\subsection{Mo's algorithm}
-\cppfile{misc/mosalgorithm.cpp}
-\subsection{Parallel binary search}
-\textbf{Descripción:} permite reutilizar información cuando se necesitan
-realizar múltiples búsquedas binarias sobre la misma información.
-
-\textbf{Explicación algoritmo:} imaginarse un árbol binario de rangos de
-búsqueda binaria $(lo, hi]$ y queries asignadas a cada nodo, que implican que
-esa query está en ese rango de la búsqueda binaria. El algoritmo aprovecha
-que para cada nivel del árbol las queries están ordenadas, y se puede procesar
-la información hasta el $mid$ de cada query en orden, resultando en un tiempo de
-$O(N + Q_{nivel})$ por nivel (más un $log$ extra por ordenar). 
-
-\textbf{Observación: } se puede implementar de forma recursiva, dependiendo del
-problema. Esto puede mejorar la complejidad ya que se evita el ordenamiento.
-\cppfile{misc/parallel_binary_search.cpp}
+%\section{Algoritmos varios}%%%%%%%%%%%%%%%%%%ALGORITMOS%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Longest Increasing Subsequence}
+%\cppfile[1-31]{misc/lis.cpp}
+%\subsection{Alpha-Beta prunning}
+%\cppfile{misc/alphabeta.cpp}
+%\subsection{Mo's algorithm}
+%\cppfile{misc/mosalgorithm.cpp}
+%\subsection{Parallel binary search}
+%\textbf{Descripción:} permite reutilizar información cuando se necesitan
+%realizar múltiples búsquedas binarias sobre la misma información.
+%
+%\textbf{Explicación algoritmo:} imaginarse un árbol binario de rangos de
+%búsqueda binaria $(lo, hi]$ y queries asignadas a cada nodo, que implican que
+%esa query está en ese rango de la búsqueda binaria. El algoritmo aprovecha
+%que para cada nivel del árbol las queries están ordenadas, y se puede procesar
+%la información hasta el $mid$ de cada query en orden, resultando en un tiempo de
+%$O(N + Q_{nivel})$ por nivel (más un $log$ extra por ordenar). 
+%
+%\textbf{Observación: } se puede implementar de forma recursiva, dependiendo del
+%problema. Esto puede mejorar la complejidad ya que se evita el ordenamiento.
+%\cppfile{misc/parallel_binary_search.cpp}
 
 \section{Strings}%%%%%%%%%%%%%%%%%%STRINGS%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hash}
@@ -121,171 +121,171 @@ incrementa en 1 y r jamás decrece.\\
 \cppfile{strings/trie.cpp}
 \subsection{Suffix Array (corto, nlog2n)}
 \cppfile{strings/suffix.array.short.cpp}
-\subsection{Suffix Array (largo, nlogn)}
-\cppfile[1-38]{strings/suffix.array.cpp}
+%\subsection{Suffix Array (largo, nlogn)}
+%\cppfile[1-38]{strings/suffix.array.cpp}
 \subsection{String Matching With Suffix Array}
 \cppfile[38-59]{strings/suffix.array.cpp}
 \subsection{LCP (Longest Common Prefix)}
 \cppfile[61-75]{strings/suffix.array.cpp}
 \subsection{Aho-Corasick}
-\textbf{Definición}
-El automáta Aho-Corasick es un autómata $A$ que reconoce un conjunto de cadenas $S$.
-
-\textbf{Conceptos importantes}
-\begin{itemize}
-	\item Cada nodo del autómata se asocia con (al menos) un prefijo de una cadena en $S$.
-	\item Un \emph{suffix link} para un vértice $p$ es un arco que apunta al sufijo propio
-	más largo de la cadena correspondiente al vértice $p$.
-	\item Estando en un estado $p$ que corresponde a una palabra $t$, se pueden definir 
-	arcos de dos tipos:
-	\begin{itemize}
-		\item Transiciones tipo trie: dado un caracter $c$ tal que $t + c$ pertenece al autómata,
-		el arco apunta a $t + c$.
-		\item Transiciones tipo suffix link: dado un caracter $c$ tal que $t + c$ no pertenece al
-		autómata, el arco apunta al máximo sufijo propio de $t + c$ que pertenece al árbol.
-	\end{itemize}
-	\item Implementación:
-	\begin{itemize}
-		\item Cada nodo mantiene:
-		\begin{itemize} 
-			\item Un indicador de la cantidad de cadenas que terminan en ese nodo: \emph{terminal}.
-			\item El padre \emph{p} y el caracter desde el que transicionó \emph{pch}.
-			\item Las transiciones tipo trie en \emph{next}.
-			\item El suffix link en \emph{link}.
-			\item Todas las transiciones (tipo trie y tipo suffix link) en \emph{go}.
-		\end{itemize}
-		\item El algoritmo se divide en:
-		\begin{itemize}
-			\item \emph{add\_string}: agrega una cadena $s$ al autómata.
-			\item \emph{go}: calcula el nodo destino de la transición $(v, ch)$.
-			\item \emph{get\_link}: calcula el suffix link de la cadena correspondiente al nodo $v$.
-		\end{itemize}
-	\end{itemize}
-\end{itemize}
-
-\textbf{Problemas clásicos}
-\begin{itemize}
-	\item Encontrar todas las cadenas de un conjunto en un texto: mantener \emph{exit link}
-	(nodo terminal más cercano alcanzable mediante suffix links), recorrer autómata con el 
-	texto como entrada y transicionar por exit links para encontrar matches.
-	\item Cadena lexicográficamente mínima de longitud $len$ que no matchea ninguna 
-	cadena de un conjunto $S$: DFS sobre autómata para encontrar camino de longitud $L$
-	evitando entrar en nodos terminales.
-	\item Mínima cadena que contiene todas las cadenas de un conjunto $S$: BFS sobre 
-	autómata manteniendo máscara de cadenas matcheadas (y máscara de terminales,
-	incluyendo alcanzables por suffix link, en cada nodo). 
-	\textbf{Recordatorio importante: } un nodo solo mantiene los matches para la cadena
-	completa. Para mantener todos los matches (incluyendo sufijos) estando en un nodo 
-	$v$, hay que usar la información que propagan los suffix links.
-	\item Cadena lexicogrficamente mínima de longitud $len$ que contiene $k$ cadenas
-	de un conjunto $S$: DFS sobre grafo $(v, len, cnt)$.
-\end{itemize}
+%\textbf{Definición}
+%El automáta Aho-Corasick es un autómata $A$ que reconoce un conjunto de cadenas $S$.
+%
+%\textbf{Conceptos importantes}
+%\begin{itemize}
+%	\item Cada nodo del autómata se asocia con (al menos) un prefijo de una cadena en $S$.
+%	\item Un \emph{suffix link} para un vértice $p$ es un arco que apunta al sufijo propio
+%	más largo de la cadena correspondiente al vértice $p$.
+%	\item Estando en un estado $p$ que corresponde a una palabra $t$, se pueden definir 
+%	arcos de dos tipos:
+%	\begin{itemize}
+%		\item Transiciones tipo trie: dado un caracter $c$ tal que $t + c$ pertenece al autómata,
+%		el arco apunta a $t + c$.
+%		\item Transiciones tipo suffix link: dado un caracter $c$ tal que $t + c$ no pertenece al
+%		autómata, el arco apunta al máximo sufijo propio de $t + c$ que pertenece al árbol.
+%	\end{itemize}
+%	\item Implementación:
+%	\begin{itemize}
+%		\item Cada nodo mantiene:
+%		\begin{itemize} 
+%			\item Un indicador de la cantidad de cadenas que terminan en ese nodo: \emph{terminal}.
+%			\item El padre \emph{p} y el caracter desde el que transicionó \emph{pch}.
+%			\item Las transiciones tipo trie en \emph{next}.
+%			\item El suffix link en \emph{link}.
+%			\item Todas las transiciones (tipo trie y tipo suffix link) en \emph{go}.
+%		\end{itemize}
+%		\item El algoritmo se divide en:
+%		\begin{itemize}
+%			\item \emph{add\_string}: agrega una cadena $s$ al autómata.
+%			\item \emph{go}: calcula el nodo destino de la transición $(v, ch)$.
+%			\item \emph{get\_link}: calcula el suffix link de la cadena correspondiente al nodo $v$.
+%		\end{itemize}
+%	\end{itemize}
+%\end{itemize}
+%
+%\textbf{Problemas clásicos}
+%\begin{itemize}
+%	\item Encontrar todas las cadenas de un conjunto en un texto: mantener \emph{exit link}
+%	(nodo terminal más cercano alcanzable mediante suffix links), recorrer autómata con el 
+%	texto como entrada y transicionar por exit links para encontrar matches.
+%	\item Cadena lexicográficamente mínima de longitud $len$ que no matchea ninguna 
+%	cadena de un conjunto $S$: DFS sobre autómata para encontrar camino de longitud $L$
+%	evitando entrar en nodos terminales.
+%	\item Mínima cadena que contiene todas las cadenas de un conjunto $S$: BFS sobre 
+%	autómata manteniendo máscara de cadenas matcheadas (y máscara de terminales,
+%	incluyendo alcanzables por suffix link, en cada nodo). 
+%	\textbf{Recordatorio importante: } un nodo solo mantiene los matches para la cadena
+%	completa. Para mantener todos los matches (incluyendo sufijos) estando en un nodo 
+%	$v$, hay que usar la información que propagan los suffix links.
+%	\item Cadena lexicogrficamente mínima de longitud $len$ que contiene $k$ cadenas
+%	de un conjunto $S$: DFS sobre grafo $(v, len, cnt)$.
+%\end{itemize}
 
 \cppfile{strings/aho-corasick.cpp}
 \subsection{Suffix Automaton}
-\textbf{Definición}
-Un suffix automaton $A$ es un autómata minimal que reconoce los sufijos de una 
-cadena $s$.
-
-\textbf{Conceptos importantes}
-\begin{itemize}
-	\item $A$ \emph{reconoce} a una cadena $s$ si comenzando desde el nodo inicial llegamos a un 
-	terminal.
-
-	\item Dada una subcadena $t$ de $s$, definimos $endpos(t)$ como el conjunto de las posiciones
-	en $s$ en las que terminan las apariciones de $t$.
-	
-    \item Dos subcadenas $u$ y $v$ de $s$ son \emph{equivalentes} si recorrer el autómata con $u$ 
-    y con $v$ nos lleva al mismo nodo. Esto es equivalente a $endpos(u) = endpos(v)$. Los nodos del 
-    automáta se corresponden al conjunto de cadenas de las \emph{clases de equivalencia} bajo la
-    relación anterior.
-
-    \item Las cadenas en una clase de equivalencia son sufijos de la cadena de mayor tamaño de la 
-    clase, y forman un intervalo contiguo de tamaños. El \emph{suffix link} nos lleva al primer sufijo 
-    que no pertenece a esta clase.
-    
-    \item \emph{Suffix tree} implícito (de $s'$): el suffix link saliente de un nodo nos lleva al padre 
-    en el suffix tree de $s'$ y los suffix links entrantes de un nodo provienen de los hijos del suffix 
-    tree de $s'$.
-    
-\end{itemize}
-
-\textbf{Algoritmo para construcción}
-\begin{itemize}
-	\item Agregamos un caracter a la vez. Sea $c$ el caracter a agregar.
-	\item Sea $last$ el estado que corresponde a la cadena entera antes de agregar a $c$.
-	\item Creamos un nuevo estado $cur$, que corresponde a la cadena luego de agregar a $c$.
-	\item Agregamos transiciones a través de $c$ a los sufijos de la cadena (recorriendo suffix 
-	links a partir de $last$), hasta encontrar un estado de un sufijo que ya tenga una transición
-	con $c$.
-	\begin{itemize}
-		\item Si no encontramos un estado, el suffix link de $cur$ es $t_0$.
-		\item Si la transición lleva a un estado $q$ que representa una cadena con un solo caracter más,
-		el suffix link de $cur$ es $q$.
-		\item Si no, es necesario dividir el estado $q$, ya que debemos usarlo como suffix link pero tiene
-		sufijos extra. Después de esto hace falta actualizar los estados que tenían transiciones a $q$.
-	\end{itemize}
-\end{itemize}
-
-\textbf{Problemas clásicos}
-\begin{itemize}
-    \item Determinar si $w$ es subcadena de $s$: simplemente correr el autómata.
-    \item Determinar si $w$ es sufijo de $s$: correr el autómata y ver si caemos en un terminal.
-    \item Contar cantidad de subcadenas distintas de $s$: esto es igual a la cantidad de
-    caminos en el autómata y se calcula mediante una DP.
-    \item Contar cantidad de apariciones de $w$ en $s$: correr autómata con $w$. Llamemos $u$
-    al nodo en el que terminamos, la cantidad de apariciones es la cantidad de caminos 
-    en $A$ que comienzan en $u$ y llegan a un terminal.
-    \item Encontrar dónde aparece $w$ por primera vez en $s$: correr autómata con $w$. Llamemos $u$
-    al nodo en el que terminamos, esto equivale a calcular el camino más largo del autómata 
-    a partir del nodo $u$. Otra solución: mantener $firstpos(v)$, la primera aparición de una subcadena
-    en la cadena (se actualiza cuando se crea un nuevo nodo y cuando se clonan nodos).
-    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: encontrar el nodo $u$ que 
-    corresponde a $w$, armar el \emph{suffix tree} (mantener los suffix links invertidos), encontrar 
-    todos los nodos en el subárbol con raíz en $u$, cada nodo corresponde a por lo menos una aparición 
-    y cada aparición corresponde a un nodo y su clon (utilizar $firstpos(v)$ para saber la posición, saltear 
-    nodos clonados; o bien agregar un \$ al comienzo de la cadena y encontrar todas las hojas, la posición es
-    la longitud). 
-    \item Subcadena común más larga de un conjunto de cadenas: dadas $k$ cadenas $S_i$, elegimos
-    $k$ separadores distintos entre sí $D_i$, formamos $T = S_1 + D_1 + \dots + S_k + D_k$ y construimos
-    el autómata de esa cadena. Saber si una subcadena pertenece a una cadena $S_i$ en particular corresponde 
-    a verificar que existe un camino a $D_i$ sin pasar por los demás separadores. Si calculamos para cada nodo
-    a qué separadores puede llegar, la respuesta es la máxima de las cadenas más largas de las clases
-    correspondientes a estados $v$ que puede llegar a todos los separadores.
-\end{itemize}
+%\textbf{Definición}
+%Un suffix automaton $A$ es un autómata minimal que reconoce los sufijos de una 
+%cadena $s$.
+%
+%\textbf{Conceptos importantes}
+%\begin{itemize}
+%	\item $A$ \emph{reconoce} a una cadena $s$ si comenzando desde el nodo inicial llegamos a un 
+%	terminal.
+%
+%	\item Dada una subcadena $t$ de $s$, definimos $endpos(t)$ como el conjunto de las posiciones
+%	en $s$ en las que terminan las apariciones de $t$.
+%	
+%    \item Dos subcadenas $u$ y $v$ de $s$ son \emph{equivalentes} si recorrer el autómata con $u$ 
+%    y con $v$ nos lleva al mismo nodo. Esto es equivalente a $endpos(u) = endpos(v)$. Los nodos del 
+%    automáta se corresponden al conjunto de cadenas de las \emph{clases de equivalencia} bajo la
+%    relación anterior.
+%
+%    \item Las cadenas en una clase de equivalencia son sufijos de la cadena de mayor tamaño de la 
+%    clase, y forman un intervalo contiguo de tamaños. El \emph{suffix link} nos lleva al primer sufijo 
+%    que no pertenece a esta clase.
+%    
+%    \item \emph{Suffix tree} implícito (de $s'$): el suffix link saliente de un nodo nos lleva al padre 
+%    en el suffix tree de $s'$ y los suffix links entrantes de un nodo provienen de los hijos del suffix 
+%    tree de $s'$.
+%    
+%\end{itemize}
+%
+%\textbf{Algoritmo para construcción}
+%\begin{itemize}
+%	\item Agregamos un caracter a la vez. Sea $c$ el caracter a agregar.
+%	\item Sea $last$ el estado que corresponde a la cadena entera antes de agregar a $c$.
+%	\item Creamos un nuevo estado $cur$, que corresponde a la cadena luego de agregar a $c$.
+%	\item Agregamos transiciones a través de $c$ a los sufijos de la cadena (recorriendo suffix 
+%	links a partir de $last$), hasta encontrar un estado de un sufijo que ya tenga una transición
+%	con $c$.
+%	\begin{itemize}
+%		\item Si no encontramos un estado, el suffix link de $cur$ es $t_0$.
+%		\item Si la transición lleva a un estado $q$ que representa una cadena con un solo caracter más,
+%		el suffix link de $cur$ es $q$.
+%		\item Si no, es necesario dividir el estado $q$, ya que debemos usarlo como suffix link pero tiene
+%		sufijos extra. Después de esto hace falta actualizar los estados que tenían transiciones a $q$.
+%	\end{itemize}
+%\end{itemize}
+%
+%\textbf{Problemas clásicos}
+%\begin{itemize}
+%    \item Determinar si $w$ es subcadena de $s$: simplemente correr el autómata.
+%    \item Determinar si $w$ es sufijo de $s$: correr el autómata y ver si caemos en un terminal.
+%    \item Contar cantidad de subcadenas distintas de $s$: esto es igual a la cantidad de
+%    caminos en el autómata y se calcula mediante una DP.
+%    \item Contar cantidad de apariciones de $w$ en $s$: correr autómata con $w$. Llamemos $u$
+%    al nodo en el que terminamos, la cantidad de apariciones es la cantidad de caminos 
+%    en $A$ que comienzan en $u$ y llegan a un terminal.
+%    \item Encontrar dónde aparece $w$ por primera vez en $s$: correr autómata con $w$. Llamemos $u$
+%    al nodo en el que terminamos, esto equivale a calcular el camino más largo del autómata 
+%    a partir del nodo $u$. Otra solución: mantener $firstpos(v)$, la primera aparición de una subcadena
+%    en la cadena (se actualiza cuando se crea un nuevo nodo y cuando se clonan nodos).
+%    \item Encontrar las posiciones de todas las apariciones de $w$ en $s$: encontrar el nodo $u$ que 
+%    corresponde a $w$, armar el \emph{suffix tree} (mantener los suffix links invertidos), encontrar 
+%    todos los nodos en el subárbol con raíz en $u$, cada nodo corresponde a por lo menos una aparición 
+%    y cada aparición corresponde a un nodo y su clon (utilizar $firstpos(v)$ para saber la posición, saltear 
+%    nodos clonados; o bien agregar un \$ al comienzo de la cadena y encontrar todas las hojas, la posición es
+%    la longitud). 
+%    \item Subcadena común más larga de un conjunto de cadenas: dadas $k$ cadenas $S_i$, elegimos
+%    $k$ separadores distintos entre sí $D_i$, formamos $T = S_1 + D_1 + \dots + S_k + D_k$ y construimos
+%    el autómata de esa cadena. Saber si una subcadena pertenece a una cadena $S_i$ en particular corresponde 
+%    a verificar que existe un camino a $D_i$ sin pasar por los demás separadores. Si calculamos para cada nodo
+%    a qué separadores puede llegar, la respuesta es la máxima de las cadenas más largas de las clases
+%    correspondientes a estados $v$ que puede llegar a todos los separadores.
+%\end{itemize}
 \cppfile{strings/suffix.automaton.cpp}
 \subsection{Z Function}
-\textbf{Definición}
-La función Z para una string $s$ de longitud $n$ es un arreglo $a$ de la misma longitud
-tal que $a[i]$ es la \emph{máxima cantidad de caracteres} comenzando desde la posición $i$
-que coinciden con los primeros caracteres de $s$. Es decir, es el \emph{máximo prefijo común}.
-
-\textbf{Observación}
-$z[0]$ no está bien definido, pero se asume igual a $0$.
-
-\textbf{Algoritmo}
-La idea es mantener el máximo \emph{match} (es decir, el segmento $[l, r]$ con
-máximo $r$ tal que se sabe que $s[0..r-l] = s[l..r]$). 
-
-Siendo $i$ el índice actual (del que queremos calcular la función Z), el algoritmo 
-se divide en dos casos:
-\begin{itemize}
-    \item $i > r$: la posición está fuera de lo que hemos procesado. Se corre el
-    \emph{algoritmo trivial}.
-    \item $i <= r$: la posición está dentro del \emph{match actual}, por lo que
-    se puede utilizar como aproximación inicial $z[i] = min(r - i + 1, z[i-l])$,
-    y luego correr el \emph{algoritmo trivial}.
-\end{itemize}
-
-\textbf{Problemas clásicos}
-\begin{itemize}
-    \item Buscar una subcadena: concatenamos $p$ con $t$ (utilizando un separador).
-    Hay una aparición si la función Z matcheó tantos caracteres como la longitud
-    de $p$.
-\end{itemize}
+%\textbf{Definición}
+%La función Z para una string $s$ de longitud $n$ es un arreglo $a$ de la misma longitud
+%tal que $a[i]$ es la \emph{máxima cantidad de caracteres} comenzando desde la posición $i$
+%que coinciden con los primeros caracteres de $s$. Es decir, es el \emph{máximo prefijo común}.
+%
+%\textbf{Observación}
+%$z[0]$ no está bien definido, pero se asume igual a $0$.
+%
+%\textbf{Algoritmo}
+%La idea es mantener el máximo \emph{match} (es decir, el segmento $[l, r]$ con
+%máximo $r$ tal que se sabe que $s[0..r-l] = s[l..r]$). 
+%
+%Siendo $i$ el índice actual (del que queremos calcular la función Z), el algoritmo 
+%se divide en dos casos:
+%\begin{itemize}
+%    \item $i > r$: la posición está fuera de lo que hemos procesado. Se corre el
+%    \emph{algoritmo trivial}.
+%    \item $i <= r$: la posición está dentro del \emph{match actual}, por lo que
+%    se puede utilizar como aproximación inicial $z[i] = min(r - i + 1, z[i-l])$,
+%    y luego correr el \emph{algoritmo trivial}.
+%\end{itemize}
+%
+%\textbf{Problemas clásicos}
+%\begin{itemize}
+%    \item Buscar una subcadena: concatenamos $p$ con $t$ (utilizando un separador).
+%    Hay una aparición si la función Z matcheó tantos caracteres como la longitud
+%    de $p$.
+%\end{itemize}
 \cppfile{strings/zfunction.cpp}
-\subsection{Palindrome}
-\cppfile{strings/palindrome.cpp}
+%\subsection{Palindrome}
+%\cppfile{strings/palindrome.cpp}
 
 \section{Geometría}%%%%%%%%%%%%%%%%%%geometria%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Epsilon}
@@ -294,46 +294,42 @@ se divide en dos casos:
 \cppfile{geometry/pto.cpp}
 \subsection{Orden radial de puntos}
 \cppfile{geometry/radial.order.cpp}
-\subsection{Line}
-\cppfile{geometry/line.cpp}
-\subsection{Segment}
-\cppfile{geometry/segm.cpp}
-\subsection{Rectangle}
-\cppfile{geometry/rect.cpp}
-\subsection{Polygon Area}
-\cppfile{geometry/area.cpp}
-\subsection{Circle}
-\cppfile{geometry/circle.cpp}
+%\subsection{Line}
+%\cppfile{geometry/line.cpp}
+%\subsection{Segment}
+%\cppfile{geometry/segm.cpp}
+%\subsection{Rectangle}
+%\cppfile{geometry/rect.cpp}
+%\subsection{Polygon Area}
+%\cppfile{geometry/area.cpp}
+%\subsection{Circle}
+%\cppfile{geometry/circle.cpp}
 \subsection{Point in Poly}
 \cppfile{geometry/point.in.poly.cpp}
-\subsection{Point in Convex Poly log(n)}
-\cppfile{geometry/point.in.convex.poly.cpp}
-\subsection{Convex Check CHECK}
-\cppfile{geometry/convex.check.cpp}
+%\subsection{Point in Convex Poly log(n)}
+%\cppfile{geometry/point.in.convex.poly.cpp}
+%\subsection{Convex Check CHECK}
+%\cppfile{geometry/convex.check.cpp}
 \subsection{Convex Hull}
 \cppfile{geometry/convex.hull.cpp}
 \subsection{Cut Polygon}
 \cppfile{geometry/cut.polygon.cpp}
-\subsection{Bresenham}
-\cppfile{geometry/bresenham.cpp}
-\subsection{Rotate Matrix}
-\cppfile{geometry/rotate.cpp}
-\subsection{Interseccion de Circulos en n3log(n)}
-\cppfile{geometry/int.circs.cpp}
-
-\subsection{Cayley-Menger}
-{
-Permite calcular el volumen de un simplex (triángulo en k dimensiones) mediante el cálculo de una determinante.
-\cppfile[40-57]{geometry/cayley.cpp}
-}
+%\subsection{Bresenham}
+%\cppfile{geometry/bresenham.cpp}
+%\subsection{Rotate Matrix}
+%\cppfile{geometry/rotate.cpp}
+%\subsection{Interseccion de Circulos en n3log(n)}
+%\cppfile{geometry/int.circs.cpp}
+%
+%\subsection{Cayley-Menger}
+%{
+%Permite calcular el volumen de un simplex (triángulo en k dimensiones) mediante el cálculo de una determinante.
+%\cppfile[40-57]{geometry/cayley.cpp}
+%}
 
 \subsection{Heron's formula}
 {
-It states that the area of a triangle whose sides have lengths a, b, and c is
-
 \( {\displaystyle A={\sqrt {s(s-a)(s-b)(s-c)}}} \),
-where s is the semiperimeter of the triangle; that is,
-
 \( {\displaystyle s={\frac {a+b+c}{2}}} \).
 }
 
@@ -368,20 +364,6 @@ determinados por este arreglo.
     solución del estado actual.
 
     \cppfile{dp-opt/knuth.cpp}
-}
-\subsection{Chull}
-{
-    \textbf{Problema de ejemplo:} 
-
-    \textbf{Recurrencia original:}
-
-    \textbf{Condición suficiente:} 
-
-    \textbf{Complejidad original:} 
-
-    \textbf{Complejidad optimizada:} 
-
-    \textbf{Solución:} 
 }
 \subsection{Divide \& Conquer}
 {
@@ -514,59 +496,59 @@ for \(n > 0\).
 
 }
 
-\subsection{Sumatorias conocidas}
-{
-$\sum_{i=0}^n\binom{n}{i}=2^n$
+%\subsection{Sumatorias conocidas}
+%{
+%$\sum_{i=0}^n\binom{n}{i}=2^n$
+%
+%$\sum_{i=0}^n i\binom{n}{i}=n*2^{n-1}$
+%
+%$\sum_{i=m}^n i = \frac{n(n+1)}{2} - \frac{m(m-1)}{2} = \frac{(n+1-m)(n+m)}{2}$
+%
+%$\sum_{i=0}^n i = \sum_{i=1}^n i = \frac{n(n+1)}{2}$
+%
+%$\sum_{i=0}^n i^2 = \frac{n(n+1)(2n+1)}{6} = \frac{n^3}{3} + \frac{n^2}{2} + \frac{n}{6}$
+%
+%$\sum_{i=0}^n i(i-1) = \frac{8}{6}(\frac{n}{2})(\frac{n}{2}+1)(n+1)$ (doubles) $\rightarrow$ Sino ver caso impar y par
+%
+%$\sum_{i=0}^n i^3 = \left(\frac{n(n+1)}{2}\right)^2 = \frac{n^4}{4} + \frac{n^3}{2} + \frac{n^2}{4} = \left[\sum_{i=1}^n i\right]^2$
+%
+%$\sum_{i=0}^n i^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30} = \frac{n^5}{5} + \frac{n^4}{2} + \frac{n^3}{3} - \frac{n}{30}$
+%
+%$\sum_{i=0}^n i^p = \frac{(n+1)^{p+1}}{p+1} + \sum_{k=1}^p\frac{B_k}{p-k+1}{p\choose k}(n+1)^{p-k+1}$
+%
+%}
+%
+%\subsection{Ec. Característica}
+%$a_0T(n)+a_1T(n-1)+...+a_kT(n-k)=0$
+%
+%$p(x)=a_0 x^k + a_1 x^{k-1} + ... + a_k$
+%
+%Sean $r_1,r_2,...,r_q$ las raíces distintas, de mult. $m_1, m_2, ..., m_q$
+%
+%$T(n)=\sum_{i=1}^q{\sum_{j=0}^{m_i - 1}c_{ij} n^j r_i^n}$
 
-$\sum_{i=0}^n i\binom{n}{i}=n*2^{n-1}$
-
-$\sum_{i=m}^n i = \frac{n(n+1)}{2} - \frac{m(m-1)}{2} = \frac{(n+1-m)(n+m)}{2}$
-
-$\sum_{i=0}^n i = \sum_{i=1}^n i = \frac{n(n+1)}{2}$
-
-$\sum_{i=0}^n i^2 = \frac{n(n+1)(2n+1)}{6} = \frac{n^3}{3} + \frac{n^2}{2} + \frac{n}{6}$
-
-$\sum_{i=0}^n i(i-1) = \frac{8}{6}(\frac{n}{2})(\frac{n}{2}+1)(n+1)$ (doubles) $\rightarrow$ Sino ver caso impar y par
-
-$\sum_{i=0}^n i^3 = \left(\frac{n(n+1)}{2}\right)^2 = \frac{n^4}{4} + \frac{n^3}{2} + \frac{n^2}{4} = \left[\sum_{i=1}^n i\right]^2$
-
-$\sum_{i=0}^n i^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30} = \frac{n^5}{5} + \frac{n^4}{2} + \frac{n^3}{3} - \frac{n}{30}$
-
-$\sum_{i=0}^n i^p = \frac{(n+1)^{p+1}}{p+1} + \sum_{k=1}^p\frac{B_k}{p-k+1}{p\choose k}(n+1)^{p-k+1}$
-
-}
-
-\subsection{Ec. Característica}
-$a_0T(n)+a_1T(n-1)+...+a_kT(n-k)=0$
-
-$p(x)=a_0 x^k + a_1 x^{k-1} + ... + a_k$
-
-Sean $r_1,r_2,...,r_q$ las raíces distintas, de mult. $m_1, m_2, ..., m_q$
-
-$T(n)=\sum_{i=1}^q{\sum_{j=0}^{m_i - 1}c_{ij} n^j r_i^n}$
-
-Las constantes $c_{ij}$ se determinan por los casos base.
-\subsection{Aritmetica Modular}
-\cppfile{math/modular_arithmetic.cpp}
-\subsection{Exp. de Numeros Mod.}
-\cppfile{math/exp.mod.cpp}
-\subsection{Exp. de Matrices y Fibonacci en log(n)}
-\cppfile{math/exp.mat.cpp}
-\subsection{Primos}
-\cppfile{math/primes.cpp}
-\subsection{Factorizacion}
-Sea $n=\prod{p_i^{k_i}}$, fact(n) genera un map donde a cada $p_i$ le asocia su $k_i$
-\cppfile{math/factorize.cpp}
-\subsection{Divisores}
-\cppfile{math/divisors.cpp}
-\subsection{Euler's Phi}
-\cppfile[1-40]{math/phi_euler.cpp}
-\subsection{Phollard's Rho - Miller-Rabin}
-\cppfile[16-78]{math/phollards.rho.cpp}
-\subsection{GCD}
-\cppfile[1-2]{math/GCD-LCM.cpp}
-\subsection{LCM}
-\cppfile[3]{math/GCD-LCM.cpp}
+%Las constantes $c_{ij}$ se determinan por los casos base.
+%\subsection{Aritmetica Modular}
+%\cppfile{math/modular_arithmetic.cpp}
+%\subsection{Exp. de Numeros Mod.}
+%\cppfile{math/exp.mod.cpp}
+%\subsection{Exp. de Matrices y Fibonacci en log(n)}
+%\cppfile{math/exp.mat.cpp}
+%\subsection{Primos}
+%\cppfile{math/primes.cpp}
+%\subsection{Factorizacion}
+%Sea $n=\prod{p_i^{k_i}}$, fact(n) genera un map donde a cada $p_i$ le asocia su $k_i$
+%\cppfile{math/factorize.cpp}
+%\subsection{Divisores}
+%\cppfile{math/divisors.cpp}
+%\subsection{Euler's Phi}
+%\cppfile[1-40]{math/phi_euler.cpp}
+%\subsection{Phollard's Rho - Miller-Rabin}
+%\cppfile[16-78]{math/phollards.rho.cpp}
+%\subsection{GCD}
+%\cppfile[1-2]{math/GCD-LCM.cpp}
+%\subsection{LCM}
+%\cppfile[3]{math/GCD-LCM.cpp}
 \subsection{Euclides extendido}
 Dados $a$ y $b$, encuentra $x$ e $y$ tales que $a*x + b*y = gcd(a, b)$.
 \cppfile{math/extended.euclid.cpp}
@@ -582,18 +564,18 @@ Dadas $k$ ecuaciones de la forma $a_i*x \equiv a_i \pmod {n_i}$, encuentra $x$ t
 \cppfile{math/simpson.cpp}
 \subsection{Fraction}
 \cppfile{math/frac.cpp}
-\subsection{Polinomio, Ruffini e interpolación de Lagrange}
-\textbf{Interpolación de Lagrange}: dados $n+1$ pares $(x_i, y_i)$  permite encontrar el polinomio de grado $n$ tal que $f(x_i) = y_i$. 
-
-\textbf{Explicación}: computa $P(x) = y_1*f_1(x) + y_2*f_2(x) + \ldots + y_{n+1}*f_{n+1}(x)$ donde $f_i(x) = \frac{g_i(x)}{g_i(x_i)}$, $g_i(x) = \frac{h(x)}{x - x_i}$ y $h(x) = (x-x_1)*(x-x_2)*\ldots*(x-x_{n+1})$.
-Usa Ruffini para la división de polinomios.
-
-Trucazo para computar en \(O(n)\): \(x_{i + 1} - x_i = x_{j + 1} - x_j\) para todo \(i, j < n\).
-
-\textbf{Ejemplo de problema}: tenés que calcular una respuesta que depende de un n y parece ser polinomial, conseguís un par de puntos e 
-intentás armar el polinomio (usando el algoritmo online u offline).
-
-\cppfile{math/polinomio.cpp}
+%\subsection{Polinomio, Ruffini e interpolación de Lagrange}
+%\textbf{Interpolación de Lagrange}: dados $n+1$ pares $(x_i, y_i)$  permite encontrar el polinomio de grado $n$ tal que $f(x_i) = y_i$. 
+%
+%\textbf{Explicación}: computa $P(x) = y_1*f_1(x) + y_2*f_2(x) + \ldots + y_{n+1}*f_{n+1}(x)$ donde $f_i(x) = \frac{g_i(x)}{g_i(x_i)}$, $g_i(x) = \frac{h(x)}{x - x_i}$ y $h(x) = (x-x_1)*(x-x_2)*\ldots*(x-x_{n+1})$.
+%Usa Ruffini para la división de polinomios.
+%
+%Trucazo para computar en \(O(n)\): \(x_{i + 1} - x_i = x_{j + 1} - x_j\) para todo \(i, j < n\).
+%
+%\textbf{Ejemplo de problema}: tenés que calcular una respuesta que depende de un n y parece ser polinomial, conseguís un par de puntos e 
+%intentás armar el polinomio (usando el algoritmo online u offline).
+%
+%\cppfile{math/polinomio.cpp}
 
 \subsection{Matrices}
 \cppfile{math/matrix.cpp}
@@ -694,59 +676,59 @@ Para obtener soluciones negativas, realizar el cambio de variable \(x_i = x_i' +
 Si la desigualdad no incluye igual, solo menor, \textbf{no usar epsilon} al agregarla. Esto ya es considerado por el código.
 \cppfile{math/simplex.cpp}
 
-\subsection{Tablas y cotas (Primos, Divisores, Factoriales, etc)}
-%\subsubsection{
-\paragraph{Factoriales} \ \\
-\begin{tabular}{l|l}
-0! =	1             & 11! = 39.916.800  \\
-1! =	1             & 12! =	479.001.600	($\in \mathtt{int}$)\\
-2! =	2             & 13! =	6.227.020.800	\\
-3! =	6             & 14! =	87.178.291.200	\\
-4! =	24            & 15! =	1.307.674.368.000	\\
-5! =	120   			  & 16! =	20.922.789.888.000	\\
-6! =	720           & 17! =	355.687.428.096.000	\\
-7! =	5.040	        & 18! =	6.402.373.705.728.000	\\
-8! =	40.320	      & 19! =	121.645.100.408.832.000	\\
-9! =	362.880       & 20! =	2.432.902.008.176.640.000	($\in \mathtt{tint}$) \\
-10! =	3.628.800     & 21! =	51.090.942.171.709.400.000
-\end{tabular}
- 
-max signed tint = 9.223.372.036.854.775.807 \\
-max unsigned tint = 18.446.744.073.709.551.615
-%\subsubsection{
-\paragraph{Primos} \ \\
-2 3 5 7 11 13 17 19 23 29
-31 37 41 43 47 53 59 61 67 71
-73 79 83 89 97 101 103 107 109 113
-127 131 137 139 149 151 157 163 167 173
-179 181 191 193 197 199 211 223 227 229
-233 239 241 251 257 263 269 271 277 281
-283 293 307 311 313 317 331 337 347 349
-353 359 367 373 379 383 389 397 401 409
-419 421 431 433 439 443 449 457 461 463
-467 479 487 491 499 503 509 521 523 541
-547 557 563 569 571 577 587 593 599 601
-607 613 617 619 631 641 643 647 653 659
-661 673 677 683 691 701 709 719 727 733
-739 743 751 757 761 769 773 787 797 809
-811 821 823 827 829 839 853 857 859 863
-877 881 883 887 907 911 919 929 937 941
-947 953 967 971 977 983 991 997 1009 1013
-1019 1021 1031 1033 1039 1049 1051 1061 1063 1069
-1087 1091 1093 1097 1103 1109 1117 1123 1129 1151
-1153 1163 1171 1181 1187 1193 1201 1213 1217 1223
-1229 1231 1237 1249 1259 1277 1279 1283 1289 1291
-1297 1301 1303 1307 1319 1321 1327 1361 1367 1373
-1381 1399 1409 1423 1427 1429 1433 1439 1447 1451
-1453 1459 1471 1481 1483 1487 1489 1493 1499 1511
-1523 1531 1543 1549 1553 1559 1567 1571 1579 1583
-1597 1601 1607 1609 1613 1619 1621 1627 1637 1657
-1663 1667 1669 1693 1697 1699 1709 1721 1723 1733
-1741 1747 1753 1759 1777 1783 1787 1789 1801 1811
-1823 1831 1847 1861 1867 1871 1873 1877 1879 1889
-1901 1907 1913 1931 1933 1949 1951 1973 1979 1987
-1993 1997 1999 2003 2011 2017 2027 2029 2039 2053
-2063 2069 2081
+%\subsection{Tablas y cotas (Primos, Divisores, Factoriales, etc)}
+%%\subsubsection{
+%\paragraph{Factoriales} \ \\
+%\begin{tabular}{l|l}
+%0! =	1             & 11! = 39.916.800  \\
+%1! =	1             & 12! =	479.001.600	($\in \mathtt{int}$)\\
+%2! =	2             & 13! =	6.227.020.800	\\
+%3! =	6             & 14! =	87.178.291.200	\\
+%4! =	24            & 15! =	1.307.674.368.000	\\
+%5! =	120   			  & 16! =	20.922.789.888.000	\\
+%6! =	720           & 17! =	355.687.428.096.000	\\
+%7! =	5.040	        & 18! =	6.402.373.705.728.000	\\
+%8! =	40.320	      & 19! =	121.645.100.408.832.000	\\
+%9! =	362.880       & 20! =	2.432.902.008.176.640.000	($\in \mathtt{tint}$) \\
+%10! =	3.628.800     & 21! =	51.090.942.171.709.400.000
+%\end{tabular}
+% 
+%max signed tint = 9.223.372.036.854.775.807 \\
+%max unsigned tint = 18.446.744.073.709.551.615
+%%\subsubsection{
+%\paragraph{Primos} \ \\
+%2 3 5 7 11 13 17 19 23 29
+%31 37 41 43 47 53 59 61 67 71
+%73 79 83 89 97 101 103 107 109 113
+%127 131 137 139 149 151 157 163 167 173
+%179 181 191 193 197 199 211 223 227 229
+%233 239 241 251 257 263 269 271 277 281
+%283 293 307 311 313 317 331 337 347 349
+%353 359 367 373 379 383 389 397 401 409
+%419 421 431 433 439 443 449 457 461 463
+%467 479 487 491 499 503 509 521 523 541
+%547 557 563 569 571 577 587 593 599 601
+%607 613 617 619 631 641 643 647 653 659
+%661 673 677 683 691 701 709 719 727 733
+%739 743 751 757 761 769 773 787 797 809
+%811 821 823 827 829 839 853 857 859 863
+%877 881 883 887 907 911 919 929 937 941
+%947 953 967 971 977 983 991 997 1009 1013
+%1019 1021 1031 1033 1039 1049 1051 1061 1063 1069
+%1087 1091 1093 1097 1103 1109 1117 1123 1129 1151
+%1153 1163 1171 1181 1187 1193 1201 1213 1217 1223
+%1229 1231 1237 1249 1259 1277 1279 1283 1289 1291
+%1297 1301 1303 1307 1319 1321 1327 1361 1367 1373
+%1381 1399 1409 1423 1427 1429 1433 1439 1447 1451
+%1453 1459 1471 1481 1483 1487 1489 1493 1499 1511
+%1523 1531 1543 1549 1553 1559 1567 1571 1579 1583
+%1597 1601 1607 1609 1613 1619 1621 1627 1637 1657
+%1663 1667 1669 1693 1697 1699 1709 1721 1723 1733
+%1741 1747 1753 1759 1777 1783 1787 1789 1801 1811
+%1823 1831 1847 1861 1867 1871 1873 1877 1879 1889
+%1901 1907 1913 1931 1933 1949 1951 1973 1979 1987
+%1993 1997 1999 2003 2011 2017 2027 2029 2039 2053
+%2063 2069 2081
  
 %2083 2087 2089 2099 2111 2113 2129
 %2131 2137 2141 2143 2153 2161 2179 2203 2207 2213
@@ -767,53 +749,53 @@ max unsigned tint = 18.446.744.073.709.551.615
 %3343 3347 3359 3361 3371 3373 3389 3391 3407 3413
 %3433 3449 3457 3461 3463 3467 3469 3491 3499 3511
 %3517 3527 3529 3533 3539 3541 3547 3557 3559 3571\\
-\paragraph{Primos cercanos a $10^n$}\ \\
-9941 9949 9967 9973 10007 10009 10037 10039 10061 10067 10069 10079\\
-99961 99971 99989 99991 100003 100019 100043 100049 100057 100069\\
-999959 999961 999979 999983 1000003 1000033 1000037 1000039\\
-9999943 9999971 9999973 9999991 10000019 10000079 10000103 10000121\\
-99999941 99999959 99999971 99999989 100000007 100000037 100000039 100000049\\
-999999893 999999929 999999937 1000000007 1000000009 1000000021 1000000033
- 
-\paragraph{Cantidad de primos menores que $10^n$}\ \\
-$\pi(10^1)$ = 4 ;
-$\pi(10^2)$ = 25 ;
-$\pi(10^3)$ = 168 ;
-$\pi(10^4)$ = 1229 ;
-$\pi(10^5)$ = 9592 \\
-$\pi(10^6)$ = 78.498 ;
-$\pi(10^7)$ = 664.579 ;
-$\pi(10^8)$ = 5.761.455 ;
-$\pi(10^9)$ = 50.847.534 \\
-$\pi(10^{10})$ = 455.052,511 ;
-$\pi(10^{11})$ = 4.118.054.813 ;
-$\pi(10^{12})$ = 37.607.912.018 \\
-\textbf{Observación:} Una buena aproximación es $x/ln(x)$.
+%\paragraph{Primos cercanos a $10^n$}\ \\
+%9941 9949 9967 9973 10007 10009 10037 10039 10061 10067 10069 10079\\
+%99961 99971 99989 99991 100003 100019 100043 100049 100057 100069\\
+%999959 999961 999979 999983 1000003 1000033 1000037 1000039\\
+%9999943 9999971 9999973 9999991 10000019 10000079 10000103 10000121\\
+%99999941 99999959 99999971 99999989 100000007 100000037 100000039 100000049\\
+%999999893 999999929 999999937 1000000007 1000000009 1000000021 1000000033
+% 
+%\paragraph{Cantidad de primos menores que $10^n$}\ \\
+%$\pi(10^1)$ = 4 ;
+%$\pi(10^2)$ = 25 ;
+%$\pi(10^3)$ = 168 ;
+%$\pi(10^4)$ = 1229 ;
+%$\pi(10^5)$ = 9592 \\
+%$\pi(10^6)$ = 78.498 ;
+%$\pi(10^7)$ = 664.579 ;
+%$\pi(10^8)$ = 5.761.455 ;
+%$\pi(10^9)$ = 50.847.534 \\
+%$\pi(10^{10})$ = 455.052,511 ;
+%$\pi(10^{11})$ = 4.118.054.813 ;
+%$\pi(10^{12})$ = 37.607.912.018 \\
+%\textbf{Observación:} Una buena aproximación es $x/ln(x)$.
 %
 % Fuente: http://primes.utm.edu/howmany.shtml#table
 %
 %
 %\subsubsection{Divisores}
-\paragraph{Divisores} \ \\
-Cantidad de divisores ($\sigma_0$) para \emph{algunos} $n / \neg\exists n'<n, \sigma_0(n') \geqslant \sigma_0(n)$ \\
-\textbf{Referencias:} $\sigma_0(10^9) = 1344$ y $\sigma_0(10^{18}) = 103680$ \\
-$\sigma_0(60)$ = 12 ; $\sigma_0(120)$ = 16 ; $\sigma_0(180)$ = 18 ; $\sigma_0(240)$ = 20 ; $\sigma_0(360)$ = 24 \\
-$\sigma_0(720)$ = 30 ; $\sigma_0(840)$ = 32 ; $\sigma_0(1260)$ = 36 ; $\sigma_0(1680)$ = 40 ; $\sigma_0(10080)$ = 72 \\ $\sigma_0(15120)$ = 80 ; $\sigma_0(50400)$ = 108 ; $\sigma_0(83160)$ = 128 ; $\sigma_0(110880)$ = 144 \\
-$\sigma_0(498960)$ = 200 ; $\sigma_0(554400)$ = 216 ; $\sigma_0(1081080)$ = 256 ; $\sigma_0(1441440)$ = 288  $\sigma_0(4324320)$ = 384 ; $\sigma_0(8648640)$ = 448 \\
-\textbf{Observación:} Una buena aproximación es $x^{1/3}$. \\ \\
-%
-Suma de divisores ($\sigma_1$) para \emph{algunos} $n / \neg\exists n'<n, \sigma_1(n') \geqslant \sigma_1(n)$ \\
-$\sigma_1(96)$ = 252 ; $\sigma_1(108)$ = 280 ; $\sigma_1(120)$ = 360 ; $\sigma_1(144)$ = 403 ; $\sigma_1(168)$ = 480 \\
-$\sigma_1(960)$ = 3048 ; $\sigma_1(1008)$ = 3224 ; $\sigma_1(1080)$ = 3600 ; $\sigma_1(1200)$ = 3844 \\
-$\sigma_1(4620)$ = 16128 ; $\sigma_1(4680)$ = 16380 ; $\sigma_1(5040)$ = 19344 ; $\sigma_1(5760)$ = 19890 \\
-$\sigma_1(8820)$ = 31122 ; $\sigma_1(9240)$ = 34560 ; $\sigma_1(10080)$ = 39312 ; $\sigma_1(10920)$ = 40320 \\
-$\sigma_1(32760)$ = 131040 ; $\sigma_1(35280)$ = 137826 ; $\sigma_1(36960)$ = 145152 ; $\sigma_1(37800)$ = 148800 \\
-$\sigma_1(60480)$ = 243840 ; $\sigma_1(64680)$ = 246240 ; $\sigma_1(65520)$ = 270816 ; $\sigma_1(70560)$ = 280098 \\
-$\sigma_1(95760)$ = 386880 ; $\sigma_1(98280)$ = 403200 ; $\sigma_1(100800)$ = 409448  \\
-$\sigma_1(491400)$ = 2083200 ; $\sigma_1(498960)$ = 2160576 ; $\sigma_1(514080)$ = 2177280 \\
-$\sigma_1(982800)$ = 4305280 ; $\sigma_1(997920)$ = 4390848 ; $\sigma_1(1048320)$ = 4464096 \\
-$\sigma_1(4979520)$ = 22189440 ; $\sigma_1(4989600)$ = 22686048 ; $\sigma_1(5045040)$ = 23154768 \\
-$\sigma_1(9896040)$ = 44323200 ; $\sigma_1(9959040)$ = 44553600 ; $\sigma_1(9979200)$ = 45732192
+%\paragraph{Divisores} \ \\
+%Cantidad de divisores ($\sigma_0$) para \emph{algunos} $n / \neg\exists n'<n, \sigma_0(n') \geqslant \sigma_0(n)$ \\
+%\textbf{Referencias:} $\sigma_0(10^9) = 1344$ y $\sigma_0(10^{18}) = 103680$ \\
+%$\sigma_0(60)$ = 12 ; $\sigma_0(120)$ = 16 ; $\sigma_0(180)$ = 18 ; $\sigma_0(240)$ = 20 ; $\sigma_0(360)$ = 24 \\
+%$\sigma_0(720)$ = 30 ; $\sigma_0(840)$ = 32 ; $\sigma_0(1260)$ = 36 ; $\sigma_0(1680)$ = 40 ; $\sigma_0(10080)$ = 72 \\ $\sigma_0(15120)$ = 80 ; $\sigma_0(50400)$ = 108 ; $\sigma_0(83160)$ = 128 ; $\sigma_0(110880)$ = 144 \\
+%$\sigma_0(498960)$ = 200 ; $\sigma_0(554400)$ = 216 ; $\sigma_0(1081080)$ = 256 ; $\sigma_0(1441440)$ = 288  $\sigma_0(4324320)$ = 384 ; $\sigma_0(8648640)$ = 448 \\
+%\textbf{Observación:} Una buena aproximación es $x^{1/3}$. \\ \\
+%%
+%Suma de divisores ($\sigma_1$) para \emph{algunos} $n / \neg\exists n'<n, \sigma_1(n') \geqslant \sigma_1(n)$ \\
+%$\sigma_1(96)$ = 252 ; $\sigma_1(108)$ = 280 ; $\sigma_1(120)$ = 360 ; $\sigma_1(144)$ = 403 ; $\sigma_1(168)$ = 480 \\
+%$\sigma_1(960)$ = 3048 ; $\sigma_1(1008)$ = 3224 ; $\sigma_1(1080)$ = 3600 ; $\sigma_1(1200)$ = 3844 \\
+%$\sigma_1(4620)$ = 16128 ; $\sigma_1(4680)$ = 16380 ; $\sigma_1(5040)$ = 19344 ; $\sigma_1(5760)$ = 19890 \\
+%$\sigma_1(8820)$ = 31122 ; $\sigma_1(9240)$ = 34560 ; $\sigma_1(10080)$ = 39312 ; $\sigma_1(10920)$ = 40320 \\
+%$\sigma_1(32760)$ = 131040 ; $\sigma_1(35280)$ = 137826 ; $\sigma_1(36960)$ = 145152 ; $\sigma_1(37800)$ = 148800 \\
+%$\sigma_1(60480)$ = 243840 ; $\sigma_1(64680)$ = 246240 ; $\sigma_1(65520)$ = 270816 ; $\sigma_1(70560)$ = 280098 \\
+%$\sigma_1(95760)$ = 386880 ; $\sigma_1(98280)$ = 403200 ; $\sigma_1(100800)$ = 409448  \\
+%$\sigma_1(491400)$ = 2083200 ; $\sigma_1(498960)$ = 2160576 ; $\sigma_1(514080)$ = 2177280 \\
+%$\sigma_1(982800)$ = 4305280 ; $\sigma_1(997920)$ = 4390848 ; $\sigma_1(1048320)$ = 4464096 \\
+%$\sigma_1(4979520)$ = 22189440 ; $\sigma_1(4989600)$ = 22686048 ; $\sigma_1(5045040)$ = 23154768 \\
+%$\sigma_1(9896040)$ = 44323200 ; $\sigma_1(9959040)$ = 44553600 ; $\sigma_1(9979200)$ = 45732192
 %
 %
 
@@ -835,95 +817,95 @@ $v-e+f=k+1$
 Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la cantidad de caras y \(k\) la cantidad de componentes conexas.
 }
 }
-\subsection{Dijkstra}
-\cppfile{graphs/dijkstra.cpp}
+%\subsection{Dijkstra}
+%\cppfile{graphs/dijkstra.cpp}
 \subsection{Bellman-Ford}
 \cppfile{graphs/bellman.ford.cpp}
-\subsection{Floyd-Warshall}
-\cppfile{graphs/floyd.warshall.cpp}
+%\subsection{Floyd-Warshall}
+%\cppfile{graphs/floyd.warshall.cpp}
 \subsection{Kruskal}
 \cppfile{graphs/kruskal.cpp}
-\subsection{Prim}
-\cppfile[23-40]{graphs/prim.cpp}
+%\subsection{Prim}
+%\cppfile[23-40]{graphs/prim.cpp}
 \subsection{2-SAT + Tarjan SCC}
 \cppfile{graphs/2sat.cpp}
-\subsection{Tarjan}
-\cppfile{graphs/tarjan.cpp}
-\subsection{Kosaraju}
-\cppfile[23-72]{graphs/kosaraju.cpp}
+%\subsection{Tarjan}
+%\cppfile{graphs/tarjan.cpp}
+%\subsection{Kosaraju}
+%\cppfile[23-72]{graphs/kosaraju.cpp}
 \subsection{Articulation Points}
 \cppfile{graphs/articulaciones.cpp}
 \subsection{Comp. Biconexas y Puentes}
 \cppfile{graphs/biconexas.bridge.cpp}
 \subsection{LCA + Climb}
 \cppfile{graphs/lca.climb.cpp}
-\subsection{Union Find} 
-\cppfile{graphs/union.find.cpp}
+%\subsection{Union Find} 
+%\cppfile{graphs/union.find.cpp}
 
-\subsection{Splay Tree + Link-Cut Tree}
-\textbf{Definición:} Splay Tree es un \emph{binary search tree} eficiente.
-
-\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
-\begin{itemize}
-    \item $splay(X)$: lleva el nodo $X$ a la raíz del árbol (manteniendo el orden de los nodos). 
-    Para esto, se realizan rotaciones de forma tal que el árbol "quede más balanceado", resultando
-    en una complejidad amortizada de $O(\log{}n)$.
-    \item $search(X)$: igual que en cualquier árbol binario de búsqueda, pero después se ejecuta $splay(X)$.
-    \item $split(X)$ y $merge(X, Y)$: usando $search$, funcionan igual que en Treap.
-    \item $insert(X)$ y $erase(X)$: usando $split$ y $merge$, igual que en Treap.
-    \item $reverse()$ y otras operaciones asociativas: usando lazy-propagation, similar a Treap.
-    \item Mantener una lista en vez de un conjunto: igual que en Treap.
-\end{itemize}
-
-\textbf{Definición:} Link-Cut Tree es una estructura que mantiene un \emph{bosque de árboles con raíz}.
-
-\textbf{Conceptos base:}
-\begin{itemize}
-    \item Hijo preferido de $X$: es la raíz del subárbol en el cual se realizó el último acceso 
-    entre los descendientes de $X$, o ninguno si el último acceso fue en $X$.
-    \item Camino preferido: se representan con un \emph{splay tree}, además se almacena el padre 
-    del nodo más alto del camino (manteniendo así toda la info del árbol original)
-    \item $access(X)$: es la operación básica de la estructura, se hace cada vez que realizamos una
-    operación sobre el nodo $X$. Se encarga de mantener actualizado al "hijo preferido" de cada ancestro
-    de $X$, realizando operaciones en los splay trees correspondientes. Primero hace $splay(X)$ y desconecta
-    a su hijo derecho. Luego, iterativamente: hace $splay(Y)$ con $Y$ padre del camino de $X$, corta 
-    al hijo derecho de $Y$, luego concatena el camino preferido de $Y$ con el de $X$, y finalmente rota 
-    a $X$ y continúa.
-\end{itemize}
-
-\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
-\begin{itemize}
-    \item $link(X, Y)$: hacer a $X$ hijo de $Y$.
-    \item $cut(X)$: desconectar a $X$ de su padre.
-    \item $makeRoot(X)$: hace a $X$ raíz de su árbol.
-    \item $getRoot(X)$: devuelve la raíz del árbol de $X$.
-    \item $lca(X,Y)$: LCA tradicional.
-    \item $lift(X,k)$: k-ésimo ancestro.
-    \item $update(X,v)$: cambiar a $v$ el valor asociado a $X$.
-    \item $aggregate(X,Y)$: resultado de una operación asociativa en los nodos del camino de $X$ a $Y$.
-\end{itemize}
-
-\cppfile{graphs/link.cut.tree.splay.tree.cpp}
-
-\subsection{Heavy Light Decomposition}
-\cppfile{graphs/heavy.light.cpp}
-\subsection{Centroid Decomposition}
-\cppfile[3-20]{graphs/centroid.cpp}
-\subsection{Euler Cycle}
-\cppfile{graphs/euler.cpp}
-\subsection{Diametro árbol}
-\cppfile{graphs/diametro.cpp}
-\subsection{Chu-liu}
-\cppfile{graphs/chuliu.cpp}
-\subsection{Dynamic Conectivity}
-\textbf{Definición:} permite realizar queries sobre un grafo dinámico al que se le pueden agregar y quitar aristas.
-
-\textbf{Explicación: } procesa las queries (y los updates) offline, con una estrategia muy similar a la de la búsqueda
-binaria en paralelo: pensar que los arcos están presentes en cierto intervalo de tiempo, y que solo incluimos los arcos
-que contienen totalmente al intervalo que estamos considerando (a medida que se mueven los extremos). Al igual
-que en la búsqueda binaria en paralelo, se puede ver que se forma un árbol binario en el que se realiza una cantidad
-de operaciones lineal en cada nivel.
-\cppfile{graphs/dynamic.conectivity.cpp}
+%\subsection{Splay Tree + Link-Cut Tree}
+%\textbf{Definición:} Splay Tree es un \emph{binary search tree} eficiente.
+%
+%\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
+%\begin{itemize}
+%    \item $splay(X)$: lleva el nodo $X$ a la raíz del árbol (manteniendo el orden de los nodos). 
+%    Para esto, se realizan rotaciones de forma tal que el árbol "quede más balanceado", resultando
+%    en una complejidad amortizada de $O(\log{}n)$.
+%    \item $search(X)$: igual que en cualquier árbol binario de búsqueda, pero después se ejecuta $splay(X)$.
+%    \item $split(X)$ y $merge(X, Y)$: usando $search$, funcionan igual que en Treap.
+%    \item $insert(X)$ y $erase(X)$: usando $split$ y $merge$, igual que en Treap.
+%    \item $reverse()$ y otras operaciones asociativas: usando lazy-propagation, similar a Treap.
+%    \item Mantener una lista en vez de un conjunto: igual que en Treap.
+%\end{itemize}
+%
+%\textbf{Definición:} Link-Cut Tree es una estructura que mantiene un \emph{bosque de árboles con raíz}.
+%
+%\textbf{Conceptos base:}
+%\begin{itemize}
+%    \item Hijo preferido de $X$: es la raíz del subárbol en el cual se realizó el último acceso 
+%    entre los descendientes de $X$, o ninguno si el último acceso fue en $X$.
+%    \item Camino preferido: se representan con un \emph{splay tree}, además se almacena el padre 
+%    del nodo más alto del camino (manteniendo así toda la info del árbol original)
+%    \item $access(X)$: es la operación básica de la estructura, se hace cada vez que realizamos una
+%    operación sobre el nodo $X$. Se encarga de mantener actualizado al "hijo preferido" de cada ancestro
+%    de $X$, realizando operaciones en los splay trees correspondientes. Primero hace $splay(X)$ y desconecta
+%    a su hijo derecho. Luego, iterativamente: hace $splay(Y)$ con $Y$ padre del camino de $X$, corta 
+%    al hijo derecho de $Y$, luego concatena el camino preferido de $Y$ con el de $X$, y finalmente rota 
+%    a $X$ y continúa.
+%\end{itemize}
+%
+%\textbf{Operaciones:} soporta operaciones en $O(\log{}n)$ amortizado.
+%\begin{itemize}
+%    \item $link(X, Y)$: hacer a $X$ hijo de $Y$.
+%    \item $cut(X)$: desconectar a $X$ de su padre.
+%    \item $makeRoot(X)$: hace a $X$ raíz de su árbol.
+%    \item $getRoot(X)$: devuelve la raíz del árbol de $X$.
+%    \item $lca(X,Y)$: LCA tradicional.
+%    \item $lift(X,k)$: k-ésimo ancestro.
+%    \item $update(X,v)$: cambiar a $v$ el valor asociado a $X$.
+%    \item $aggregate(X,Y)$: resultado de una operación asociativa en los nodos del camino de $X$ a $Y$.
+%\end{itemize}
+%
+%\cppfile{graphs/link.cut.tree.splay.tree.cpp}
+%
+%\subsection{Heavy Light Decomposition}
+%\cppfile{graphs/heavy.light.cpp}
+%\subsection{Centroid Decomposition}
+%\cppfile[3-20]{graphs/centroid.cpp}
+%\subsection{Euler Cycle}
+%\cppfile{graphs/euler.cpp}
+%\subsection{Diametro árbol}
+%\cppfile{graphs/diametro.cpp}
+%\subsection{Chu-liu}
+%\cppfile{graphs/chuliu.cpp}
+%\subsection{Dynamic Conectivity}
+%\textbf{Definición:} permite realizar queries sobre un grafo dinámico al que se le pueden agregar y quitar aristas.
+%
+%\textbf{Explicación: } procesa las queries (y los updates) offline, con una estrategia muy similar a la de la búsqueda
+%binaria en paralelo: pensar que los arcos están presentes en cierto intervalo de tiempo, y que solo incluimos los arcos
+%que contienen totalmente al intervalo que estamos considerando (a medida que se mueven los extremos). Al igual
+%que en la búsqueda binaria en paralelo, se puede ver que se forma un árbol binario en el que se realiza una cantidad
+%de operaciones lineal en cada nivel.
+%\cppfile{graphs/dynamic.conectivity.cpp}
 
 
 \section{Flujo}%%%%%%%%%%%%%%%%%%FLOW%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -944,25 +926,25 @@ En Dinic's: vertices con $dist[v] >= 0$ (del lado de $S$) vs.  $dist[v] == -1$ (
 	\end{itemize}
 \end{itemize}
 
-\subsection{Ford Fulkerson}
-\textbf{Complejidad: } $O(fE)$.
-\textbf{Algoritmo: } cambiar BFS por DFS en Edmonds Karp.
-
-\subsection{Edmonds Karp}
-\textbf{Complejidad: } $O(VE^2)$.
-\cppfile{flow/edmonds.karp.cpp}
+%\subsection{Ford Fulkerson}
+%\textbf{Complejidad: } $O(fE)$.
+%\textbf{Algoritmo: } cambiar BFS por DFS en Edmonds Karp.
+%
+%\subsection{Edmonds Karp}
+%\textbf{Complejidad: } $O(VE^2)$.
+%\cppfile{flow/edmonds.karp.cpp}
 
 \subsection{Dinic}
 \textbf{Complejidad: } $O(V^2E)$ en general. $O(min(E^{3/2}, V^{2/3}E))$ con capacidades unitarias. $O(\sqrt{V}E)$ en matching bipartito (se lo llama Hopcroft–Karp algorithm) y en cualquier otra red unitaria (indegree = outdegree = 1 para cada vértice excepto S y T). 
 \cppfile{flow/dinic.cpp}
 
-\subsection{Maximum matching}
-\textbf{Complejidad}: $O(VE)$.
-\cppfile{flow/matching.cpp}
-
-\subsection{Hungarian}
-\textbf{Complejidad: } $O(V^3)$.
-\cppfile{flow/hungarian.cpp}
+%\subsection{Maximum matching}
+%\textbf{Complejidad}: $O(VE)$.
+%\cppfile{flow/matching.cpp}
+%
+%\subsection{Hungarian}
+%\textbf{Complejidad: } $O(V^3)$.
+%\cppfile{flow/hungarian.cpp}
 
 \subsection{Min-cost Max-flow}
 \textbf{Algoritmo}: tira camino mínimo hasta encontrar el flujo buscado. Usa SPFA (Bellman-Ford más inteligente, con mejor
@@ -993,76 +975,76 @@ Definimos la nueva función de capacidad $c'$ como:
 \section{Misc}
 \cppfile{others/truquillos.cpp}
 
-\subsection{Fast read}
-\cppfile{others/fast.read.cpp}
+%\subsection{Fast read}
+%\cppfile{others/fast.read.cpp}
 
-\section{Ayudamemoria}%%%%%%%%%%%%%%%%%%AYUDAMEMORIA%%%%%%%%%%%%%%%%
-\subsection*{Cant. decimales} 	
-\begin{code}
-#include <iomanip>
-cout << setprecision(2) << fixed;
-\end{code}
-\subsection*{Rellenar con espacios(para justificar)}
-\begin{code}
-#include <iomanip>
-cout << setfill(' ') << setw(3) << 2 << endl;
-\end{code}
-\subsection*{Comparación de Doubles}
-\begin{code}
-const double EPS = 1e-9;
-x == y	<=> fabs(x-y) < EPS
-x >  y	<=> x > y + EPS
-x >= y	<=> x > y - EPS
-\end{code}
-\subsection*{Limites}
-\begin{code}
-#include <limits>
-numeric_limits<T>
-	::max()
-	::min()
-	::epsilon()
-\end{code}
-\subsection*{Muahaha}
-\begin{code}
-#include <signal.h>
-void divzero(int p){
-	while(true);}
-void segm(int p){
-	exit(0);}
-//in main
-signal(SIGFPE, divzero);
-signal(SIGSEGV, segm);
-\end{code}
-\subsection*{Mejorar velocidad 2}
-\begin{code}
-//Solo para enteros positivos
-inline void Scanf(int& a){
-	char c = 0;
-	while(c<33) c = getc(stdin);
-	a = 0;
-	while(c>33)	a = a*10 + c - '0', c = getc(stdin);
-}
-\end{code}
-\subsection*{Leer del teclado}
-\begin{code}
-freopen("/dev/tty", "a", stdin);
-\end{code}
-\subsection*{Iterar subconjunto}
-\begin{code}
-for(int sbm=bm; sbm; sbm=(sbm-1)&bm)
-\end{code}
-\subsection*{File setup}
-\begin{code}
-// tambien se pueden usar comas: {a, x, m, l}
-touch {a..l}.in; tee {a..l}.cpp < template.cpp
-\end{code}
-\subsection*{Releer String}
-\begin{code}
-string s; int n;
-getline(cin, s);
-stringstream leer(s);
-while(leer >> n){
-	// do something ...
-}
-\end{code}
+%\section{Ayudamemoria}%%%%%%%%%%%%%%%%%%AYUDAMEMORIA%%%%%%%%%%%%%%%%
+%\subsection*{Cant. decimales} 	
+%\begin{code}
+%#include <iomanip>
+%cout << setprecision(2) << fixed;
+%\end{code}
+%\subsection*{Rellenar con espacios(para justificar)}
+%\begin{code}
+%#include <iomanip>
+%cout << setfill(' ') << setw(3) << 2 << endl;
+%\end{code}
+%\subsection*{Comparación de Doubles}
+%\begin{code}
+%const double EPS = 1e-9;
+%x == y	<=> fabs(x-y) < EPS
+%x >  y	<=> x > y + EPS
+%x >= y	<=> x > y - EPS
+%\end{code}
+%\subsection*{Limites}
+%\begin{code}
+%#include <limits>
+%numeric_limits<T>
+%	::max()
+%	::min()
+%	::epsilon()
+%\end{code}
+%\subsection*{Muahaha}
+%\begin{code}
+%#include <signal.h>
+%void divzero(int p){
+%	while(true);}
+%void segm(int p){
+%	exit(0);}
+%//in main
+%signal(SIGFPE, divzero);
+%signal(SIGSEGV, segm);
+%\end{code}
+%\subsection*{Mejorar velocidad 2}
+%\begin{code}
+%//Solo para enteros positivos
+%inline void Scanf(int& a){
+%	char c = 0;
+%	while(c<33) c = getc(stdin);
+%	a = 0;
+%	while(c>33)	a = a*10 + c - '0', c = getc(stdin);
+%}
+%\end{code}
+%\subsection*{Leer del teclado}
+%\begin{code}
+%freopen("/dev/tty", "a", stdin);
+%\end{code}
+%\subsection*{Iterar subconjunto}
+%\begin{code}
+%for(int sbm=bm; sbm; sbm=(sbm-1)&bm)
+%\end{code}
+%\subsection*{File setup}
+%\begin{code}
+%// tambien se pueden usar comas: {a, x, m, l}
+%touch {a..l}.in; tee {a..l}.cpp < template.cpp
+%\end{code}
+%\subsection*{Releer String}
+%\begin{code}
+%string s; int n;
+%getline(cin, s);
+%stringstream leer(s);
+%while(leer >> n){
+%	// do something ...
+%}
+%\end{code}
 \end{document}
