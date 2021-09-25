@@ -6,6 +6,9 @@ ios_base::sync_with_stdio(0); cin.tie(0); // Speeds up considerably the read spe
 #pragma GCC optimize ("O3") // Asks the compiler to apply more optimizations, that way speeding up the program very much! (optionally add: unroll-loops)
 #pragma GCC target ("avx,avx2,fma") 
 
+#pragma GCC optimize("Ofast")// start praying
+#pragma GCC optimize ("trapv")//kills the program on integer overﬂows (but is really slow).
+
 Math:
 max(a,b);  // Returns the largest of a and b
 min(a,b);  // Returns the smallest of a and b
