@@ -72,8 +72,8 @@
 %\cppfile{structures/li.chao.tree.cpp}
 %\subsection{Gain-Cost Set}
 %\cppfile[1-24]{structures/gain.cost.set.cpp}
-%\subsection{Set con índices}
-%\cppfile{structures/order.statistics.tree.cpp}
+\subsection{Set con índices}
+\cppfile{structures/order.statistics.tree.cpp}
 
 
 %\section{Algoritmos varios}%%%%%%%%%%%%%%%%%%ALGORITMOS%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,23 +102,23 @@
 \subsection{Hash}
 \cppfile{strings/hash.cpp}
 \subsection{Manacher}
-\textbf{Definición:} permite calcular todas las substrings
-de una string $s$ que son palíndromos.
-Para ello, mantiene un arreglo $odd$ tal que $odd[i]$ 
-almacena la longitud del palíndromo impar maximal con centro en $i$. 
-Análogamente mantiene un arreglo $even$ tal que $even[i]$ guarda la 
-longitud del palíndromo par maximal con centro derecho en $i$. \\
-\textbf{Explicación del algoritmo:} muy similar al algoritmo para calcular
-la \emph{función Z}, mantiene el palíndromo que termina más a la derecha
-entre todos los palíndromos ya detectados con rango $[l, r]$. Utiliza la 
-información ya calculada si $i$ está dentro de $[l, r]$, y luego corre
-el algoritmo trivial. Cada vez que se corre el algoritmo trivial, r se 
-incrementa en 1 y r jamás decrece.\\
+%\textbf{Definición:} permite calcular todas las substrings
+%de una string $s$ que son palíndromos.
+%Para ello, mantiene un arreglo $odd$ tal que $odd[i]$ 
+%almacena la longitud del palíndromo impar maximal con centro en $i$. 
+%Análogamente mantiene un arreglo $even$ tal que $even[i]$ guarda la 
+%longitud del palíndromo par maximal con centro derecho en $i$. \\
+%\textbf{Explicación del algoritmo:} muy similar al algoritmo para calcular
+%la \emph{función Z}, mantiene el palíndromo que termina más a la derecha
+%entre todos los palíndromos ya detectados con rango $[l, r]$. Utiliza la 
+%información ya calculada si $i$ está dentro de $[l, r]$, y luego corre
+%el algoritmo trivial. Cada vez que se corre el algoritmo trivial, r se 
+%incrementa en 1 y r jamás decrece.\\
 \cppfile{strings/manacher.cpp}
 \subsection{KMP}
 \cppfile{strings/kmp.cpp}
-\subsection{Trie}
-\cppfile{strings/trie.cpp}
+%\subsection{Trie}
+%\cppfile{strings/trie.cpp}
 \subsection{Suffix Array (corto, nlog2n)}
 \cppfile{strings/suffix.array.short.cpp}
 %\subsection{Suffix Array (largo, nlogn)}
@@ -288,16 +288,16 @@ incrementa en 1 y r jamás decrece.\\
 %\cppfile{strings/palindrome.cpp}
 
 \section{Geometría}%%%%%%%%%%%%%%%%%%geometria%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Epsilon}
-\cppfile{geometry/eps.cpp}
+%\subsection{Epsilon}
+%\cppfile{geometry/eps.cpp}
 \subsection{Point}
 \cppfile{geometry/pto.cpp}
-\subsection{Orden radial de puntos}
-\cppfile{geometry/radial.order.cpp}
-%\subsection{Line}
-%\cppfile{geometry/line.cpp}
-%\subsection{Segment}
-%\cppfile{geometry/segm.cpp}
+%\subsection{Orden radial de puntos}
+%\cppfile{geometry/radial.order.cpp}
+\subsection{Line}
+\cppfile{geometry/line.cpp}
+\subsection{Segment}
+\cppfile{geometry/segm.cpp}
 %\subsection{Rectangle}
 %\cppfile{geometry/rect.cpp}
 %\subsection{Polygon Area}
@@ -430,11 +430,11 @@ Por ejemplo, si el grupo $G$ consiste de las operaciones de rotación, el conjun
 entonces el número de órbitas $|X/G|$ es el número de posibles coloreos de un tablero salvo rotaciones.
 }
 
-\subsubsection{Combinatorios}
-{
-\(\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!} \)
-\cppfile[12-23]{math/combinatorics.cpp}
-}
+%\subsubsection{Combinatorios}
+%{
+%\(\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!} \)
+%\cppfile[12-23]{math/combinatorics.cpp}
+%}
 
 \subsubsection{Lucas Theorem}
 {
@@ -541,8 +541,8 @@ for \(n > 0\).
 %\cppfile{math/factorize.cpp}
 %\subsection{Divisores}
 %\cppfile{math/divisors.cpp}
-%\subsection{Euler's Phi}
-%\cppfile[1-40]{math/phi_euler.cpp}
+\subsection{Euler's Phi}
+\cppfile[1-40]{math/phi_euler.cpp}
 %\subsection{Phollard's Rho - Miller-Rabin}
 %\cppfile[16-78]{math/phollards.rho.cpp}
 %\subsection{GCD}
@@ -560,10 +560,10 @@ Basado en Euclides extendido. Dados $a$, $b$, y $r$ obtiene $x$ e $y$ tales que 
 \subsection{Teorema Chino del Resto}
 Dadas $k$ ecuaciones de la forma $a_i*x \equiv a_i \pmod {n_i}$, encuentra $x$ tal que es solución. Existe una única solución módulo $lcm(n_i)$.
 \cppfile{math/chinese.cpp}
-\subsection{Simpson}
-\cppfile{math/simpson.cpp}
-\subsection{Fraction}
-\cppfile{math/frac.cpp}
+%\subsection{Simpson}
+%\cppfile{math/simpson.cpp}
+%\subsection{Fraction}
+%\cppfile{math/frac.cpp}
 %\subsection{Polinomio, Ruffini e interpolación de Lagrange}
 %\textbf{Interpolación de Lagrange}: dados $n+1$ pares $(x_i, y_i)$  permite encontrar el polinomio de grado $n$ tal que $f(x_i) = y_i$. 
 %
@@ -585,52 +585,52 @@ Dadas $k$ ecuaciones de la forma $a_i*x \equiv a_i \pmod {n_i}$, encuentra $x$ t
 \cppfile{math/gauss.cpp}
 
 \subsection{FFT y NTT}
-\textbf{Base teórica (e intuición)}: \\
-La \textbf{transformada de Fourier} mapea una función temporal a un dominio de frecuencias. \\
-Podemos pensar que rotamos la función temporal alrededor de un círculo a diferentes frecuencias y
-calculamos la magnitud del centro de masa de la figura resultante; la función del dominio de 
-frecuencias representa este mapeo. \\
-\[
-    F_n = 
-    \begin{bmatrix}
-        1 & 1 & 1 & \ldots & 1 \\
-        1 & \xi_n & \xi_n^2 & \dots & \xi_n^{n-1} \\
-        1 & \xi_n^2 & \xi_n^4 & \dots & \xi_n^{2(n-1)} \\
-        \vdots & \vdots & \vdots & \ddots & \vdots \\
-        1 & \xi_n^{n-1} & \xi_n^{2(n-1)} & \dots & \xi_n^{(n-1)(n-1)}
-    \end{bmatrix}
-\]
-\[
-    y = F_nx
-\]
-Donde $\omega_n$ es una raíz primitiva n-ésima de la unidad y $\xi_n = w_n^{n-1}$.
-La \textbf{transformada rápida de Fourier} se basa en que las raíces de la unidad cumplen la propiedad $ \omega_{2n}^{2} = \omega_{n} $. Por lo tanto:
-\[
-    F_n = 
-    \begin{bmatrix}
-        F_{n/2} & D_{n/2}F_{n/2} \\
-        F_{n/2} & -D_{n/2}F_{n/2}
-    \end{bmatrix}
-    P_n 
-\]
-donde: 
-\[
-    D_{n/2} = 
-    \begin{bmatrix}
-        1 \\
-        & \xi_n \\
-        & & \xi_n^2 \\
-        & & & \ddots \\
-        & & & & \xi_n^{n/2-1}
-    \end{bmatrix}
-\]
-    y
-\[
-    P_n^T = 
-    \begin{bmatrix}
-        e_0 & e_2 & e_4 & \ldots & e_{n-2} & e_1 & e_3 & \ldots & e_{n-1}
-    \end{bmatrix}
-\]  
+%\textbf{Base teórica (e intuición)}: \\
+%La \textbf{transformada de Fourier} mapea una función temporal a un dominio de frecuencias. \\
+%Podemos pensar que rotamos la función temporal alrededor de un círculo a diferentes frecuencias y
+%calculamos la magnitud del centro de masa de la figura resultante; la función del dominio de 
+%frecuencias representa este mapeo. \\
+%\[
+%    F_n = 
+%    \begin{bmatrix}
+%        1 & 1 & 1 & \ldots & 1 \\
+%        1 & \xi_n & \xi_n^2 & \dots & \xi_n^{n-1} \\
+%        1 & \xi_n^2 & \xi_n^4 & \dots & \xi_n^{2(n-1)} \\
+%        \vdots & \vdots & \vdots & \ddots & \vdots \\
+%        1 & \xi_n^{n-1} & \xi_n^{2(n-1)} & \dots & \xi_n^{(n-1)(n-1)}
+%    \end{bmatrix}
+%\]
+%\[
+%    y = F_nx
+%\]
+%Donde $\omega_n$ es una raíz primitiva n-ésima de la unidad y $\xi_n = w_n^{n-1}$.
+%La \textbf{transformada rápida de Fourier} se basa en que las raíces de la unidad cumplen la propiedad $ \omega_{2n}^{2} = \omega_{n} $. Por lo tanto:
+%\[
+%    F_n = 
+%    \begin{bmatrix}
+%        F_{n/2} & D_{n/2}F_{n/2} \\
+%        F_{n/2} & -D_{n/2}F_{n/2}
+%    \end{bmatrix}
+%    P_n 
+%\]
+%donde: 
+%\[
+%    D_{n/2} = 
+%    \begin{bmatrix}
+%        1 \\
+%        & \xi_n \\
+%        & & \xi_n^2 \\
+%        & & & \ddots \\
+%        & & & & \xi_n^{n/2-1}
+%    \end{bmatrix}
+%\]
+%    y
+%\[
+%    P_n^T = 
+%    \begin{bmatrix}
+%        e_0 & e_2 & e_4 & \ldots & e_{n-2} & e_1 & e_3 & \ldots & e_{n-1}
+%    \end{bmatrix}
+%\]  
 \textbf{NTT}: es un algoritmo más lento pero más preciso para calcular la DFT,
 ya que trabaja con enteros módulo un primo $m$. \\
 El módulo $m$ debe ser un primo de la forma $m = c2^k + 1$.
@@ -887,8 +887,8 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 %
 %\cppfile{graphs/link.cut.tree.splay.tree.cpp}
 %
-%\subsection{Heavy Light Decomposition}
-%\cppfile{graphs/heavy.light.cpp}
+\subsection{Heavy Light Decomposition}
+\cppfile{graphs/heavy.light.cpp}
 %\subsection{Centroid Decomposition}
 %\cppfile[3-20]{graphs/centroid.cpp}
 %\subsection{Euler Cycle}
