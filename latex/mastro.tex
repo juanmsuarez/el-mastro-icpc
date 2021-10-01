@@ -3,7 +3,7 @@
 %"The PDF file may contain up to 25 pages of reference material, single-sided, letter or A4 size, with text and illustrations readable by a person with correctable eyesight without magnification from a distance of 1/2 meter."
 \input{helper/preamble.tex}
 \begin{document}
-\def\title{Universidad Nacional del Sur - Mastropiero Limit Exceeded}
+\def\title{Universidad Nacional del Sur - Mastropiero Unlimited}
 
 %\begin{center}{\includegraphics[width=4cm]{../others/mastro}}\end{center}
 
@@ -15,8 +15,8 @@
 \section{Estructuras}%%%%%%%%%%%%%%%%%%ESTRUCTURAS%%%%%%%%%%%%%%%%%%
 %\subsection{Sparse Table}
 %\cppfile{../structures/sparse.table.cpp}
-%\subsection{Segment Tree}
-%\cppfile{structures/segment.tree.cpp}
+\subsection{Segment Tree}
+\cppfile{structures/segment.tree.cpp}
 %\subsection{Segment Tree (Iterative)}
 %\cppfile{structures/segment.tree.iterative.cpp}
 \subsection{Segment Tree (Lazy)}
@@ -25,8 +25,8 @@
 %\cppfile{structures/segment.tree.persistent.cpp}
 %\subsection{Sliding Window RMQ}
 %\cppfile{structures/sliding.window.rmq.cpp}
-%\subsection{Fenwick Tree}
-%\cppfile{structures/fenwick.cpp}
+\subsection{Fenwick Tree}
+\cppfile{structures/fenwick.cpp}
 %
 %\subsection{Disjoint Intervals}
 %\cppfile{structures/disjoint.intervals.cpp}
@@ -66,7 +66,7 @@
 
 \subsection{Convex Hull Trick}
 \cppfile{structures/chull.trick.cpp}
-\subsection{Convex Hull Trick (Dynamic)}
+\subsection{CHULL Trick (Dynamic)}
 \cppfile{structures/chull.trick.dyn.cpp}
 %\subsection{Li-Chao Tree}
 %\cppfile{structures/li.chao.tree.cpp}
@@ -123,7 +123,7 @@
 \cppfile{strings/suffix.array.short.cpp}
 %\subsection{Suffix Array (largo, nlogn)}
 %\cppfile[1-38]{strings/suffix.array.cpp}
-\subsection{String Matching With Suffix Array}
+\subsection{Matching Suffix Array}
 \cppfile[38-59]{strings/suffix.array.cpp}
 \subsection{LCP (Longest Common Prefix)}
 \cppfile[61-75]{strings/suffix.array.cpp}
@@ -663,7 +663,7 @@ Es mucho más fácil realizar ciertas operaciones en un dominio de frecuencias:
 \cppfile{math/fft_ntt.cpp}
 \cppfile{math/fft_ntt_operations.cpp}
 
-\subsection{Programación lineal: Simplex}
+\subsection{Simplex}
 \textbf{Introducción} \\
 Permite maximizar cierta función lineal dado un conjunto de restricciones lineales.
 \textbf{Algoritmo} \\
@@ -823,8 +823,8 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \cppfile{graphs/bellman.ford.cpp}
 %\subsection{Floyd-Warshall}
 %\cppfile{graphs/floyd.warshall.cpp}
-\subsection{Kruskal}
-\cppfile{graphs/kruskal.cpp}
+%\subsection{Kruskal}
+%\cppfile{graphs/kruskal.cpp}
 %\subsection{Prim}
 %\cppfile[23-40]{graphs/prim.cpp}
 \subsection{2-SAT + Tarjan SCC}
@@ -839,8 +839,8 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 \cppfile{graphs/biconexas.bridge.cpp}
 \subsection{LCA + Climb}
 \cppfile{graphs/lca.climb.cpp}
-%\subsection{Union Find} 
-%\cppfile{graphs/union.find.cpp}
+\subsection{Union Find} 
+\cppfile{graphs/union.find.cpp}
 
 %\subsection{Splay Tree + Link-Cut Tree}
 %\textbf{Definición:} Splay Tree es un \emph{binary search tree} eficiente.
@@ -889,8 +889,8 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 %
 \subsection{Heavy Light Decomposition}
 \cppfile{graphs/heavy.light.cpp}
-%\subsection{Centroid Decomposition}
-%\cppfile[3-20]{graphs/centroid.cpp}
+\subsection{Centroid Decomposition}
+\cppfile[3-20]{graphs/centroid.cpp}
 %\subsection{Euler Cycle}
 %\cppfile{graphs/euler.cpp}
 %\subsection{Diametro árbol}
@@ -900,7 +900,7 @@ Donde \(v\) es la cantidad de vértices, \(e\) la cantidad de arcos, \(f\) la ca
 %\subsection{Dynamic Conectivity}
 %\textbf{Definición:} permite realizar queries sobre un grafo dinámico al que se le pueden agregar y quitar aristas.
 %
-%\textbf{Explicación: } procesa las queries (y los updates) offline, con una estrategia muy similar a la de la búsqueda
+%\textbf{Explicación: } procesa las queries (y los updates) offline, co	n una estrategia muy similar a la de la búsqueda
 %binaria en paralelo: pensar que los arcos están presentes en cierto intervalo de tiempo, y que solo incluimos los arcos
 %que contienen totalmente al intervalo que estamos considerando (a medida que se mueven los extremos). Al igual
 %que en la búsqueda binaria en paralelo, se puede ver que se forma un árbol binario en el que se realiza una cantidad
