@@ -15,11 +15,9 @@ cin.exceptions(cin.failbit); //input error causes RTE
     #define SEP 8
 #endif
 
-void err(istream_iterator<string> it){}
-template<typename T, typename... Args>
-void err(istream_iterator<string> it, T a, Args... args){
-  cerr <<  *it  << " : " << a << endl;
-  err(++it, args...);
+template<typename ...Args>
+void err(istream_iterator<string> it, Args... args) {
+  ((cerr << *(it++) << " = " << forward<Args>(args) << endl), ...);
 }
 
 template <typename T>

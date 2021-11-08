@@ -14,3 +14,4 @@ struct chash {//not required. Default hash is okay besides implementing fenwick
 };
 
 gp_hash_table<int,int,chash> hashmap;//usual map methods
+gp_hash_table<int,null_type> hashmap;//set<int>
