@@ -1,1 +1,2 @@
-El Mastro - Mastropiero Limit Exceeded - Universidad Nacional del Sur
+# El Mastro
+ICPC Team Notebook. Team "Mastropiero Unlimited".
