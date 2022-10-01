@@ -12,12 +12,11 @@ void sieve() { // O(n)
 	}
 }
 
-void eratosthenes() { // O(n * log log n)
+void eratosthenes() { // O(n log log n)
     forsn(i, 2, N+1) lp[i] = i & 1 ? i : 2;
-    for (int i = 3; i*i <= N; i += 2) if (lp[i] == i) {
+    for (int i = 3; i*i <= N; i += 2) if (lp[i] == i)
         for (int j = i*i; j <= N; j += 2*i) if (lp[j] == j) lp[j] = i;
-        P.pb(i);
-    }
+    forsn(i, 2, N+1) if (lp[i] == i) P.pb(i);
 }
 
 bool prime(int x) { // O(sqrt x)
